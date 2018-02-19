@@ -1,0 +1,9 @@
+{
+  "name": "react-native-otp-inputs",
+  "version": "0.0.1",
+  "description": "OTP inputs built in pure JS for React-Native",
+  "main": "index.js",
+  "repository": "https://github.com/dsznajder/react-native-otp-inputs",
+  "author": "Damian Sznajder <damsznajder@gmail.com>",
+  "license": "MIT"
+}

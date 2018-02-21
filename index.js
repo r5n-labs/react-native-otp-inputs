@@ -1,8 +1,14 @@
-'use strict'
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Keyboard, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native'
+import {
+  Dimensions,
+  Keyboard,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewPropTypes,
+} from 'react-native'
 
 import OtpInput from './OtpInput'
 
@@ -25,6 +31,7 @@ export default class OtpInputs extends Component {
   }
 
   state = {
+    inputsArray: [],
     loading: false,
     otpCode: [],
   }
@@ -33,7 +40,7 @@ export default class OtpInputs extends Component {
   minIndex = 0
   inputs = []
 
-  _updateOtpCode = (text, index) => {
+  _updateText = (text, index) => {
     if (text) {
       const otpCode = this.state.otpCode
 
@@ -62,6 +69,10 @@ export default class OtpInputs extends Component {
     }
   }
 
+  componentDidMount = () => {
+    this._renderInputs()
+  }
+
   _focusNextInput = index => {
     this.inputs[index].input.focus()
   }
@@ -80,8 +91,9 @@ export default class OtpInputs extends Component {
     } = this.props
     const { otpCode } = this.state
 
+    let inputArray = []
     for (let index = 0; index < numberOfInputs; index++) {
-      return (
+      inputArray[index] = (
         <OtpInput
           containerStyles={inputContainerStyles}
           focusedBorderColor={focusedBorderColor}
@@ -89,11 +101,13 @@ export default class OtpInputs extends Component {
           error={errorMessage}
           handleBackspace={event => this._handleBackspace(event, index)}
           ref={input => (this.inputs[index] = input)}
-          updateOtpCode={text => this._updateOtpCode(text, index)}
+          updateText={text => this._updateText(text, index)}
           value={otpCode[index]}
         />
       )
     }
+
+    return inputArray.map(input => input)
   }
 
   render() {
@@ -103,6 +117,7 @@ export default class OtpInputs extends Component {
       errorMessageContainerStyles,
       errorMessageTextStyles,
     } = this.props
+    const { otpCode } = this.state
 
     return (
       <View style={[defaultStyles.container, containerStyles]}>
@@ -122,7 +137,7 @@ const defaultStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
-  indputsContainer: {
+  inputsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 25,

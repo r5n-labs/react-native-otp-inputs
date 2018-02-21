@@ -26,8 +26,6 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react-native": "^4.0.0",
     "jest": "^22.3.0",
-    "react": "^16.2.0",
-    "react-native": "^0.53.0",
     "rimraf": "^2.6.2"
   }
 }

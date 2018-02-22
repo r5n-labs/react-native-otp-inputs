@@ -19,13 +19,15 @@ export default class OtpInputs extends Component {
     errorMessageContainerStyles: ViewPropTypes.style,
     errorMessageTextStyles: ViewPropTypes.style,
     focusedBorderColor: PropTypes.string,
+    handleChange: PropTypes.func.isRequired,
     inputContainerStyles: ViewPropTypes.style,
     inputStyles: ViewPropTypes.style,
     inputTextErrorColor: PropTypes.string,
-    numberOfInputs: PropTypes.number,
+    numberOfInputs: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
+    handleChange: console.log,
     focusedBorderColor: '#0000ff',
     inputTextErrorColor: '#ff0000',
     numberOfInputs: 4,
@@ -47,6 +49,7 @@ export default class OtpInputs extends Component {
 
       otpCode[index] = text
 
+      this.props.handleChange && this.props.handleChange(otpCode.join(''))
       this.setState({ otpCode, error: null })
       if (index === this.maxIndex) {
         return Keyboard.dismiss()

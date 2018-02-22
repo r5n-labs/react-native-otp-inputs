@@ -65,6 +65,8 @@ export default class OtpInputs extends Component {
     if (nativeEvent.key === 'Backspace') {
       const otpCode = this.state.otpCode
       otpCode[index] = ''
+
+      this.props.handleChange && this.props.handleChange(otpCode.join(''))
       this.setState({ otpCode, error: null })
 
       if (index > this.minIndex && index <= this.maxIndex) {

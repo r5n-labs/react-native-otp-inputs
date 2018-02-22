@@ -10,7 +10,7 @@ import {
   ViewPropTypes,
 } from 'react-native'
 
-import OtpInput from './OtpInput'
+import OtpInput from './lib/OtpInput'
 
 export default class OtpInputs extends Component {
   static propTypes = {
@@ -20,6 +20,7 @@ export default class OtpInputs extends Component {
     errorMessageTextStyles: ViewPropTypes.style,
     focusedBorderColor: PropTypes.string,
     inputContainerStyles: ViewPropTypes.style,
+    inputStyles: ViewPropTypes.style,
     inputTextErrorColor: PropTypes.string,
     numberOfInputs: PropTypes.number,
   }
@@ -88,6 +89,7 @@ export default class OtpInputs extends Component {
       numberOfInputs,
       inputContainerStyles,
       inputTextErrorColor,
+      inputStyles,
     } = this.props
     const { otpCode } = this.state
 
@@ -96,11 +98,12 @@ export default class OtpInputs extends Component {
       inputArray[index] = (
         <OtpInput
           containerStyles={inputContainerStyles}
-          focusedBorderColor={focusedBorderColor}
-          textErrorColor={inputTextErrorColor}
           error={errorMessage}
+          focusedBorderColor={focusedBorderColor}
           handleBackspace={event => this._handleBackspace(event, index)}
+          inputStyles={inputStyles}
           ref={input => (this.inputs[index] = input)}
+          textErrorColor={inputTextErrorColor}
           updateText={text => this._updateText(text, index)}
           value={otpCode[index]}
         />

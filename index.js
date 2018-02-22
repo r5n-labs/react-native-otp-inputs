@@ -107,6 +107,7 @@ export default class OtpInputs extends Component {
           focusedBorderColor={focusedBorderColor}
           handleBackspace={event => this._handleBackspace(event, index)}
           inputStyles={inputStyles}
+          key={index}
           ref={input => (this.inputs[index] = input)}
           textErrorColor={inputTextErrorColor}
           updateText={text => this._updateText(text, index)}

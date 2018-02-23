@@ -10,7 +10,7 @@
 
 #### Supported version of React Native >= 0.53.0
 
-**_It's because of `onKeyPress` event implementation in android._**
+**_It's because of `onKeyPress` event implementation on android._**
 
 ## Basic usage
 
@@ -43,5 +43,9 @@ export default class App extends Component {
 | inputContainerStyles        | style (object) | false       | none        | Styles applied to each input container                       |
 | errorMessageContainerStyles | style (object) | false       | none        | Styles applied to error message container                    |
 | errorMessageTextStyles      | style (object) | false       | none        | Styles applied to error message text                         |
+
+### Contributions
+
+Great thanks to [@kantorm](https://github.com/kantorm).
 
 ### Licence MIT

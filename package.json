@@ -1,9 +1,7 @@
 {
   "author": "Damian Sznajder <damsznajder@gmail.com>",
   "bugs": "https://github.com/dsznajder/react-native-otp-inputs/issues",
-  "contributors": [
-    "Michał Kantor <kantorm96@gmail.com>"
-  ],
+  "contributors": ["Michał Kantor <kantorm96@gmail.com>"],
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
@@ -12,27 +10,33 @@
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
   "version": "0.3.1",
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "jest",
     "build": "babel ./index.js ./lib/*.js -d ./dist",
-    "prepublish": "yarn test && yarn clean && yarn build"
+    "clean": "rimraf dist",
+    "prepublish": "yarn test:ci && yarn clean && yarn build",
+    "test": "jest -u",
+    "test:ci": "jest --runInBand --coverage --verbose",
+    "test:watch": "jest --watch"
   },
-  "keywords": [
-    "otp",
-    "react-native",
-    "one-time-password",
-    "inputs"
-  ],
+  "keywords": ["otp", "react-native", "one-time-password", "inputs"],
   "peerDependencies": {
     "react-native": "^0.53.0"
   },
   "dependencies": {
     "prop-types": "^15.6.0"
   },
+  "jest": {
+    "bail": true,
+    "coveragePathIgnorePatterns": ["/node_modules/", "/dist/*"],
+    "preset": "react-native",
+    "transformIgnorePatterns": ["node_modules/(?!react-native)/"]
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-react-native": "^4.0.0",
     "jest": "^22.3.0",
+    "react": "^16.2.0",
+    "react-native": "0.53.0",
+    "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2"
   }
 }

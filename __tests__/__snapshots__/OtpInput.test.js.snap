@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OtpInput /> render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#a1a1a1",
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "height": 53,
+        "margin": 10,
+      },
+      undefined,
+      Object {
+        "borderColor": "transparent",
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={false}
+    clearTextOnFocus={true}
+    keyboardType="phone-pad"
+    maxLength={1}
+    onBlur={[Function]}
+    onChangeText={[MockFunction]}
+    onFocus={[Function]}
+    onKeyPress={[MockFunction]}
+    selectTextOnFocus={true}
+    style={
+      Array [
+        Object {
+          "color": "#ffffff",
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
+        },
+        undefined,
+        undefined,
+      ]
+    }
+    underlineColorAndroid="transparent"
+    value={undefined}
+  />
+</View>
+`;
+
+exports[`<OtpInput /> rendering with error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#a1a1a1",
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "height": 53,
+        "margin": 10,
+      },
+      undefined,
+      Object {
+        "borderColor": "transparent",
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={false}
+    clearTextOnFocus={true}
+    keyboardType="phone-pad"
+    maxLength={1}
+    onBlur={[Function]}
+    onChangeText={[MockFunction]}
+    onFocus={[Function]}
+    onKeyPress={[MockFunction]}
+    selectTextOnFocus={true}
+    style={
+      Array [
+        Object {
+          "color": "#ffffff",
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
+        },
+        undefined,
+        Object {
+          "color": "#00ff00",
+        },
+      ]
+    }
+    underlineColorAndroid="transparent"
+    value={undefined}
+  />
+</View>
+`;

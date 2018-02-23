@@ -1,0 +1,433 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OtpInputs /> render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginHorizontal": 25,
+        "marginVertical": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            false,
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<OtpInputs /> rendering with error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "marginHorizontal": 25,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={undefined}
+      testID="errorText"
+    >
+      ExampleErrorMessage
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginHorizontal": 25,
+        "marginVertical": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            Object {
+              "color": "#ff0000",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            Object {
+              "color": "#ff0000",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            Object {
+              "color": "#ff0000",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#a1a1a1",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 53,
+            "margin": 10,
+          },
+          undefined,
+          Object {
+            "borderColor": "transparent",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={false}
+        clearTextOnFocus={true}
+        keyboardType="phone-pad"
+        maxLength={1}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onKeyPress={[Function]}
+        selectTextOnFocus={true}
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontSize": 24,
+              "paddingTop": 10,
+              "textAlign": "center",
+              "width": 40,
+            },
+            undefined,
+            Object {
+              "color": "#ff0000",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value={undefined}
+      />
+    </View>
+  </View>
+</View>
+`;

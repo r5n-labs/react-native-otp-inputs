@@ -43,6 +43,10 @@ export default class OtpInputs extends Component {
   minIndex = 0
   inputs = []
 
+  componentDidMount = () => {
+    this._renderInputs()
+  }
+
   _updateText = (text, index) => {
     if (text) {
       const otpCode = this.state.otpCode
@@ -55,8 +59,8 @@ export default class OtpInputs extends Component {
         return Keyboard.dismiss()
       }
 
-      if (index > this.minIndex || index < this.maxIndex) {
-        this._focusNextInput(index + 1)
+      if (index >= this.minIndex && index < this.maxIndex) {
+        this._focusInput(index + 1)
       }
     }
   }
@@ -70,21 +74,13 @@ export default class OtpInputs extends Component {
       this.setState({ otpCode, error: null })
 
       if (index > this.minIndex && index <= this.maxIndex) {
-        this._focusNextInput(index - 1)
+        this._focusInput(index - 1)
       }
     }
   }
 
-  componentDidMount = () => {
-    this._renderInputs()
-  }
-
-  _focusNextInput = index => {
+  _focusInput = index => {
     this.inputs[index].input.focus()
-  }
-
-  _handleSubmitError = () => {
-    this.inputs.forEach(input => input && input._onFocus())
   }
 
   _renderInputs = () => {
@@ -103,7 +99,7 @@ export default class OtpInputs extends Component {
       inputArray[index] = (
         <OtpInput
           containerStyles={inputContainerStyles}
-          error={errorMessage}
+          error={!!errorMessage}
           focusedBorderColor={focusedBorderColor}
           handleBackspace={event => this._handleBackspace(event, index)}
           inputStyles={inputStyles}
@@ -132,7 +128,9 @@ export default class OtpInputs extends Component {
       <View style={[defaultStyles.container, containerStyles]}>
         {errorMessage && (
           <View style={[defaultStyles.errorMessageContainer, errorMessageContainerStyles]}>
-            <Text style={errorMessageTextStyles}>{errorMessage}</Text>
+            <Text testID="errorText" style={errorMessageTextStyles}>
+              {errorMessage}
+            </Text>
           </View>
         )}
         <View style={defaultStyles.inputsContainer}>{this._renderInputs()}</View>

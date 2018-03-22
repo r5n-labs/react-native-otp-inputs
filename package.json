@@ -10,7 +10,7 @@
   "main": "./dist/index.js",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "scripts": {
     "build": "babel ./index.js ./lib/*.js -d ./dist",
     "clean": "rimraf dist",

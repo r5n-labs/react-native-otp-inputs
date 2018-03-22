@@ -19,6 +19,7 @@ export default class OtpInputs extends Component {
     errorMessageContainerStyles: ViewPropTypes.style,
     errorMessageTextStyles: ViewPropTypes.style,
     focusedBorderColor: PropTypes.string,
+    unfocusedBorderColor: PropTypes.string,
     handleChange: PropTypes.func.isRequired,
     inputContainerStyles: ViewPropTypes.style,
     inputStyles: ViewPropTypes.style,
@@ -29,6 +30,7 @@ export default class OtpInputs extends Component {
   static defaultProps = {
     handleChange: console.log,
     focusedBorderColor: '#0000ff',
+    unFocusedBorderColor: 'transparent',
     inputTextErrorColor: '#ff0000',
     numberOfInputs: 4,
   }
@@ -87,10 +89,11 @@ export default class OtpInputs extends Component {
     const {
       errorMessage,
       focusedBorderColor,
-      numberOfInputs,
       inputContainerStyles,
-      inputTextErrorColor,
       inputStyles,
+      inputTextErrorColor,
+      numberOfInputs,
+      unFocusedBorderColor,
     } = this.props
     const { otpCode } = this.state
 
@@ -106,6 +109,7 @@ export default class OtpInputs extends Component {
           key={index}
           ref={input => (this.inputs[index] = input)}
           textErrorColor={inputTextErrorColor}
+          unFocusedBorderColor={unFocusedBorderColor}
           updateText={text => this._updateText(text, index)}
           value={otpCode[index]}
         />

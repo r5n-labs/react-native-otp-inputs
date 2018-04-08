@@ -19,7 +19,7 @@ exports[`<OtpInput /> render 1`] = `
   }
 >
   <TextInput
-    allowFontScaling={false}
+    allowFontScaling={true}
     clearTextOnFocus={true}
     keyboardType="phone-pad"
     maxLength={1}
@@ -66,7 +66,7 @@ exports[`<OtpInput /> rendering with error 1`] = `
   }
 >
   <TextInput
-    allowFontScaling={false}
+    allowFontScaling={true}
     clearTextOnFocus={true}
     keyboardType="phone-pad"
     maxLength={1}

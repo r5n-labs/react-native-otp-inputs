@@ -1,32 +1,29 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {
-  Dimensions,
-  Keyboard,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewPropTypes,
-} from 'react-native'
+import React, { ReactElement, Component, ReactNode } from 'react'
+import { Keyboard, StyleSheet, Text, View } from 'react-native'
 
-import OtpInput from './lib/OtpInput'
+import OtpInput from './OtpInput'
 
-export default class OtpInputs extends Component {
-  static propTypes = {
-    containerStyles: ViewPropTypes.style,
-    errorMessage: PropTypes.string,
-    errorMessageContainerStyles: ViewPropTypes.style,
-    errorMessageTextStyles: ViewPropTypes.style,
-    focusedBorderColor: PropTypes.string,
-    unfocusedBorderColor: PropTypes.string,
-    handleChange: PropTypes.func.isRequired,
-    inputContainerStyles: ViewPropTypes.style,
-    inputStyles: ViewPropTypes.style,
-    inputTextErrorColor: PropTypes.string,
-    numberOfInputs: PropTypes.number.isRequired,
-  }
+interface Props {
+  containerStyles?: any
+  errorMessage?: string
+  errorMessageContainerStyles?: any
+  errorMessageTextStyles?: any
+  focusedBorderColor: string
+  unFocusedBorderColor?: string
+  handleChange: (otpCode: string) => void
+  inputContainerStyles?: any
+  inputStyles?: any
+  inputTextErrorColor?: string
+  numberOfInputs: number
+}
 
+interface State {
+  inputsArray: Array<ReactElement<OtpInput>>
+  loading: boolean
+  otpCode: Array<number>
+}
+
+export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
     handleChange: console.log,
     focusedBorderColor: '#0000ff',
@@ -45,18 +42,18 @@ export default class OtpInputs extends Component {
   minIndex = 0
   inputs = []
 
-  componentDidMount = () => {
+  public componentDidMount() {
     this._renderInputs()
   }
 
-  _updateText = (text, index) => {
+  private _updateText = (text, index) => {
     if (text) {
       const otpCode = this.state.otpCode
 
       otpCode[index] = text
 
       this.props.handleChange && this.props.handleChange(otpCode.join(''))
-      this.setState({ otpCode, error: null })
+      this.setState({ otpCode })
       if (index === this.maxIndex) {
         return Keyboard.dismiss()
       }
@@ -67,13 +64,13 @@ export default class OtpInputs extends Component {
     }
   }
 
-  _handleBackspace = ({ nativeEvent }, index) => {
+  private _handleBackspace = ({ nativeEvent }, index) => {
     if (nativeEvent.key === 'Backspace') {
       const otpCode = this.state.otpCode
       otpCode[index] = ''
 
       this.props.handleChange && this.props.handleChange(otpCode.join(''))
-      this.setState({ otpCode, error: null })
+      this.setState({ otpCode })
 
       if (index > this.minIndex && index <= this.maxIndex) {
         this._focusInput(index - 1)
@@ -81,11 +78,11 @@ export default class OtpInputs extends Component {
     }
   }
 
-  _focusInput = index => {
+  private _focusInput = index => {
     this.inputs[index].input.focus()
   }
 
-  _renderInputs = () => {
+  private _renderInputs = () => {
     const {
       errorMessage,
       focusedBorderColor,
@@ -119,14 +116,13 @@ export default class OtpInputs extends Component {
     return inputArray.map(input => input)
   }
 
-  render() {
+  public render(): ReactNode {
     const {
       containerStyles,
       errorMessage,
       errorMessageContainerStyles,
       errorMessageTextStyles,
     } = this.props
-    const { otpCode } = this.state
 
     return (
       <View style={[defaultStyles.container, containerStyles]}>
@@ -143,7 +139,7 @@ export default class OtpInputs extends Component {
   }
 }
 
-const defaultStyles = StyleSheet.create({
+const defaultStyles: any = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',

@@ -1,28 +1,30 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { TextInput, View, StyleSheet, ViewPropTypes } from 'react-native'
+import React, { ReactElement, Component } from 'react'
+import { TextInput, View, StyleSheet } from 'react-native'
 
-export default class OtpInput extends Component {
-  static propTypes = {
-    containerStyles: ViewPropTypes.style,
-    error: PropTypes.bool,
-    focusedBorderColor: PropTypes.string,
-    handleBackspace: PropTypes.func.isRequired,
-    inputStyles: ViewPropTypes.style,
-    textErrorColor: PropTypes.string,
-    unFocusedBorderColor: PropTypes.string,
-    updateText: PropTypes.func.isRequired,
-    value: PropTypes.string,
-  }
+interface Props {
+  containerStyles?: any
+  error?: boolean
+  focusedBorderColor?: string
+  handleBackspace: (event) => void
+  inputStyles?: any
+  textErrorColor?: string
+  unFocusedBorderColor: string
+  updateText: (text) => void
+  value?: string
+}
 
+interface State {
+  isFocused: boolean
+}
+
+export default class OtpInput extends Component<Props, State> {
   state = {
     isFocused: false,
   }
 
-  _onFocus = () => this.setState({ isFocused: true })
-  _onBlur = () => this.setState({ isFocused: false })
+  private input: ReactElement<TextInput>
 
-  render() {
+  public render() {
     const {
       containerStyles,
       error,
@@ -44,7 +46,6 @@ export default class OtpInput extends Component {
         ]}
       >
         <TextInput
-          allowFontScaling={false}
           clearTextOnFocus={true}
           keyboardType="phone-pad"
           maxLength={1}
@@ -52,7 +53,7 @@ export default class OtpInput extends Component {
           onChangeText={updateText}
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
-          ref={input => (this.input = input)}
+          ref={input => (this.input = input as any)}
           selectTextOnFocus={true}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
           underlineColorAndroid="transparent"
@@ -61,6 +62,9 @@ export default class OtpInput extends Component {
       </View>
     )
   }
+
+  private _onFocus = () => this.setState({ isFocused: true })
+  private _onBlur = () => this.setState({ isFocused: false })
 }
 
 const defaultStyles = StyleSheet.create({

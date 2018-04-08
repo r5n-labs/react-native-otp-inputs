@@ -1,54 +1,51 @@
 {
   "author": "Damian Sznajder <damsznajder@gmail.com>",
   "bugs": "https://github.com/dsznajder/react-native-otp-inputs/issues",
-  "contributors": [
-    "Michał Kantor <kantorm96@gmail.com>"
-  ],
+  "contributors": ["Michał Kantor <kantorm96@gmail.com>"],
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/index.js.map",
+  "types": "./typings/index.d.ts",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
   "version": "0.5.0",
   "scripts": {
-    "build": "babel ./index.js ./lib/*.js -d ./dist",
+    "build": "yarn clean && yarn tsc",
     "clean": "rimraf dist",
     "prepublish": "yarn test:ci && yarn clean && yarn build",
     "test": "jest -u",
     "test:ci": "jest --runInBand --coverage --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "tslint lib/*.ts"
   },
-  "keywords": [
-    "otp",
-    "react-native",
-    "one-time-password",
-    "inputs"
-  ],
+  "keywords": ["otp", "react-native", "one-time-password", "inputs"],
   "peerDependencies": {
     "react-native": "^0.53.0"
   },
-  "dependencies": {
-    "prop-types": "^15.6.0"
-  },
   "jest": {
+    "transform": {
+      "^.+\\.js?$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "bail": true,
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/*"
-    ],
     "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/(?!react-native)/"
-    ]
+    "transformIgnorePatterns": ["node_modules/(?!react-native)/"],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@types/jest": "^22.2.2",
+    "@types/react": "^16.3.5",
+    "@types/react-native": "^0.52.24",
     "babel-preset-react-native": "^4.0.0",
     "jest": "^22.3.0",
     "react": "^16.2.0",
     "react-native": "0.53.0",
     "react-test-renderer": "^16.2.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "ts-jest": "^22.4.2",
+    "typescript": "^2.8.1"
   }
 }

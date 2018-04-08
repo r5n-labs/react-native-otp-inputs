@@ -2,7 +2,7 @@ import { TextInput } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import OtpInput from '../lib/OtpInput'
+import OtpInput from '../dist/OtpInput'
 
 describe('<OtpInput />', () => {
   defaultProps = {

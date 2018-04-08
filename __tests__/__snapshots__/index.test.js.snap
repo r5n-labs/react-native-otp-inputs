@@ -40,7 +40,7 @@ exports[`<OtpInputs /> render 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -84,7 +84,7 @@ exports[`<OtpInputs /> render 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -128,7 +128,7 @@ exports[`<OtpInputs /> render 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -172,7 +172,7 @@ exports[`<OtpInputs /> render 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -262,7 +262,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -308,7 +308,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -354,7 +354,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}
@@ -400,7 +400,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={false}
+        allowFontScaling={true}
         clearTextOnFocus={true}
         keyboardType="phone-pad"
         maxLength={1}

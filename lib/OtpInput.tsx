@@ -1,6 +1,7 @@
 import React, { ReactElement, Component } from 'react'
-import { TextInput, View, StyleSheet } from 'react-native'
+import { TextInput, View } from 'react-native'
 
+import defaultStyles from './defaultStyles'
 interface Props {
   containerStyles?: any
   error?: boolean
@@ -40,7 +41,7 @@ export default class OtpInput extends Component<Props, State> {
     return (
       <View
         style={[
-          defaultStyles.container,
+          defaultStyles.otpContainer,
           containerStyles,
           { borderColor: this.state.isFocused ? focusedBorderColor : unFocusedBorderColor },
         ]}
@@ -66,20 +67,3 @@ export default class OtpInput extends Component<Props, State> {
   private _onFocus = () => this.setState({ isFocused: true })
   private _onBlur = () => this.setState({ isFocused: false })
 }
-
-const defaultStyles = StyleSheet.create({
-  container: {
-    backgroundColor: '#a1a1a1',
-    borderRadius: 6,
-    borderWidth: 1,
-    height: 53,
-    margin: 10,
-  },
-  otpInput: {
-    color: '#ffffff',
-    fontSize: 24,
-    paddingTop: 10,
-    textAlign: 'center',
-    width: 40,
-  },
-})

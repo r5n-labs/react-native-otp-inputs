@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Keyboard, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, Text, View } from 'react-native';
 import OtpInput from './OtpInput';
+import defaultStyles from './defaultStyles';
 export default class OtpInputs extends Component {
     constructor() {
         super(...arguments);
@@ -72,19 +73,4 @@ OtpInputs.defaultProps = {
     inputTextErrorColor: '#ff0000',
     numberOfInputs: 4,
 };
-const defaultStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
-    inputsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 25,
-        marginVertical: 20,
-    },
-    errorMessageContainer: {
-        marginHorizontal: 25,
-    },
-});
 //# sourceMappingURL=index.js.map

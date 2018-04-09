@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View } from 'react-native';
+import defaultStyles from './defaultStyles';
 export default class OtpInput extends Component {
     constructor() {
         super(...arguments);
@@ -12,7 +13,7 @@ export default class OtpInput extends Component {
     render() {
         const { containerStyles, error, focusedBorderColor, handleBackspace, inputStyles, textErrorColor, unFocusedBorderColor, updateText, value, } = this.props;
         return (<View style={[
-            defaultStyles.container,
+            defaultStyles.otpContainer,
             containerStyles,
             { borderColor: this.state.isFocused ? focusedBorderColor : unFocusedBorderColor },
         ]}>
@@ -20,20 +21,4 @@ export default class OtpInput extends Component {
       </View>);
     }
 }
-const defaultStyles = StyleSheet.create({
-    container: {
-        backgroundColor: '#a1a1a1',
-        borderRadius: 6,
-        borderWidth: 1,
-        height: 53,
-        margin: 10,
-    },
-    otpInput: {
-        color: '#ffffff',
-        fontSize: 24,
-        paddingTop: 10,
-        textAlign: 'center',
-        width: 40,
-    },
-});
 //# sourceMappingURL=OtpInput.js.map

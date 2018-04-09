@@ -1,7 +1,8 @@
 import React, { ReactElement, Component, ReactNode } from 'react'
-import { Keyboard, StyleSheet, Text, View } from 'react-native'
+import { Keyboard, Text, View } from 'react-native'
 
 import OtpInput from './OtpInput'
+import defaultStyles from './defaultStyles'
 
 interface Props {
   containerStyles?: any
@@ -138,19 +139,3 @@ export default class OtpInputs extends Component<Props, State> {
     )
   }
 }
-
-const defaultStyles: any = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  inputsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 25,
-    marginVertical: 20,
-  },
-  errorMessageContainer: {
-    marginHorizontal: 25,
-  },
-})

@@ -4,7 +4,7 @@
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
-  "main": "./dist/index.js,
+  "main": "./dist/index.js",
   "types": "./typings/index.d.ts",
   "name": "@abhishekgarg727/react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",

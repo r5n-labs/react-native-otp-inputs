@@ -19,9 +19,7 @@
     "lint": "tslint --project ./tsconfig.json"
   },
   "keywords": ["otp", "react-native", "one-time-password", "inputs"],
-  "peerDependencies": {
-    "react-native": "^0.53.0"
-  },
+
   "jest": {
     "transform": {
       "^.+\\.js?$": "<rootDir>/node_modules/babel-jest",
@@ -32,6 +30,9 @@
     "preset": "react-native",
     "transformIgnorePatterns": ["node_modules/(?!react-native)/"],
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  },
+   "peerDependencies": {
+    "react-native": "*",
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",

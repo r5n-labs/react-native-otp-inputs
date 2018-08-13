@@ -6,7 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
   },
   otpContainer: {
-    backgroundColor: '#a1a1a1',
+    backgroundColor: '#DCDCDC',
     borderRadius: 6,
     borderWidth: 1,
     height: 53,

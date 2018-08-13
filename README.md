@@ -1,5 +1,11 @@
 # react-native-otp-inputs
 
+# Usage
+
+npm i --save abhishekgarg727/react-native-otp-inputs
+
+
+
 ### Demo
 
 ![Demo](https://user-images.githubusercontent.com/17621507/36565065-a03b98b0-181f-11e8-9a54-09d978bec892.gif)
@@ -45,8 +51,6 @@ export default class App extends Component {
 | errorMessageContainerStyles | style (object) | false       | none        | Styles applied to error message container                    |
 | errorMessageTextStyles      | style (object) | false       | none        | Styles applied to error message text                         |
 
-### Contributions
 
-Great thanks to [@kantorm](https://github.com/kantorm).
 
 ### Licence MIT

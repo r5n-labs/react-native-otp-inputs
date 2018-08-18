@@ -1,7 +1,9 @@
 {
   "author": "Damian Sznajder <damsznajder@gmail.com>",
   "bugs": "https://github.com/dsznajder/react-native-otp-inputs/issues",
-  "contributors": ["Michał Kantor <kantorm96@gmail.com>"],
+  "contributors": [
+    "Michał Kantor <kantorm96@gmail.com>"
+  ],
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
@@ -19,7 +21,12 @@
     "test:watch": "jest --watch",
     "lint": "tslint --project ./tsconfig.json"
   },
-  "keywords": ["otp", "react-native", "one-time-password", "inputs"],
+  "keywords": [
+    "otp",
+    "react-native",
+    "one-time-password",
+    "inputs"
+  ],
   "peerDependencies": {
     "react-native": "^0.53.0"
   },
@@ -31,8 +38,17 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "bail": true,
     "preset": "react-native",
-    "transformIgnorePatterns": ["node_modules/(?!react-native)/"],
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native)/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",

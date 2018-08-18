@@ -20,14 +20,14 @@ exports[`<OtpInput /> render 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    clearTextOnFocus={true}
+    clearTextOnFocus={undefined}
     keyboardType="phone-pad"
     maxLength={1}
     onBlur={[Function]}
     onChangeText={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
-    selectTextOnFocus={true}
+    selectTextOnFocus={undefined}
     style={
       Array [
         Object {
@@ -67,14 +67,14 @@ exports[`<OtpInput /> rendering with error 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    clearTextOnFocus={true}
+    clearTextOnFocus={undefined}
     keyboardType="phone-pad"
     maxLength={1}
     onBlur={[Function]}
     onChangeText={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
-    selectTextOnFocus={true}
+    selectTextOnFocus={undefined}
     style={
       Array [
         Object {

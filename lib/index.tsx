@@ -5,17 +5,19 @@ import OtpInput from './OtpInput'
 import defaultStyles from './defaultStyles'
 
 interface Props {
+  clearTextOnFocus: boolean
   containerStyles?: any
   errorMessage?: string
   errorMessageContainerStyles?: any
   errorMessageTextStyles?: any
   focusedBorderColor: string
-  unFocusedBorderColor?: string
   handleChange: (otpCode: string) => void
   inputContainerStyles?: any
   inputStyles?: any
   inputTextErrorColor?: string
   numberOfInputs: number
+  selectTextOnFocus: boolean
+  unFocusedBorderColor?: string
 }
 
 interface State {
@@ -26,6 +28,8 @@ interface State {
 
 export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
+    clearTextOnFocus: false,
+    selectTextOnFocus: true,
     handleChange: console.log,
     focusedBorderColor: '#0000ff',
     unFocusedBorderColor: 'transparent',
@@ -85,12 +89,14 @@ export default class OtpInputs extends Component<Props, State> {
 
   private _renderInputs = () => {
     const {
+      clearTextOnFocus,
       errorMessage,
       focusedBorderColor,
       inputContainerStyles,
       inputStyles,
       inputTextErrorColor,
       numberOfInputs,
+      selectTextOnFocus,
       unFocusedBorderColor,
     } = this.props
     const { otpCode } = this.state
@@ -99,6 +105,7 @@ export default class OtpInputs extends Component<Props, State> {
     for (let index = 0; index < numberOfInputs; index++) {
       inputArray[index] = (
         <OtpInput
+          clearTextOnFocus={clearTextOnFocus}
           containerStyles={inputContainerStyles}
           error={!!errorMessage}
           focusedBorderColor={focusedBorderColor}
@@ -106,6 +113,7 @@ export default class OtpInputs extends Component<Props, State> {
           inputStyles={inputStyles}
           key={index}
           ref={input => (this.inputs[index] = input)}
+          selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unFocusedBorderColor={unFocusedBorderColor}
           updateText={text => this._updateText(text, index)}

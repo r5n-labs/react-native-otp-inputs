@@ -3,11 +3,13 @@ import { TextInput, View } from 'react-native'
 
 import defaultStyles from './defaultStyles'
 interface Props {
+  clearTextOnFocus: boolean
   containerStyles?: any
   error?: boolean
   focusedBorderColor?: string
   handleBackspace: (event) => void
   inputStyles?: any
+  selectTextOnFocus: boolean
   textErrorColor?: string
   unFocusedBorderColor: string
   updateText: (text) => void
@@ -24,14 +26,18 @@ export default class OtpInput extends Component<Props, State> {
   }
 
   private input: ReactElement<TextInput>
+  private _onFocus = (): void => this.setState({ isFocused: true })
+  private _onBlur = (): void => this.setState({ isFocused: false })
 
   public render() {
     const {
+      clearTextOnFocus,
       containerStyles,
       error,
       focusedBorderColor,
       handleBackspace,
       inputStyles,
+      selectTextOnFocus,
       textErrorColor,
       unFocusedBorderColor,
       updateText,
@@ -47,7 +53,7 @@ export default class OtpInput extends Component<Props, State> {
         ]}
       >
         <TextInput
-          clearTextOnFocus={true}
+          clearTextOnFocus={clearTextOnFocus}
           keyboardType="phone-pad"
           maxLength={1}
           onBlur={this._onBlur}
@@ -55,7 +61,7 @@ export default class OtpInput extends Component<Props, State> {
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={input => (this.input = input as any)}
-          selectTextOnFocus={true}
+          selectTextOnFocus={selectTextOnFocus}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
           underlineColorAndroid="transparent"
           value={value}
@@ -63,7 +69,4 @@ export default class OtpInput extends Component<Props, State> {
       </View>
     )
   }
-
-  private _onFocus = () => this.setState({ isFocused: true })
-  private _onBlur = () => this.setState({ isFocused: false })
 }

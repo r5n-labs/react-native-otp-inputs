@@ -7,11 +7,11 @@
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
-  "main": "./dist/index.js.map",
+  "main": "./dist/index.js",
   "types": "./typings/index.d.ts",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "scripts": {
     "build": "yarn clean && yarn tsc",
     "clean": "rimraf dist",

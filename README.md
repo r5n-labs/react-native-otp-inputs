@@ -46,6 +46,7 @@ export default class App extends Component {
 | inputContainerStyles        | style (object) | false       | none        | Styles applied to each input container                       |
 | errorMessageContainerStyles | style (object) | false       | none        | Styles applied to error message container                    |
 | errorMessageTextStyles      | style (object) | false       | none        | Styles applied to error message text                         |
+| keyboardType                | string         | true        | 'phone-pad' | Keyboard type for inputs                                     |
 
 ### Contributions
 

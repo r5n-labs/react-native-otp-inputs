@@ -63,7 +63,6 @@ exports[`<OtpInputs /> render 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -107,7 +106,6 @@ exports[`<OtpInputs /> render 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -151,7 +149,6 @@ exports[`<OtpInputs /> render 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -195,7 +192,6 @@ exports[`<OtpInputs /> render 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
   </View>
@@ -225,10 +221,6 @@ exports[`<OtpInputs /> rendering with error 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={undefined}
       testID="errorText"
     >
       ExampleErrorMessage
@@ -287,7 +279,6 @@ exports[`<OtpInputs /> rendering with error 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -333,7 +324,6 @@ exports[`<OtpInputs /> rendering with error 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -379,7 +369,6 @@ exports[`<OtpInputs /> rendering with error 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
     <View
@@ -425,7 +414,6 @@ exports[`<OtpInputs /> rendering with error 1`] = `
           ]
         }
         underlineColorAndroid="transparent"
-        value={undefined}
       />
     </View>
   </View>

@@ -15,6 +15,7 @@ interface Props {
   inputContainerStyles?: any
   inputStyles?: any
   inputTextErrorColor?: string
+  keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
   selectTextOnFocus: boolean
   unFocusedBorderColor?: string
@@ -29,12 +30,13 @@ interface State {
 export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
     clearTextOnFocus: false,
-    selectTextOnFocus: true,
-    handleChange: console.log,
     focusedBorderColor: '#0000ff',
-    unFocusedBorderColor: 'transparent',
+    handleChange: console.log,
     inputTextErrorColor: '#ff0000',
+    keyboardType: 'phone-pad',
     numberOfInputs: 4,
+    selectTextOnFocus: true,
+    unFocusedBorderColor: 'transparent',
   }
 
   state = {
@@ -95,6 +97,7 @@ export default class OtpInputs extends Component<Props, State> {
       inputContainerStyles,
       inputStyles,
       inputTextErrorColor,
+      keyboardType,
       numberOfInputs,
       selectTextOnFocus,
       unFocusedBorderColor,
@@ -112,6 +115,7 @@ export default class OtpInputs extends Component<Props, State> {
           handleBackspace={event => this._handleBackspace(event, index)}
           inputStyles={inputStyles}
           key={index}
+          keyboardType={keyboardType}
           ref={input => (this.inputs[index] = input)}
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}

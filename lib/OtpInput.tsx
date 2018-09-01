@@ -13,6 +13,7 @@ interface Props {
   textErrorColor?: string
   unFocusedBorderColor: string
   updateText: (text) => void
+  keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   value?: string
 }
 
@@ -37,6 +38,7 @@ export default class OtpInput extends Component<Props, State> {
       focusedBorderColor,
       handleBackspace,
       inputStyles,
+      keyboardType,
       selectTextOnFocus,
       textErrorColor,
       unFocusedBorderColor,
@@ -54,7 +56,7 @@ export default class OtpInput extends Component<Props, State> {
       >
         <TextInput
           clearTextOnFocus={clearTextOnFocus}
-          keyboardType="phone-pad"
+          keyboardType={keyboardType}
           maxLength={1}
           onBlur={this._onBlur}
           onChangeText={updateText}

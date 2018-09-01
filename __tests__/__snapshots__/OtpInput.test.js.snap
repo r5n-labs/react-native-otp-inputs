@@ -20,14 +20,11 @@ exports[`<OtpInput /> render 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    clearTextOnFocus={undefined}
-    keyboardType="phone-pad"
     maxLength={1}
     onBlur={[Function]}
     onChangeText={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
-    selectTextOnFocus={undefined}
     style={
       Array [
         Object {
@@ -42,7 +39,6 @@ exports[`<OtpInput /> render 1`] = `
       ]
     }
     underlineColorAndroid="transparent"
-    value={undefined}
   />
 </View>
 `;
@@ -67,14 +63,11 @@ exports[`<OtpInput /> rendering with error 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    clearTextOnFocus={undefined}
-    keyboardType="phone-pad"
     maxLength={1}
     onBlur={[Function]}
     onChangeText={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
-    selectTextOnFocus={undefined}
     style={
       Array [
         Object {
@@ -91,7 +84,6 @@ exports[`<OtpInput /> rendering with error 1`] = `
       ]
     }
     underlineColorAndroid="transparent"
-    value={undefined}
   />
 </View>
 `;

@@ -3,6 +3,7 @@ import { TextInput, View } from 'react-native'
 
 import defaultStyles from './defaultStyles'
 interface Props {
+  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus: boolean
   containerStyles?: any
   error?: boolean
@@ -26,10 +27,10 @@ export default class OtpInput extends Component<Props, State> {
     isFocused: false,
   }
 
-  private input: ReactElement<TextInput>
   private _onFocus = (): void => this.setState({ isFocused: true })
   private _onBlur = (): void => this.setState({ isFocused: false })
 
+  public input: ReactElement<TextInput>
   public render() {
     const {
       clearTextOnFocus,

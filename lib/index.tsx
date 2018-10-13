@@ -5,6 +5,7 @@ import OtpInput from './OtpInput'
 import defaultStyles from './defaultStyles'
 
 interface Props {
+  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus: boolean
   containerStyles?: any
   errorMessage?: string
@@ -29,6 +30,7 @@ interface State {
 
 export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
+    autoCapitalize: 'none',
     clearTextOnFocus: false,
     focusedBorderColor: '#0000ff',
     handleChange: console.log,
@@ -91,6 +93,7 @@ export default class OtpInputs extends Component<Props, State> {
 
   private _renderInputs = () => {
     const {
+      autoCapitalize,
       clearTextOnFocus,
       errorMessage,
       focusedBorderColor,
@@ -108,6 +111,7 @@ export default class OtpInputs extends Component<Props, State> {
     for (let index = 0; index < numberOfInputs; index++) {
       inputArray[index] = (
         <OtpInput
+          autoCapitalize={autoCapitalize}
           clearTextOnFocus={clearTextOnFocus}
           containerStyles={inputContainerStyles}
           error={!!errorMessage}

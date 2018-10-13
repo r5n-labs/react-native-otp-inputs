@@ -32,21 +32,22 @@ export default class App extends Component {
 
 ## API
 
-| Method                      | Type           | Required    | Default     | Description                                                  |
-| --------------------------- | -------------- | ----------- | ----------- | ------------------------------------------------------------ |
-| numberOfInputs              | number         | true (1..6) | 4           | How many inputs should be rendered                           |
-| handleChange                | function       | true        | console.log | Returns otp code which is typed in inputs                    |
-| selectTextOnFocus           | boolean        | false       | true        | prop for input                                               |
-| clearTextOnFocus            | boolean        | false       | false       | prop for input                                               |
-| focusedBorderColor          | string         | false       | #0000ff     | borderColor of input when focused                            |
-| unfocusedBorderColor        | string         | false       | transparent | borderColor of input when not focused                        |
-| inputTextErrorColor         | string         | false       | #ff0000     | Color of text inside input container when error is passed in |
-| errorMessage                | string         | false       | none        | Error message that is displayed above inputs                 |
-| containerStyles             | style (object) | false       | none        | Styles applied to whole container                            |
-| inputContainerStyles        | style (object) | false       | none        | Styles applied to each input container                       |
-| errorMessageContainerStyles | style (object) | false       | none        | Styles applied to error message container                    |
-| errorMessageTextStyles      | style (object) | false       | none        | Styles applied to error message text                         |
-| keyboardType                | string         | true        | 'phone-pad' | Keyboard type for inputs                                     |
+| Method                      | Type           | Required    | Default     | Description                                                    |
+| --------------------------- | -------------- | ----------- | ----------- | -------------------------------------------------------------- |
+| autoCapitalize              | string         | false       | 'none'      | Defines input auto capitalization (only use with keyboardType) |
+| clearTextOnFocus            | boolean        | false       | false       | Defines if input text should be cleared on focus               |
+| containerStyles             | style (object) | false       | none        | Styles applied to whole container                              |
+| errorMessage                | string         | false       | none        | Error message that is displayed above inputs                   |
+| errorMessageContainerStyles | style (object) | false       | none        | Styles applied to error message container                      |
+| errorMessageTextStyles      | style (object) | false       | none        | Styles applied to error message text                           |
+| focusedBorderColor          | string         | false       | #0000ff     | borderColor of input when focused                              |
+| handleChange                | function       | true        | console.log | Returns otp code which is typed in inputs                      |
+| inputContainerStyles        | style (object) | false       | none        | Styles applied to each input container                         |
+| inputTextErrorColor         | string         | false       | #ff0000     | Color of text inside input container when error is passed in   |
+| keyboardType                | string         | true        | 'phone-pad' | Keyboard type for inputs                                       |
+| numberOfInputs              | number         | true (1..6) | 4           | How many inputs should be rendered                             |
+| selectTextOnFocus           | boolean        | false       | true        | Defines if input text should be selected on focus              |
+| unfocusedBorderColor        | string         | false       | transparent | borderColor of input when not focused                          |
 
 ### Contributions
 

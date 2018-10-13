@@ -42,11 +42,11 @@ export default class OtpInputs extends Component {
             this.inputs[index].input.focus();
         };
         this._renderInputs = () => {
-            const { clearTextOnFocus, errorMessage, focusedBorderColor, inputContainerStyles, inputStyles, inputTextErrorColor, keyboardType, numberOfInputs, selectTextOnFocus, unFocusedBorderColor, } = this.props;
+            const { autoCapitalize, clearTextOnFocus, errorMessage, focusedBorderColor, inputContainerStyles, inputStyles, inputTextErrorColor, keyboardType, numberOfInputs, selectTextOnFocus, unFocusedBorderColor, } = this.props;
             const { otpCode } = this.state;
             let inputArray = [];
             for (let index = 0; index < numberOfInputs; index++) {
-                inputArray[index] = (<OtpInput clearTextOnFocus={clearTextOnFocus} containerStyles={inputContainerStyles} error={!!errorMessage} focusedBorderColor={focusedBorderColor} handleBackspace={event => this._handleBackspace(event, index)} inputStyles={inputStyles} key={index} keyboardType={keyboardType} ref={input => (this.inputs[index] = input)} selectTextOnFocus={selectTextOnFocus} textErrorColor={inputTextErrorColor} unFocusedBorderColor={unFocusedBorderColor} updateText={text => this._updateText(text, index)} value={otpCode[index]}/>);
+                inputArray[index] = (<OtpInput autoCapitalize={autoCapitalize} clearTextOnFocus={clearTextOnFocus} containerStyles={inputContainerStyles} error={!!errorMessage} focusedBorderColor={focusedBorderColor} handleBackspace={event => this._handleBackspace(event, index)} inputStyles={inputStyles} key={index} keyboardType={keyboardType} ref={input => (this.inputs[index] = input)} selectTextOnFocus={selectTextOnFocus} textErrorColor={inputTextErrorColor} unFocusedBorderColor={unFocusedBorderColor} updateText={text => this._updateText(text, index)} value={otpCode[index]}/>);
             }
             return inputArray.map(input => input);
         };
@@ -67,6 +67,7 @@ export default class OtpInputs extends Component {
     }
 }
 OtpInputs.defaultProps = {
+    autoCapitalize: 'none',
     clearTextOnFocus: false,
     focusedBorderColor: '#0000ff',
     handleChange: console.log,

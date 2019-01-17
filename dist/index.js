@@ -42,11 +42,11 @@ export default class OtpInputs extends Component {
             this.inputs[index].input.focus();
         };
         this._renderInputs = () => {
-            const { autoCapitalize, clearTextOnFocus, errorMessage, focusedBorderColor, inputContainerStyles, inputStyles, inputTextErrorColor, keyboardType, numberOfInputs, selectTextOnFocus, unFocusedBorderColor, } = this.props;
+            const { autoCapitalize, clearTextOnFocus, errorMessage, focusedBorderColor, inputContainerStyles, inputStyles, inputTextErrorColor, keyboardType, numberOfInputs, secureTextEntry, selectTextOnFocus, unFocusedBorderColor, } = this.props;
             const { otpCode } = this.state;
             let inputArray = [];
             for (let index = 0; index < numberOfInputs; index++) {
-                inputArray[index] = (<OtpInput autoCapitalize={autoCapitalize} clearTextOnFocus={clearTextOnFocus} containerStyles={inputContainerStyles} error={!!errorMessage} focusedBorderColor={focusedBorderColor} handleBackspace={event => this._handleBackspace(event, index)} inputStyles={inputStyles} key={index} keyboardType={keyboardType} ref={input => (this.inputs[index] = input)} selectTextOnFocus={selectTextOnFocus} textErrorColor={inputTextErrorColor} unFocusedBorderColor={unFocusedBorderColor} updateText={text => this._updateText(text, index)} value={otpCode[index]}/>);
+                inputArray[index] = (<OtpInput autoCapitalize={autoCapitalize} clearTextOnFocus={clearTextOnFocus} containerStyles={inputContainerStyles} error={!!errorMessage} focusedBorderColor={focusedBorderColor} handleBackspace={event => this._handleBackspace(event, index)} inputStyles={inputStyles} key={index} secureTextEntry={secureTextEntry} keyboardType={keyboardType} ref={input => (this.inputs[index] = input)} selectTextOnFocus={selectTextOnFocus} textErrorColor={inputTextErrorColor} unFocusedBorderColor={unFocusedBorderColor} updateText={text => this._updateText(text, index)} value={otpCode[index]}/>);
             }
             return inputArray.map(input => input);
         };
@@ -55,14 +55,16 @@ export default class OtpInputs extends Component {
         this._renderInputs();
     }
     render() {
-        const { containerStyles, errorMessage, errorMessageContainerStyles, errorMessageTextStyles, } = this.props;
+        const { containerStyles, errorMessage, errorMessageContainerStyles, errorMessageTextStyles, inputsContainerStyles, } = this.props;
         return (<View style={[defaultStyles.container, containerStyles]}>
         {errorMessage && (<View style={[defaultStyles.errorMessageContainer, errorMessageContainerStyles]}>
             <Text testID="errorText" style={errorMessageTextStyles}>
               {errorMessage}
             </Text>
           </View>)}
-        <View style={defaultStyles.inputsContainer}>{this._renderInputs()}</View>
+        <View style={[defaultStyles.inputsContainer, inputsContainerStyles]}>
+          {this._renderInputs()}
+        </View>
       </View>);
     }
 }
@@ -74,6 +76,7 @@ OtpInputs.defaultProps = {
     inputTextErrorColor: '#ff0000',
     keyboardType: 'phone-pad',
     numberOfInputs: 4,
+    secureTextEntry: false,
     selectTextOnFocus: true,
     unFocusedBorderColor: 'transparent',
 };

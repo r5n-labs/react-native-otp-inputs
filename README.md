@@ -43,9 +43,11 @@ export default class App extends Component {
 | focusedBorderColor          | string         | false       | #0000ff     | borderColor of input when focused                              |
 | handleChange                | function       | true        | console.log | Returns otp code which is typed in inputs                      |
 | inputContainerStyles        | style (object) | false       | none        | Styles applied to each input container                         |
+| inputsContainerStyles       | style (object) | false       | none        | Styles applied to inputs container                             |
 | inputTextErrorColor         | string         | false       | #ff0000     | Color of text inside input container when error is passed in   |
 | keyboardType                | string         | true        | 'phone-pad' | Keyboard type for inputs                                       |
 | numberOfInputs              | number         | true (1..6) | 4           | How many inputs should be rendered                             |
+| secureTextEntry             | boolean        | false       | false       | Defines if input will hide text inside                         |
 | selectTextOnFocus           | boolean        | false       | true        | Defines if input text should be selected on focus              |
 | unfocusedBorderColor        | string         | false       | transparent | borderColor of input when not focused                          |
 

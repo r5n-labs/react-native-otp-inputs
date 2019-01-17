@@ -16,8 +16,10 @@ interface Props {
   inputContainerStyles?: any
   inputStyles?: any
   inputTextErrorColor?: string
+  inputsContainerStyles?: any
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
+  secureTextEntry: boolean
   selectTextOnFocus: boolean
   unFocusedBorderColor?: string
 }
@@ -37,6 +39,7 @@ export default class OtpInputs extends Component<Props, State> {
     inputTextErrorColor: '#ff0000',
     keyboardType: 'phone-pad',
     numberOfInputs: 4,
+    secureTextEntry: false,
     selectTextOnFocus: true,
     unFocusedBorderColor: 'transparent',
   }
@@ -102,6 +105,7 @@ export default class OtpInputs extends Component<Props, State> {
       inputTextErrorColor,
       keyboardType,
       numberOfInputs,
+      secureTextEntry,
       selectTextOnFocus,
       unFocusedBorderColor,
     } = this.props
@@ -119,6 +123,7 @@ export default class OtpInputs extends Component<Props, State> {
           handleBackspace={event => this._handleBackspace(event, index)}
           inputStyles={inputStyles}
           key={index}
+          secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           ref={input => (this.inputs[index] = input)}
           selectTextOnFocus={selectTextOnFocus}
@@ -139,6 +144,7 @@ export default class OtpInputs extends Component<Props, State> {
       errorMessage,
       errorMessageContainerStyles,
       errorMessageTextStyles,
+      inputsContainerStyles,
     } = this.props
 
     return (
@@ -150,7 +156,9 @@ export default class OtpInputs extends Component<Props, State> {
             </Text>
           </View>
         )}
-        <View style={defaultStyles.inputsContainer}>{this._renderInputs()}</View>
+        <View style={[defaultStyles.inputsContainer, inputsContainerStyles]}>
+          {this._renderInputs()}
+        </View>
       </View>
     )
   }

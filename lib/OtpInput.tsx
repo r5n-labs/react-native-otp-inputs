@@ -10,6 +10,7 @@ interface Props {
   focusedBorderColor?: string
   handleBackspace: (event) => void
   inputStyles?: any
+  secureTextEntry: boolean
   selectTextOnFocus: boolean
   textErrorColor?: string
   unFocusedBorderColor: string
@@ -40,6 +41,7 @@ export default class OtpInput extends Component<Props, State> {
       handleBackspace,
       inputStyles,
       keyboardType,
+      secureTextEntry,
       selectTextOnFocus,
       textErrorColor,
       unFocusedBorderColor,
@@ -64,6 +66,7 @@ export default class OtpInput extends Component<Props, State> {
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={input => (this.input = input as any)}
+          secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
           underlineColorAndroid="transparent"

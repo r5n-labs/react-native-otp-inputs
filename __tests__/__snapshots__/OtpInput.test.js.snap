@@ -20,9 +20,8 @@ exports[`<OtpInput /> render 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    maxLength={1}
     onBlur={[Function]}
-    onChangeText={[MockFunction]}
+    onChange={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
     style={
@@ -63,9 +62,8 @@ exports[`<OtpInput /> rendering with error 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    maxLength={1}
     onBlur={[Function]}
-    onChangeText={[MockFunction]}
+    onChange={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
     style={

@@ -14,12 +14,15 @@ exports[`<OtpInputs /> render 1`] = `
 >
   <View
     style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginHorizontal": 25,
-        "marginVertical": 20,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 25,
+          "marginVertical": 20,
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -43,11 +46,11 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -86,11 +89,11 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -129,11 +132,11 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -172,11 +175,11 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -228,12 +231,15 @@ exports[`<OtpInputs /> rendering with error 1`] = `
   </View>
   <View
     style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginHorizontal": 25,
-        "marginVertical": 20,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 25,
+          "marginVertical": 20,
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -257,11 +263,11 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -302,11 +308,11 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -347,11 +353,11 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [
@@ -392,11 +398,11 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
-        maxLength={1}
         onBlur={[Function]}
-        onChangeText={[Function]}
+        onChange={[Function]}
         onFocus={[Function]}
         onKeyPress={[Function]}
+        secureTextEntry={false}
         selectTextOnFocus={true}
         style={
           Array [

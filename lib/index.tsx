@@ -1,5 +1,12 @@
 import React, { ReactElement, Component, ReactNode } from 'react'
-import { Keyboard, Text, View } from 'react-native'
+import {
+  Keyboard,
+  Text,
+  View,
+  TextInputKeyPressEventData,
+  TextInputChangeEventData,
+} from 'react-native'
+import flatten from 'lodash.flatten'
 
 import OtpInput from './OtpInput'
 import defaultStyles from './defaultStyles'
@@ -27,8 +34,18 @@ interface Props {
 interface State {
   inputsArray: Array<ReactElement<OtpInput>>
   loading: boolean
-  otpCode: Array<number>
+  otpCode: Array<string>
 }
+
+type TextInputOnChangeEventData = {
+  nativeEvent: TextInputChangeEventData
+}
+
+type TextInputOnKeyPressEventData = {
+  nativeEvent: TextInputKeyPressEventData
+}
+
+const MINIMAL_INDEX = 0
 
 export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
@@ -50,41 +67,55 @@ export default class OtpInputs extends Component<Props, State> {
     otpCode: [],
   }
 
-  maxIndex = this.props.numberOfInputs - 1
-  minIndex = 0
   inputs = []
 
   public componentDidMount() {
     this._renderInputs()
   }
 
-  private _updateText = (text: string, index: number) => {
+  _handleAfterOtpAction = (otpCode: Array<string>, indexToFocus: number) => {
+    const { handleChange, numberOfInputs } = this.props
+    handleChange && handleChange(otpCode.join(''))
+    this.setState({ otpCode })
+
+    if (indexToFocus === numberOfInputs) {
+      return Keyboard.dismiss()
+    }
+
+    if (indexToFocus >= MINIMAL_INDEX && indexToFocus < numberOfInputs) {
+      this._focusInput(indexToFocus)
+    }
+  }
+
+  private _updateText = (event: TextInputOnChangeEventData, index: number) => {
+    let { text } = event.nativeEvent
+    const textLength = text.length
+
     if (text) {
-      const otpCode = this.state.otpCode
+      const otpArray = this.state.otpCode
+      if (textLength > 2) {
+        const { numberOfInputs } = this.props
+        otpArray[index] = textLength > numberOfInputs - index ? [text.slice(1)] : [text]
 
-      otpCode[index] = text
+        this._handleAfterOtpAction(flatten(otpArray.join('')).slice(0, numberOfInputs), textLength)
+      } else {
+        otpArray[index] = text[text.length - 1]
 
-      this.props.handleChange && this.props.handleChange(otpCode.join(''))
-      this.setState({ otpCode })
-      if (index === this.maxIndex) {
-        return Keyboard.dismiss()
-      }
-
-      if (index >= this.minIndex && index < this.maxIndex) {
-        this._focusInput(index + 1)
+        this._handleAfterOtpAction(otpArray, index + 1)
       }
     }
   }
 
-  private _handleBackspace = (event, index: number) => {
+  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number) => {
     if (event.nativeEvent.key === 'Backspace') {
+      const { handleChange, numberOfInputs } = this.props
       const otpCode = this.state.otpCode
       otpCode[index] = ''
 
-      this.props.handleChange && this.props.handleChange(otpCode.join(''))
+      handleChange && handleChange(otpCode.join(''))
       this.setState({ otpCode })
 
-      if (index > this.minIndex && index <= this.maxIndex) {
+      if (index > MINIMAL_INDEX && index < numberOfInputs) {
         this._focusInput(index - 1)
       }
     }
@@ -112,7 +143,7 @@ export default class OtpInputs extends Component<Props, State> {
     const { otpCode } = this.state
 
     let inputArray = []
-    for (let index = 0; index < numberOfInputs; index++) {
+    for (let index = MINIMAL_INDEX; index < numberOfInputs; index++) {
       inputArray[index] = (
         <OtpInput
           autoCapitalize={autoCapitalize}
@@ -120,7 +151,9 @@ export default class OtpInputs extends Component<Props, State> {
           containerStyles={inputContainerStyles}
           error={!!errorMessage}
           focusedBorderColor={focusedBorderColor}
-          handleBackspace={event => this._handleBackspace(event, index)}
+          handleBackspace={(event: TextInputOnKeyPressEventData) =>
+            this._handleBackspace(event, index)
+          }
           inputStyles={inputStyles}
           key={index}
           secureTextEntry={secureTextEntry}
@@ -129,7 +162,7 @@ export default class OtpInputs extends Component<Props, State> {
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unFocusedBorderColor={unFocusedBorderColor}
-          updateText={text => this._updateText(text, index)}
+          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
           value={otpCode[index]}
         />
       )

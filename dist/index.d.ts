@@ -22,7 +22,7 @@ interface Props {
 interface State {
     inputsArray: Array<ReactElement<OtpInput>>;
     loading: boolean;
-    otpCode: Array<number>;
+    otpCode: Array<string>;
 }
 export default class OtpInputs extends Component<Props, State> {
     static defaultProps: {
@@ -46,10 +46,9 @@ export default class OtpInputs extends Component<Props, State> {
         loading: boolean;
         otpCode: any[];
     };
-    maxIndex: number;
-    minIndex: number;
     inputs: any[];
     componentDidMount(): void;
+    _handleAfterOtpAction: (otpCode: string[], indexToFocus: number) => void;
     private _updateText;
     private _handleBackspace;
     private _focusInput;

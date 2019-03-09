@@ -1,5 +1,5 @@
 import { ReactElement, Component } from 'react';
-import { TextInput, NativeSyntheticEvent, TextInputKeyPressEventData } from 'react-native';
+import { TextInput, NativeSyntheticEvent, TextInputKeyPressEventData, TextInputChangeEventData } from 'react-native';
 interface Props {
     autoCapitalize: 'none' | 'sentences' | 'words' | 'characters';
     clearTextOnFocus: boolean;
@@ -12,7 +12,7 @@ interface Props {
     selectTextOnFocus: boolean;
     textErrorColor?: string;
     unFocusedBorderColor: string;
-    updateText: (text: string) => void;
+    updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
     keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad';
     value?: string;
 }

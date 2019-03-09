@@ -1,5 +1,11 @@
 import React, { ReactElement, Component } from 'react'
-import { TextInput, View, NativeSyntheticEvent, TextInputKeyPressEventData } from 'react-native'
+import {
+  TextInput,
+  View,
+  NativeSyntheticEvent,
+  TextInputKeyPressEventData,
+  TextInputChangeEventData,
+} from 'react-native'
 
 import defaultStyles from './defaultStyles'
 interface Props {
@@ -14,7 +20,7 @@ interface Props {
   selectTextOnFocus: boolean
   textErrorColor?: string
   unFocusedBorderColor: string
-  updateText: (text: string) => void
+  updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   value?: string
 }
@@ -60,9 +66,8 @@ export default class OtpInput extends Component<Props, State> {
         <TextInput
           clearTextOnFocus={clearTextOnFocus}
           keyboardType={keyboardType}
-          maxLength={1}
           onBlur={this._onBlur}
-          onChangeText={updateText}
+          onChange={updateText}
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={input => (this.input = input as any)}

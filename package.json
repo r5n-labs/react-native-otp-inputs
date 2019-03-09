@@ -30,6 +30,9 @@
   "peerDependencies": {
     "react-native": ">= 0.53.0 < 1"
   },
+  "dependencies": {
+    "lodash.flatten": "4.4.0"
+  },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

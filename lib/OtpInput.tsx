@@ -1,5 +1,5 @@
 import React, { ReactElement, Component } from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput, View, NativeSyntheticEvent, TextInputKeyPressEventData } from 'react-native'
 
 import defaultStyles from './defaultStyles'
 interface Props {
@@ -8,13 +8,13 @@ interface Props {
   containerStyles?: any
   error?: boolean
   focusedBorderColor?: string
-  handleBackspace: (event) => void
+  handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
   inputStyles?: any
   secureTextEntry: boolean
   selectTextOnFocus: boolean
   textErrorColor?: string
   unFocusedBorderColor: string
-  updateText: (text) => void
+  updateText: (text: string) => void
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   value?: string
 }

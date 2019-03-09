@@ -58,7 +58,7 @@ export default class OtpInputs extends Component<Props, State> {
     this._renderInputs()
   }
 
-  private _updateText = (text, index) => {
+  private _updateText = (text: string, index: number) => {
     if (text) {
       const otpCode = this.state.otpCode
 
@@ -76,8 +76,8 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _handleBackspace = ({ nativeEvent }, index) => {
-    if (nativeEvent.key === 'Backspace') {
+  private _handleBackspace = (event, index: number) => {
+    if (event.nativeEvent.key === 'Backspace') {
       const otpCode = this.state.otpCode
       otpCode[index] = ''
 
@@ -90,7 +90,7 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _focusInput = index => {
+  private _focusInput = (index: number) => {
     this.inputs[index].input.focus()
   }
 

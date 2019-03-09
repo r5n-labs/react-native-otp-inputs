@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "jsx": "react-native",
     "module": "esnext",
     "moduleResolution": "node",
@@ -15,7 +16,7 @@
     "sourceMap": true,
     "target": "esnext"
   },
-  "filesGlob": ["types/index.d.ts", "lib/*.tsx", "lib/*.ts"],
+  "filesGlob": ["lib/*.tsx", "lib/*.ts"],
   "exclude": ["android", "ios", "build", "node_modules"],
   "compileOnSave": false
 }

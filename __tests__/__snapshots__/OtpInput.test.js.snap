@@ -24,6 +24,7 @@ exports[`<OtpInput /> render 1`] = `
     onChange={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
+    rejectResponderTermination={true}
     style={
       Array [
         Object {
@@ -66,6 +67,7 @@ exports[`<OtpInput /> rendering with error 1`] = `
     onChange={[MockFunction]}
     onFocus={[Function]}
     onKeyPress={[MockFunction]}
+    rejectResponderTermination={true}
     style={
       Array [
         Object {

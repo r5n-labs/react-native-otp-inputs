@@ -73,9 +73,9 @@ export default class OtpInputs extends Component<Props, State> {
     this._renderInputs()
   }
 
-  _handleAfterOtpAction = (otpCode: Array<string>, indexToFocus: number) => {
+  private _handleAfterOtpAction = (otpCode: Array<string>, indexToFocus: number) => {
     const { handleChange, numberOfInputs } = this.props
-    handleChange && handleChange(otpCode.join(''))
+    handleChange(otpCode.join(''))
     this.setState({ otpCode })
 
     if (indexToFocus === numberOfInputs) {
@@ -112,7 +112,7 @@ export default class OtpInputs extends Component<Props, State> {
       const otpCode = this.state.otpCode
       otpCode[index] = ''
 
-      handleChange && handleChange(otpCode.join(''))
+      handleChange(otpCode.join(''))
       this.setState({ otpCode })
 
       if (index > MINIMAL_INDEX && index < numberOfInputs) {

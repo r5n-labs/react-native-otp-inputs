@@ -12,16 +12,18 @@ describe('<OtpInput />', () => {
 
   const wrapper = renderer.create(<OtpInput {...defaultProps} />)
 
-  test('render', () => {
-    expect(wrapper.toJSON()).toMatchSnapshot()
-  })
+  describe('render', () => {
+    test('with default props', () => {
+      expect(wrapper.toJSON()).toMatchSnapshot()
+    })
 
-  test('rendering with error', () => {
-    const testWrapper = renderer.create(
-      <OtpInput {...defaultProps} error={true} textErrorColor="#00ff00" />,
-    )
+    test('with error message', () => {
+      const testWrapper = renderer.create(
+        <OtpInput {...defaultProps} error={true} errorMessage="Error" textErrorColor="#00ff00" />,
+      )
 
-    expect(testWrapper.toJSON()).toMatchSnapshot()
+      expect(testWrapper.toJSON()).toMatchSnapshot()
+    })
   })
 
   describe('_onFocus', () => {

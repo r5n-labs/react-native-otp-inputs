@@ -79,7 +79,7 @@ describe('<OtpInputs />', () => {
     })
 
     describe('when input is filled in with pasted text with length of number of inputs', () => {
-      test('should call _focusInput and call `Keyboard.dismiss`', () => {
+      test('should not call _focusInput and call `Keyboard.dismiss`', () => {
         const wrapper = renderer.create(<OtpInputs />)
 
         const fakeEvent = { nativeEvent: { text: '1234' } }
@@ -95,7 +95,7 @@ describe('<OtpInputs />', () => {
     })
 
     describe('when input is filled in with pasted text with length of number of inputs with some value inside', () => {
-      test('should call _focusInput and call `Keyboard.dismiss`', () => {
+      test('should not call _focusInput and call `Keyboard.dismiss`', () => {
         const wrapper = renderer.create(<OtpInputs />)
         const wrapperInstance = wrapper.getInstance()
         wrapperInstance.setState({ otpCode: ['1', '2'] })
@@ -108,6 +108,21 @@ describe('<OtpInputs />', () => {
 
         expect(wrapperInstance.state.otpCode.join('')).toEqual('1234')
         expect(wrapperInstance._focusInput).not.toBeCalled()
+        expect(Keyboard.dismiss).toBeCalled()
+      })
+    })
+
+    describe('when input with value is filled with new one', () => {
+      test('should override first value', () => {
+        const wrapper = renderer.create(<OtpInputs />)
+
+        const fakeEvent = { nativeEvent: { text: '12' } }
+        const inputIndex = 0
+        const wrapperInstance = wrapper.getInstance()
+        wrapperInstance._focusInput = jest.fn()
+        wrapperInstance._updateText(fakeEvent, inputIndex)
+
+        expect(wrapperInstance.state.otpCode.join('')).toEqual('2')
         expect(Keyboard.dismiss).toBeCalled()
       })
     })

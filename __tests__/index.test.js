@@ -119,7 +119,6 @@ describe('<OtpInputs />', () => {
         const fakeEvent = { nativeEvent: { text: '12' } }
         const inputIndex = 0
         const wrapperInstance = wrapper.getInstance()
-        wrapperInstance._focusInput = jest.fn()
         wrapperInstance._updateText(fakeEvent, inputIndex)
 
         expect(wrapperInstance.state.otpCode.join('')).toEqual('2')

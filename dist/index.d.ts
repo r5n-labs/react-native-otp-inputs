@@ -48,7 +48,7 @@ export default class OtpInputs extends Component<Props, State> {
     };
     inputs: any[];
     componentDidMount(): void;
-    _handleAfterOtpAction: (otpCode: string[], indexToFocus: number) => void;
+    private _handleAfterOtpAction;
     private _updateText;
     private _handleBackspace;
     private _focusInput;

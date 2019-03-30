@@ -2,6 +2,11 @@
 
 [![CircleCI](https://circleci.com/gh/dsznajder/react-native-otp-inputs/tree/master.svg?style=svg)](https://circleci.com/gh/dsznajder/react-native-otp-inputs/tree/master)
 
+[![codecov](https://codecov.io/gh/dsznajder/react-native-otp-inputs/branch/master/graph/badge.svg)](https://codecov.io/gh/dsznajder/react-native-otp-inputs)
+
+![npm](https://img.shields.io/npm/dw/react-native-otp-inputs.svg)
+![npm](https://img.shields.io/npm/v/react-native-otp-inputs.svg)
+
 ### Demo
 
 ![Demo](https://user-images.githubusercontent.com/17621507/36565065-a03b98b0-181f-11e8-9a54-09d978bec892.gif)

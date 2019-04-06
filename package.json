@@ -9,7 +9,7 @@
   "license": "MIT",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "lib/commonjs/index.js",
   "react-native": "lib/index.tsx",
   "module": "lib/module/index.js",

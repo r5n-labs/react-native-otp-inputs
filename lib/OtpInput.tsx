@@ -19,7 +19,7 @@ interface Props {
   secureTextEntry: boolean
   selectTextOnFocus: boolean
   textErrorColor?: string
-  unFocusedBorderColor: string
+  unfocusedBorderColor: string
   updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   value?: string
@@ -53,7 +53,7 @@ export default class OtpInput extends Component<Props, State> {
       secureTextEntry,
       selectTextOnFocus,
       textErrorColor,
-      unFocusedBorderColor,
+      unfocusedBorderColor,
       updateText,
       value,
     } = this.props
@@ -63,7 +63,7 @@ export default class OtpInput extends Component<Props, State> {
         style={[
           defaultStyles.otpContainer,
           containerStyles,
-          { borderColor: this.state.isFocused ? focusedBorderColor : unFocusedBorderColor },
+          { borderColor: this.state.isFocused ? focusedBorderColor : unfocusedBorderColor },
         ]}
       >
         <TextInput

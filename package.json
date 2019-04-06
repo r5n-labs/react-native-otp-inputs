@@ -10,13 +10,19 @@
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
   "version": "2.0.0",
+  "main": "lib/commonjs/index.js",
+  "react-native": "lib/index.tsx",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/lib/index.d.ts",
   "scripts": {
+    "clean": "rimraf lib/commonjs lib/module lib/typescript",
     "lint": "tslint --project ./tsconfig.json",
     "typescript": "tsc --noEmit",
     "release": "release-it",
     "test": "jest -u",
     "test:ci": "jest --runInBand --coverage --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepare": "yarn clean && bob build"
   },
   "keywords": [
     "otp",
@@ -31,9 +37,6 @@
     "lodash.flatten": "4.4.0"
   },
   "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
     "bail": true,
     "preset": "react-native",
     "transformIgnorePatterns": [
@@ -50,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
+    "@babel/preset-typescript": "7.3.3",
     "@react-native-community/bob": "0.3.3",
     "@types/jest": "24.0.11",
     "@types/lodash.flatten": "4.4.6",
@@ -63,7 +67,6 @@
     "react-test-renderer": "16.8.3",
     "release-it": "10.4.0",
     "rimraf": "2.6.3",
-    "ts-jest": "24.0.2",
     "tslint": "5.15.0",
     "typescript": "3.4.2"
   },
@@ -71,5 +74,18 @@
     "hooks": {
       "pre-commit": "yarn typescript"
     }
+  },
+  "files": [
+    "lib",
+    "lib"
+  ],
+  "@react-native-community/bob": {
+    "source": "lib",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }

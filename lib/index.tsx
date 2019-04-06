@@ -28,7 +28,7 @@ interface Props {
   numberOfInputs: number
   secureTextEntry: boolean
   selectTextOnFocus: boolean
-  unFocusedBorderColor: string
+  unfocusedBorderColor: string
 }
 
 interface State {
@@ -57,7 +57,7 @@ export default class OtpInputs extends Component<Props, State> {
     numberOfInputs: 4,
     secureTextEntry: false,
     selectTextOnFocus: true,
-    unFocusedBorderColor: 'transparent',
+    unfocusedBorderColor: 'transparent',
   }
   public inputs: RefObject<OtpInput>[]
 
@@ -131,9 +131,7 @@ export default class OtpInputs extends Component<Props, State> {
   }
 
   private _focusInput = (index: number) => {
-    if (this.inputs[index].current) {
-      this.inputs[index].current.focus()
-    }
+    this.inputs[index].current.focus()
   }
 
   private _renderInputs = () => {
@@ -149,7 +147,7 @@ export default class OtpInputs extends Component<Props, State> {
       numberOfInputs,
       secureTextEntry,
       selectTextOnFocus,
-      unFocusedBorderColor,
+      unfocusedBorderColor,
     } = this.props
     const { otpCode } = this.state
 
@@ -172,7 +170,7 @@ export default class OtpInputs extends Component<Props, State> {
           ref={this.inputs[index]}
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
-          unFocusedBorderColor={unFocusedBorderColor}
+          unfocusedBorderColor={unfocusedBorderColor}
           updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
           value={otpCode[index]}
         />

@@ -2,8 +2,8 @@ import { Text, Keyboard } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import OtpInputs from '../dist/index'
-import OtpInput from '../dist/OtpInput'
+import OtpInputs from '../lib'
+import OtpInput from '../lib/OtpInput'
 
 Keyboard.dismiss = jest.fn()
 
@@ -98,7 +98,7 @@ describe('<OtpInputs />', () => {
       test('should not call _focusInput and call `Keyboard.dismiss`', () => {
         const wrapper = renderer.create(<OtpInputs />)
         const wrapperInstance = wrapper.getInstance()
-        wrapperInstance.setState({ otpCode: ['1', '2'] })
+        wrapperInstance.setState({ otpCode: ['2'] })
 
         console.log(wrapperInstance.state)
         const fakeEvent = { nativeEvent: { text: '11234' } }
@@ -163,16 +163,6 @@ describe('<OtpInputs />', () => {
         expect(wrapperInstance._focusInput).toBeCalled()
       })
     })
-  })
-
-  describe('_focusInput', () => {
-    const wrapperInstance = wrapper.getInstance()
-    wrapperInstance.inputs.map(i => (i.input.focus = jest.fn())) // mock focus function for each input
-
-    wrapperInstance._focusInput(2)
-
-    expect(wrapperInstance.inputs[2].input.focus).toBeCalled()
-    expect(wrapperInstance.inputs[1].input.focus).not.toBeCalled()
   })
 })
 

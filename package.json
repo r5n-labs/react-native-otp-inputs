@@ -7,8 +7,8 @@
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "typings/commonjs/index.js",
+  "types": "typings/typescript/lib/index.d.ts",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
   "version": "2.0.0",
@@ -19,7 +19,8 @@
     "test": "jest -u",
     "test:ci": "jest --runInBand --coverage --verbose",
     "test:watch": "jest --watch",
-    "lint": "tslint --project ./tsconfig.json"
+    "lint": "tslint --project ./tsconfig.json",
+    "prepare": "bob build"
   },
   "keywords": [
     "otp",
@@ -56,14 +57,30 @@
     "@types/react": "16.8.10",
     "@types/react-native": "0.57.42",
     "jest": "24.5.0",
+    "merge": "1.2.1",
     "metro-react-native-babel-preset": "0.53.1",
     "react": "16.8.3",
     "react-native": "0.59.2",
     "react-test-renderer": "16.8.3",
-    "merge": "1.2.1",
+    "release-it": "10.4.0",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.0",
     "tslint": "5.13.1",
     "typescript": "3.3.3333"
+  },
+  "react-native": "lib/index.tsx",
+  "module": "typings/module/index.js",
+  "files": [
+    "lib",
+    "typings"
+  ],
+  "@react-native-community/bob": {
+    "source": "lib",
+    "output": "typings",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }

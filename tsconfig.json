@@ -2,19 +2,17 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./lib",
     "declaration": true,
     "jsx": "react-native",
-    "module": "esnext",
     "moduleResolution": "node",
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "dist",
-    "preserveConstEnums": true,
-    "baseUrl": "./lib",
     "skipLibCheck": true,
-    "sourceMap": true,
-    "target": "esnext"
+    "sourceMap": true
   },
   "filesGlob": ["lib/*.tsx", "lib/*.ts"],
   "exclude": ["android", "ios", "build", "node_modules"],

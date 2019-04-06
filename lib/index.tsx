@@ -1,4 +1,4 @@
-import React, { ReactElement, Component, ReactNode } from 'react'
+import React, { Component, ReactNode, RefObject } from 'react'
 import {
   Keyboard,
   Text,
@@ -22,17 +22,16 @@ interface Props {
   handleChange: (otpCode: string) => void
   inputContainerStyles?: any
   inputStyles?: any
-  inputTextErrorColor?: string
+  inputTextErrorColor: string
   inputsContainerStyles?: any
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
   secureTextEntry: boolean
   selectTextOnFocus: boolean
-  unFocusedBorderColor?: string
+  unFocusedBorderColor: string
 }
 
 interface State {
-  inputsArray: Array<ReactElement<OtpInput>>
   loading: boolean
   otpCode: Array<string>
 }
@@ -60,14 +59,23 @@ export default class OtpInputs extends Component<Props, State> {
     selectTextOnFocus: true,
     unFocusedBorderColor: 'transparent',
   }
+  public inputs: RefObject<OtpInput>[]
 
-  state = {
-    inputsArray: [],
-    loading: false,
-    otpCode: [],
+  constructor(props: Props) {
+    super(props)
+
+    const inputs = []
+
+    for (let index = 0; index < this.props.numberOfInputs; index++) {
+      inputs[index] = React.createRef()
+    }
+
+    this.inputs = inputs as Array<RefObject<OtpInput>>
+    this.state = {
+      loading: false,
+      otpCode: [],
+    }
   }
-
-  inputs = []
 
   public componentDidMount() {
     this._renderInputs()
@@ -92,12 +100,13 @@ export default class OtpInputs extends Component<Props, State> {
     const textLength = text.length
 
     if (text) {
-      const otpArray = this.state.otpCode
+      let otpArray = this.state.otpCode
+
       if (textLength > 2) {
         const { numberOfInputs } = this.props
-        otpArray[index] = textLength > numberOfInputs - index ? [text.slice(1)] : [text]
+        otpArray[index] = (textLength > numberOfInputs - index ? [text.slice(1)] : [text]).join('')
 
-        this._handleAfterOtpAction(flatten(otpArray.join('')).slice(0, numberOfInputs), textLength)
+        this._handleAfterOtpAction(flatten(otpArray).slice(0, numberOfInputs), textLength)
       } else {
         otpArray[index] = text[text.length - 1]
 
@@ -122,7 +131,9 @@ export default class OtpInputs extends Component<Props, State> {
   }
 
   private _focusInput = (index: number) => {
-    this.inputs[index].input.focus()
+    if (this.inputs[index].current) {
+      this.inputs[index].current.focus()
+    }
   }
 
   private _renderInputs = () => {
@@ -158,7 +169,7 @@ export default class OtpInputs extends Component<Props, State> {
           key={index}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
-          ref={input => (this.inputs[index] = input)}
+          ref={this.inputs[index]}
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unFocusedBorderColor={unFocusedBorderColor}

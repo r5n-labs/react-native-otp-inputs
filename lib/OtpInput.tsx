@@ -1,4 +1,4 @@
-import React, { ReactElement, Component } from 'react'
+import React, { Component, RefObject } from 'react'
 import {
   TextInput,
   View,
@@ -33,11 +33,14 @@ export default class OtpInput extends Component<Props, State> {
   state = {
     isFocused: false,
   }
-
   private _onFocus = (): void => this.setState({ isFocused: true })
   private _onBlur = (): void => this.setState({ isFocused: false })
 
-  public input: ReactElement<TextInput>
+  public input: RefObject<TextInput> = React.createRef()
+  public focus = (): void => {
+    this.input.current.focus()
+  }
+
   public render() {
     const {
       clearTextOnFocus,
@@ -70,7 +73,7 @@ export default class OtpInput extends Component<Props, State> {
           onChange={updateText}
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
-          ref={input => (this.input = input as any)}
+          ref={this.input}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}

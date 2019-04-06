@@ -1,9 +1,12 @@
 {
-  "changelogCommand": "gitmoji-changelog",
   "safeBump": false,
-  "src": {
+  "git": {
     "commitMessage": ":bookmark: release %s",
     "tagName": "v%s"
+  },
+  "scripts": {
+    "changelog": "gitmoji-changelog",
+    "beforeStage": "gitmoji-changelog"
   },
   "npm": {
     "publish": true

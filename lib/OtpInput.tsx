@@ -5,9 +5,11 @@ import {
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
   TextInputChangeEventData,
+  Platform,
 } from 'react-native'
 
 import defaultStyles from './defaultStyles'
+
 interface Props {
   autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus: boolean
@@ -28,6 +30,9 @@ interface Props {
 interface State {
   isFocused: boolean
 }
+
+const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10)
+const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12
 
 export default class OtpInput extends Component<Props, State> {
   state = {
@@ -76,6 +81,7 @@ export default class OtpInput extends Component<Props, State> {
           ref={this.input}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
+          textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
           underlineColorAndroid="transparent"
           value={value}

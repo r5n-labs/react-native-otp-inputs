@@ -15,7 +15,12 @@
 
 `react-native-otp-inputs` is fully customizable, pure JavaScript package, that provides solution for One-time password feature with user friendly events like moving to previous input with backspace or going to next when filled in. It supports pasting and otp code into inputs
 
-#### Supported version of React Native >= 0.53.0
+## Installation
+
+| React-Native version | installation                           |
+| -------------------- | -------------------------------------- |
+| >= 0.53.0 < 0.57.0   | yarn add react-native-otp-inputs@1.1.0 |
+| <= 0.57.0            | yarn add react-native-otp-inputs       |
 
 **_It's because of `onKeyPress` event implementation on android._**
 
@@ -41,7 +46,6 @@ export default class App extends Component {
 
 | Method                      | Type           | Required    | Default                                                                                                    | Description                                                    |
 | --------------------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| autoCapitalize: 'none'      | 'sentences'    | 'words'     | 'characters'                                                                                               |
 | autoCapitalize              | string         | false       | 'none'                                                                                                     | Defines input auto capitalization (only use with keyboardType) |
 | clearTextOnFocus            | boolean        | false       | false                                                                                                      | Defines if input text should be cleared on focus               |
 | containerStyles             | style (object) | false       | none                                                                                                       | Styles applied to whole container                              |

@@ -1,12 +1,12 @@
 import React, { Component, ReactNode, RefObject } from 'react'
 import {
+  Clipboard,
   Keyboard,
   Text,
-  View,
-  TextInputKeyPressEventData,
   TextInputChangeEventData,
+  TextInputKeyPressEventData,
+  View,
 } from 'react-native'
-import flatten from 'lodash.flatten'
 
 import OtpInput from './OtpInput'
 import defaultStyles from './defaultStyles'
@@ -34,6 +34,7 @@ interface Props {
 interface State {
   loading: boolean
   otpCode: Array<string>
+  previousCopiedText: string
 }
 
 type TextInputOnChangeEventData = {
@@ -57,9 +58,11 @@ export default class OtpInputs extends Component<Props, State> {
     numberOfInputs: 4,
     secureTextEntry: false,
     selectTextOnFocus: true,
-    unfocusedBorderColor: 'transparent',
+    unfocusedBorderColor: '#a0a0a0',
   }
+
   public inputs: RefObject<OtpInput>[]
+  private _interval: any
 
   constructor(props: Props) {
     super(props)
@@ -70,21 +73,49 @@ export default class OtpInputs extends Component<Props, State> {
       inputs[index] = React.createRef()
     }
 
+    this._interval = null
     this.inputs = inputs as Array<RefObject<OtpInput>>
     this.state = {
       loading: false,
+      previousCopiedText: '',
       otpCode: [],
     }
   }
 
   public componentDidMount() {
-    this._renderInputs()
+    this._listenOnCopiedText()
+
+    this._interval = setInterval(() => {
+      this._listenOnCopiedText()
+    }, 1000)
   }
 
-  private _handleAfterOtpAction = (otpCode: Array<string>, indexToFocus: number) => {
+  public componentWillUnmount() {
+    clearInterval(this._interval)
+  }
+
+  private _listenOnCopiedText = async () => {
+    const copiedText = await Clipboard.getString()
+
+    if (
+      copiedText &&
+      copiedText.length === this.props.numberOfInputs &&
+      copiedText !== this.state.otpCode.join('') &&
+      copiedText !== this.state.previousCopiedText
+    ) {
+      this._handleAfterOtpAction(copiedText.split(''), this.props.numberOfInputs, true)
+    }
+  }
+
+  private _handleAfterOtpAction = (
+    otpCode: Array<string>,
+    indexToFocus: number,
+    fromClipboard?: boolean,
+  ) => {
     const { handleChange, numberOfInputs } = this.props
     handleChange(otpCode.join(''))
-    this.setState({ otpCode })
+
+    this.setState({ otpCode, ...(fromClipboard && { previousCopiedText: otpCode.join('') }) })
 
     if (indexToFocus === numberOfInputs) {
       return Keyboard.dismiss()
@@ -97,21 +128,11 @@ export default class OtpInputs extends Component<Props, State> {
 
   private _updateText = (event: TextInputOnChangeEventData, index: number) => {
     let { text } = event.nativeEvent
-    const textLength = text.length
 
     if (text) {
       let otpArray = this.state.otpCode
-
-      if (textLength > 2) {
-        const { numberOfInputs } = this.props
-        otpArray[index] = (textLength > numberOfInputs - index ? [text.slice(1)] : [text]).join('')
-
-        this._handleAfterOtpAction(flatten(otpArray).slice(0, numberOfInputs), textLength)
-      } else {
-        otpArray[index] = text[text.length - 1]
-
-        this._handleAfterOtpAction(otpArray, index + 1)
-      }
+      otpArray[index] = text[text.length - 1]
+      this._handleAfterOtpAction(otpArray, index + 1)
     }
   }
 
@@ -151,9 +172,9 @@ export default class OtpInputs extends Component<Props, State> {
     } = this.props
     const { otpCode } = this.state
 
-    let inputArray = []
-    for (let index = MINIMAL_INDEX; index < numberOfInputs; index++) {
-      inputArray[index] = (
+    return Array(numberOfInputs)
+      .fill(0)
+      .map((_, index) => (
         <OtpInput
           autoCapitalize={autoCapitalize}
           clearTextOnFocus={clearTextOnFocus}
@@ -174,10 +195,7 @@ export default class OtpInputs extends Component<Props, State> {
           updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
           value={otpCode[index]}
         />
-      )
-    }
-
-    return inputArray.map(input => input)
+      ))
   }
 
   public render(): ReactNode {

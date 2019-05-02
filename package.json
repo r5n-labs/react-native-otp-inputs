@@ -10,11 +10,9 @@
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
   "version": "2.0.1",
-  "main": "lib/commonjs/index.js",
-  "react-native": "lib/index.tsx",
-  "types": "lib/typescript/lib/index.d.ts",
+  "main": "lib/module/index.js",
   "scripts": {
-    "clean": "rimraf lib/commonjs lib/module lib/typescript",
+    "clean": "rimraf lib",
     "lint": "tslint --project ./tsconfig.json",
     "typescript": "tsc --noEmit",
     "release": "release-it",
@@ -71,15 +69,18 @@
       "pre-commit": "yarn typescript"
     }
   },
+  "react-native": "src/index.ts",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/index.d.ts",
   "files": [
-    "lib",
+    "src",
     "lib"
   ],
   "@react-native-community/bob": {
-    "source": "lib",
+    "source": "src",
     "output": "lib",
     "targets": [
-      "commonjs",
+      "module",
       "typescript"
     ]
   }

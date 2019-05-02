@@ -5,9 +5,7 @@ exports[`<OtpInput /> render with default props 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#a1a1a1",
-        "borderRadius": 6,
-        "borderWidth": 1,
+        "borderBottomWidth": 1,
         "height": 53,
         "margin": 10,
       },
@@ -28,7 +26,6 @@ exports[`<OtpInput /> render with default props 1`] = `
     style={
       Array [
         Object {
-          "color": "#ffffff",
           "fontSize": 24,
           "paddingTop": 10,
           "textAlign": "center",
@@ -38,6 +35,7 @@ exports[`<OtpInput /> render with default props 1`] = `
         undefined,
       ]
     }
+    textContentType="oneTimeCode"
     underlineColorAndroid="transparent"
   />
 </View>
@@ -48,9 +46,7 @@ exports[`<OtpInput /> render with error message 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#a1a1a1",
-        "borderRadius": 6,
-        "borderWidth": 1,
+        "borderBottomWidth": 1,
         "height": 53,
         "margin": 10,
       },
@@ -71,7 +67,6 @@ exports[`<OtpInput /> render with error message 1`] = `
     style={
       Array [
         Object {
-          "color": "#ffffff",
           "fontSize": 24,
           "paddingTop": 10,
           "textAlign": "center",
@@ -83,6 +78,48 @@ exports[`<OtpInput /> render with error message 1`] = `
         },
       ]
     }
+    textContentType="oneTimeCode"
+    underlineColorAndroid="transparent"
+  />
+</View>
+`;
+
+exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "height": 53,
+        "margin": 10,
+      },
+      undefined,
+      Object {
+        "borderColor": undefined,
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChange={[MockFunction]}
+    onFocus={[Function]}
+    onKeyPress={[MockFunction]}
+    rejectResponderTermination={true}
+    style={
+      Array [
+        Object {
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
+        },
+        undefined,
+        undefined,
+      ]
+    }
+    textContentType="oneTimeCode"
     underlineColorAndroid="transparent"
   />
 </View>

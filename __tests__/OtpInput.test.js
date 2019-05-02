@@ -1,8 +1,13 @@
-import { TextInput } from 'react-native'
+import { TextInput, Platform } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
 import OtpInput from '../lib/OtpInput'
+
+jest.mock('Platform', () => ({
+  OS: 'ios',
+  Version: 12,
+}))
 
 describe('<OtpInput />', () => {
   defaultProps = {
@@ -10,25 +15,30 @@ describe('<OtpInput />', () => {
     updateText: jest.fn(),
   }
 
-  const wrapper = renderer.create(<OtpInput {...defaultProps} />)
-
   describe('render', () => {
     test('with default props', () => {
-      expect(wrapper.toJSON()).toMatchSnapshot()
+      const wrapper = renderer.create(<OtpInput {...defaultProps} />)
+
+      expect(wrapper).toMatchSnapshot()
     })
 
     test('with error message', () => {
-      const testWrapper = renderer.create(
+      const wrapper = renderer.create(
         <OtpInput {...defaultProps} error={true} errorMessage="Error" textErrorColor="#00ff00" />,
       )
 
-      expect(testWrapper.toJSON()).toMatchSnapshot()
+      expect(wrapper).toMatchSnapshot()
+    })
+
+    test('with iOS version 12 or higher', () => {
+      const wrapper = renderer.create(<OtpInput {...defaultProps} />)
+      expect(wrapper).toMatchSnapshot()
     })
   })
 
   describe('_onFocus', () => {
     test('should change state of `isFocused` to true', () => {
-      const wrapperInstance = wrapper.getInstance()
+      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance()
       wrapperInstance.setState({ isFocused: false })
       wrapperInstance._onFocus()
 
@@ -38,7 +48,7 @@ describe('<OtpInput />', () => {
 
   describe('_onBlur', () => {
     test('should change state of `isFocused` to false', () => {
-      const wrapperInstance = wrapper.getInstance()
+      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance()
       wrapperInstance.setState({ isFocused: true })
       wrapperInstance._onBlur()
 

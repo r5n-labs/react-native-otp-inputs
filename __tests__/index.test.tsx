@@ -10,12 +10,11 @@ Keyboard.dismiss = jest.fn()
 describe('<OtpInputs />', () => {
   const wrapper = renderer.create(<OtpInputs />)
 
-  test('render', done => {
+  test('render', () => {
     expect(wrapper.toJSON()).toMatchSnapshot()
     expect(wrapper.root.findAllByType(OtpInput).length).toEqual(4)
     const sixInputsWrapper = renderer.create(<OtpInputs numberOfInputs={6} />)
     expect(sixInputsWrapper.root.findAllByType(OtpInput).length).toEqual(6)
-    done()
   })
 
   test('rendering with error', () => {
@@ -136,21 +135,25 @@ describe('<OtpInputs />', () => {
 describe('OtpInput events', () => {
   const wrapper = renderer.create(<OtpInputs />)
 
-  describe('handleBackspace', () => {
-    const wrapperInstance = wrapper.getInstance()
-    wrapperInstance._handleBackspace = jest.fn()
-    const OtpInputComponent = wrapper.root.findAllByType(OtpInput)[0]
+  describe('_handleBackspace', () => {
+    test('should call handleBaspace function when OtpInput calls it', () => {
+      const wrapperInstance = wrapper.getInstance()
+      wrapperInstance._handleBackspace = jest.fn()
+      const OtpInputComponent = wrapper.root.findAllByType(OtpInput)[0]
 
-    OtpInputComponent.props.handleBackspace()
-    expect(wrapperInstance._handleBackspace).toBeCalled()
+      OtpInputComponent.props.handleBackspace()
+      expect(wrapperInstance._handleBackspace).toBeCalled()
+    })
   })
 
   describe('updateText', () => {
-    const wrapperInstance = wrapper.getInstance()
-    wrapperInstance._updateText = jest.fn()
-    const OtpInputComponent = wrapper.root.findAllByType(OtpInput)[0]
+    test('should call updateText function when OtpInput calls it', () => {
+      const wrapperInstance = wrapper.getInstance()
+      wrapperInstance._updateText = jest.fn()
+      const OtpInputComponent = wrapper.root.findAllByType(OtpInput)[0]
 
-    OtpInputComponent.props.updateText()
-    expect(wrapperInstance._updateText).toBeCalled()
+      OtpInputComponent.props.updateText()
+      expect(wrapperInstance._updateText).toBeCalled()
+    })
   })
 })

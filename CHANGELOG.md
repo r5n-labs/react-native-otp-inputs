@@ -1,11 +1,27 @@
 # Changelog
 
-<a name="next"></a>
-## next
+<a name="3.0.0"></a>
+## 3.0.0 (2019-05-02)
+
+### Added
+
+- ✨ Use Clipboard with listener to apply copied text [[8a706ad](https://github.com/dsznajder/react-native-otp-inputs/commit/8a706adee141c99cbfad26943aa14a9767d84f88)]
+- ✨ Add oneTimeCode textContentType for iOS &gt;&#x3D; 12 [[f55b695](https://github.com/dsznajder/react-native-otp-inputs/commit/f55b695d300c573b52cfab7c6a7b532e80edef26)]
+- ✅ Update Tests and snapshots [[999bd03](https://github.com/dsznajder/react-native-otp-inputs/commit/999bd0344ddb11aa46e645ba1913c104404ec930)]
 
 ### Changed
 
+- ⬆️ Update dev Dependencies [[64daee5](https://github.com/dsznajder/react-native-otp-inputs/commit/64daee52d98b6bd5488c1fecd0fabf2efe27f7d9)]
+- ⬆️ Update devDependencies [[e2a0ce7](https://github.com/dsznajder/react-native-otp-inputs/commit/e2a0ce75044124096d97722eea79732265617e2c)]
+- 💄 Update default styling [[3d104bb](https://github.com/dsznajder/react-native-otp-inputs/commit/3d104bb18df5aaefc18dde0c9f4e512a643d9b41)]
+- 🚚 Move files to src folder [[c4a8446](https://github.com/dsznajder/react-native-otp-inputs/commit/c4a84467e50f7b7309fd814b5c4628053ac5d5ed)]
 - 🔧 Add release-it config [[94b9232](https://github.com/dsznajder/react-native-otp-inputs/commit/94b9232aa3f95ae824c4a74955290f0efd28c63f)]
+
+### Miscellaneous
+
+- 📝 Generate Changelog [[6736feb](https://github.com/dsznajder/react-native-otp-inputs/commit/6736febb71438c06d6d98ce334de9d7118cc9ac5)]
+-  Update documentation [[ef23f88](https://github.com/dsznajder/react-native-otp-inputs/commit/ef23f88d2d0f08236bbec3cba52f4529297680ec)]
+- 🏷️ Change test files to .tsx [[a510972](https://github.com/dsznajder/react-native-otp-inputs/commit/a510972ed3464fedd375cb0ebb77bb63f9568910)]
 
 
 <a name="2.0.1"></a>

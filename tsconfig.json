@@ -15,6 +15,6 @@
     "sourceMap": true
   },
   "filesGlob": ["lib/*.tsx", "lib/*.ts"],
-  "exclude": ["android", "ios", "build", "node_modules"],
+  "exclude": ["android", "__tests__", "ios", "build", "node_modules"],
   "compileOnSave": false
 }

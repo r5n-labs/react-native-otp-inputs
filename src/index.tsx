@@ -82,7 +82,7 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this._listenOnCopiedText()
 
     this._interval = setInterval(() => {
@@ -90,11 +90,11 @@ export default class OtpInputs extends Component<Props, State> {
     }, 1000)
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     clearInterval(this._interval)
   }
 
-  private _listenOnCopiedText = async () => {
+  private _listenOnCopiedText = async (): Promise<void> => {
     const copiedText = await Clipboard.getString()
 
     if (
@@ -111,7 +111,7 @@ export default class OtpInputs extends Component<Props, State> {
     otpCode: Array<string>,
     indexToFocus: number,
     fromClipboard?: boolean,
-  ) => {
+  ): void => {
     const { handleChange, numberOfInputs } = this.props
     handleChange(otpCode.join(''))
 
@@ -126,7 +126,7 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _updateText = (event: TextInputOnChangeEventData, index: number) => {
+  private _updateText = (event: TextInputOnChangeEventData, index: number): void => {
     let { text } = event.nativeEvent
 
     if (text) {
@@ -136,7 +136,7 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number) => {
+  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number): void => {
     if (event.nativeEvent.key === 'Backspace') {
       const { handleChange, numberOfInputs } = this.props
       const otpCode = this.state.otpCode
@@ -151,11 +151,11 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _focusInput = (index: number) => {
+  private _focusInput = (index: number): void => {
     this.inputs[index].current.focus()
   }
 
-  private _renderInputs = () => {
+  private _renderInputs = (): Array<JSX.Element> => {
     const {
       autoCapitalize,
       clearTextOnFocus,
@@ -171,31 +171,30 @@ export default class OtpInputs extends Component<Props, State> {
       unfocusedBorderColor,
     } = this.props
     const { otpCode } = this.state
+    const iterationArray = Array<number>(numberOfInputs).fill(0)
 
-    return Array(numberOfInputs)
-      .fill(0)
-      .map((_, index) => (
-        <OtpInput
-          autoCapitalize={autoCapitalize}
-          clearTextOnFocus={clearTextOnFocus}
-          containerStyles={inputContainerStyles}
-          error={!!errorMessage}
-          focusedBorderColor={focusedBorderColor}
-          handleBackspace={(event: TextInputOnKeyPressEventData) =>
-            this._handleBackspace(event, index)
-          }
-          inputStyles={inputStyles}
-          key={index}
-          secureTextEntry={secureTextEntry}
-          keyboardType={keyboardType}
-          ref={this.inputs[index]}
-          selectTextOnFocus={selectTextOnFocus}
-          textErrorColor={inputTextErrorColor}
-          unfocusedBorderColor={unfocusedBorderColor}
-          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
-          value={otpCode[index]}
-        />
-      ))
+    return iterationArray.map((_, index) => (
+      <OtpInput
+        autoCapitalize={autoCapitalize}
+        clearTextOnFocus={clearTextOnFocus}
+        containerStyles={inputContainerStyles}
+        error={!!errorMessage}
+        focusedBorderColor={focusedBorderColor}
+        handleBackspace={(event: TextInputOnKeyPressEventData) =>
+          this._handleBackspace(event, index)
+        }
+        inputStyles={inputStyles}
+        key={index}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        ref={this.inputs[index]}
+        selectTextOnFocus={selectTextOnFocus}
+        textErrorColor={inputTextErrorColor}
+        unfocusedBorderColor={unfocusedBorderColor}
+        updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
+        value={otpCode[index]}
+      />
+    ))
   }
 
   public render(): ReactNode {

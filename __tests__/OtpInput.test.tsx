@@ -1,8 +1,8 @@
-import { TextInput, Platform } from 'react-native'
-import React from 'react'
-import renderer from 'react-test-renderer'
+import 'react-native'
+import * as React from 'react'
+import * as renderer from 'react-test-renderer'
 
-import OtpInput from '../OtpInput'
+import OtpInput from '../src/OtpInput'
 
 jest.mock('Platform', () => ({
   OS: 'ios',
@@ -10,9 +10,9 @@ jest.mock('Platform', () => ({
 }))
 
 describe('<OtpInput />', () => {
-  defaultProps = {
-    handleBackspace: jest.fn(),
-    updateText: jest.fn(),
+  const defaultProps = {
+    handleBackspace: ({ nativeEvent: {} }) => {},
+    updateText: ({ nativeEvent: {} }) => {},
   }
 
   describe('render', () => {
@@ -24,7 +24,7 @@ describe('<OtpInput />', () => {
 
     test('with error message', () => {
       const wrapper = renderer.create(
-        <OtpInput {...defaultProps} error={true} errorMessage="Error" textErrorColor="#00ff00" />,
+        <OtpInput {...defaultProps} error={true} textErrorColor="#00ff00" />,
       )
 
       expect(wrapper).toMatchSnapshot()

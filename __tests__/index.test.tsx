@@ -1,20 +1,21 @@
-import { Text, Keyboard } from 'react-native'
-import React from 'react'
-import renderer from 'react-test-renderer'
+import { Keyboard } from 'react-native'
+import * as React from 'react'
+import * as renderer from 'react-test-renderer'
 
-import OtpInputs from '../'
-import OtpInput from '../OtpInput'
+import OtpInputs from '../src/'
+import OtpInput from '../src/OtpInput'
 
 Keyboard.dismiss = jest.fn()
 
 describe('<OtpInputs />', () => {
   const wrapper = renderer.create(<OtpInputs />)
 
-  test('render', () => {
+  test('render', done => {
     expect(wrapper.toJSON()).toMatchSnapshot()
     expect(wrapper.root.findAllByType(OtpInput).length).toEqual(4)
     const sixInputsWrapper = renderer.create(<OtpInputs numberOfInputs={6} />)
     expect(sixInputsWrapper.root.findAllByType(OtpInput).length).toEqual(6)
+    done()
   })
 
   test('rendering with error', () => {

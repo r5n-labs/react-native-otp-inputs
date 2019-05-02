@@ -19,9 +19,9 @@ exports[`<OtpInput /> render with default props 1`] = `
   <TextInput
     allowFontScaling={true}
     onBlur={[Function]}
-    onChange={[MockFunction]}
+    onChange={[Function]}
     onFocus={[Function]}
-    onKeyPress={[MockFunction]}
+    onKeyPress={[Function]}
     rejectResponderTermination={true}
     style={
       Array [
@@ -60,9 +60,9 @@ exports[`<OtpInput /> render with error message 1`] = `
   <TextInput
     allowFontScaling={true}
     onBlur={[Function]}
-    onChange={[MockFunction]}
+    onChange={[Function]}
     onFocus={[Function]}
-    onKeyPress={[MockFunction]}
+    onKeyPress={[Function]}
     rejectResponderTermination={true}
     style={
       Array [
@@ -103,9 +103,9 @@ exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
   <TextInput
     allowFontScaling={true}
     onBlur={[Function]}
-    onChange={[MockFunction]}
+    onChange={[Function]}
     onFocus={[Function]}
-    onKeyPress={[MockFunction]}
+    onKeyPress={[Function]}
     rejectResponderTermination={true}
     style={
       Array [

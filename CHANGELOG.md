@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="3.0.2"></a>
+## 3.0.2 (2019-05-09)
+
+### Removed
+
+- 🔥 Remove unnecessary files from npm [[4c70982](https://github.com/dsznajder/react-native-otp-inputs/commit/4c70982ee012d1dbdcc0b77b981d0281bf44f509)]
+
+### Miscellaneous
+
+-  Fix react-native extension [[e7262e3](https://github.com/dsznajder/react-native-otp-inputs/commit/e7262e3698b113bb5b83d1de4bd7175a4103dbed)]
+
+
 <a name="3.0.0"></a>
 ## 3.0.0 (2019-05-02)
 

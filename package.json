@@ -9,7 +9,7 @@
   "license": "MIT",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "main": "lib/module/index.js",
   "scripts": {
     "clean": "rimraf lib",

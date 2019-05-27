@@ -65,8 +65,6 @@ export default class OtpInput extends Component<Props, State> {
       value,
     } = this.props
 
-    console.log(focusStyles)
-
     return (
       <View
         style={[

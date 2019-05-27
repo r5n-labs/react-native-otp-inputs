@@ -14,6 +14,7 @@ interface Props {
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus?: boolean
   containerStyles?: any
+  focusStyles?: any
   error?: boolean
   focusedBorderColor?: string
   handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
@@ -50,6 +51,7 @@ export default class OtpInput extends Component<Props, State> {
     const {
       clearTextOnFocus,
       containerStyles,
+      focusStyles,
       error,
       focusedBorderColor,
       handleBackspace,
@@ -63,11 +65,14 @@ export default class OtpInput extends Component<Props, State> {
       value,
     } = this.props
 
+    console.log(focusStyles)
+
     return (
       <View
         style={[
           defaultStyles.otpContainer,
           containerStyles,
+          this.state.isFocused && focusStyles,
           { borderColor: this.state.isFocused ? focusedBorderColor : unfocusedBorderColor },
         ]}
       >

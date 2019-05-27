@@ -15,6 +15,7 @@ interface Props {
   autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus: boolean
   containerStyles?: any
+  focusStyles?: any
   errorMessage?: string
   errorMessageContainerStyles?: any
   errorMessageTextStyles?: any
@@ -161,6 +162,7 @@ export default class OtpInputs extends Component<Props, State> {
       clearTextOnFocus,
       errorMessage,
       focusedBorderColor,
+      focusStyles,
       inputContainerStyles,
       inputStyles,
       inputTextErrorColor,
@@ -178,6 +180,7 @@ export default class OtpInputs extends Component<Props, State> {
         autoCapitalize={autoCapitalize}
         clearTextOnFocus={clearTextOnFocus}
         containerStyles={inputContainerStyles}
+        focusStyles={focusStyles}
         error={!!errorMessage}
         focusedBorderColor={focusedBorderColor}
         handleBackspace={(event: TextInputOnKeyPressEventData) =>

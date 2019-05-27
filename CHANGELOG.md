@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="3.1.0"></a>
+## 3.1.0 (2019-05-27)
+
+### Miscellaneous
+
+-  Fix react-native extension [[2bb09d3](https://github.com/dsznajder/react-native-otp-inputs/commit/2bb09d3d82f6be500f3064ad63a059a9b9c7413e)]
+-  Prop focusStyles [[199a4ce](https://github.com/dsznajder/react-native-otp-inputs/commit/199a4cea07ac46715eb9ab3e729519a8dd086af7)]
+-  remove logs [[c2cff59](https://github.com/dsznajder/react-native-otp-inputs/commit/c2cff5929540088e6462815cc5c4006e9eb7c82f)]
+-  update readme with focusStyle [[83ac10c](https://github.com/dsznajder/react-native-otp-inputs/commit/83ac10cc2a32e7d098d3437d938765da26bc1173)]
+
+
 <a name="3.0.2"></a>
 ## 3.0.2 (2019-05-09)
 

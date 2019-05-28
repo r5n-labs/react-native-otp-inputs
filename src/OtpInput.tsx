@@ -1,11 +1,14 @@
-import React, { Component, RefObject } from 'react'
+import React, { PureComponent, RefObject } from 'react'
 import {
-  TextInput,
-  View,
   NativeSyntheticEvent,
-  TextInputKeyPressEventData,
-  TextInputChangeEventData,
   Platform,
+  StyleProp,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputKeyPressEventData,
+  TextStyle,
+  View,
+  ViewStyle,
 } from 'react-native'
 
 import defaultStyles from './defaultStyles'
@@ -13,12 +16,12 @@ import defaultStyles from './defaultStyles'
 interface Props {
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus?: boolean
-  containerStyles?: any
-  focusStyles?: any
+  containerStyles?: StyleProp<ViewStyle>
+  focusStyles?: StyleProp<ViewStyle>
   error?: boolean
   focusedBorderColor?: string
   handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
-  inputStyles?: any
+  inputStyles?: StyleProp<TextStyle>
   secureTextEntry?: boolean
   selectTextOnFocus?: boolean
   textErrorColor?: string
@@ -35,7 +38,7 @@ interface State {
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10)
 const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12
 
-export default class OtpInput extends Component<Props, State> {
+export default class OtpInput extends PureComponent<Props, State> {
   state = {
     isFocused: false,
   }

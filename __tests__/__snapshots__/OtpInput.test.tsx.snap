@@ -10,6 +10,7 @@ exports[`<OtpInput /> render with default props 1`] = `
         "margin": 10,
       },
       undefined,
+      false,
       Object {
         "borderColor": undefined,
       },
@@ -51,6 +52,7 @@ exports[`<OtpInput /> render with error message 1`] = `
         "margin": 10,
       },
       undefined,
+      false,
       Object {
         "borderColor": undefined,
       },
@@ -94,6 +96,7 @@ exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
         "margin": 10,
       },
       undefined,
+      false,
       Object {
         "borderColor": undefined,
       },

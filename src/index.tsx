@@ -1,4 +1,4 @@
-import React, { Component, ReactNode, RefObject } from 'react'
+import React, { PureComponent, ReactNode, RefObject } from 'react'
 import {
   Clipboard,
   Keyboard,
@@ -48,7 +48,7 @@ type TextInputOnKeyPressEventData = {
 
 const MINIMAL_INDEX = 0
 
-export default class OtpInputs extends Component<Props, State> {
+export default class OtpInputs extends PureComponent<Props, State> {
   static defaultProps = {
     autoCapitalize: 'none',
     clearTextOnFocus: false,

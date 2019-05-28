@@ -33,6 +33,7 @@ exports[`<OtpInputs /> render 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -75,6 +76,7 @@ exports[`<OtpInputs /> render 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -117,6 +119,7 @@ exports[`<OtpInputs /> render 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -159,6 +162,7 @@ exports[`<OtpInputs /> render 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -245,6 +249,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -289,6 +294,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -333,6 +339,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },
@@ -377,6 +384,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             "margin": 10,
           },
           undefined,
+          false,
           Object {
             "borderColor": "#a0a0a0",
           },

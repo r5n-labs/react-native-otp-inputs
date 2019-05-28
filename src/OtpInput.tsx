@@ -85,6 +85,7 @@ export default class OtpInput extends PureComponent<Props, State> {
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={this.input}
+          maxLength={1}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}

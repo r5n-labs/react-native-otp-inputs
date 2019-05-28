@@ -2,10 +2,13 @@ import React, { PureComponent, ReactNode, RefObject } from 'react'
 import {
   Clipboard,
   Keyboard,
+  StyleProp,
   Text,
   TextInputChangeEventData,
   TextInputKeyPressEventData,
+  TextStyle,
   View,
+  ViewStyle,
 } from 'react-native'
 
 import OtpInput from './OtpInput'
@@ -14,17 +17,17 @@ import defaultStyles from './defaultStyles'
 interface Props {
   autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus: boolean
-  containerStyles?: any
-  focusStyles?: any
+  containerStyles?: StyleProp<ViewStyle>
   errorMessage?: string
-  errorMessageContainerStyles?: any
-  errorMessageTextStyles?: any
+  errorMessageContainerStyles?: StyleProp<ViewStyle>
+  errorMessageTextStyles?: StyleProp<TextStyle>
+  focusStyles?: StyleProp<ViewStyle>
   focusedBorderColor: string
   handleChange: (otpCode: string) => void
-  inputContainerStyles?: any
-  inputStyles?: any
+  inputContainerStyles?: StyleProp<ViewStyle>
+  inputStyles?: StyleProp<TextStyle>
   inputTextErrorColor: string
-  inputsContainerStyles?: any
+  inputsContainerStyles?: StyleProp<ViewStyle>
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
   secureTextEntry: boolean

@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="3.1.1"></a>
+## 3.1.1 (2019-05-28)
+
+### Added
+
+- ✅ Update testing environment [[ed938bf](https://github.com/dsznajder/react-native-otp-inputs/commit/ed938bf212777b66ddef5a901745cede256651b1)]
+
+### Fixed
+
+- 💚 Fix tests on ci [[a2851e0](https://github.com/dsznajder/react-native-otp-inputs/commit/a2851e0b61b9edaa54cfef33dc94f7ea1cdc7a6f)]
+
+### Miscellaneous
+
+- 🏷️ Update Style typings [[8be878a](https://github.com/dsznajder/react-native-otp-inputs/commit/8be878aabdfa1ad327c891b81bb0eab884132b9c)]
+
+
 <a name="3.1.0"></a>
 ## 3.1.0 (2019-05-27)
 

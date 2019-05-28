@@ -16,8 +16,8 @@
     "lint": "tslint --project ./tsconfig.json",
     "typescript": "tsc --noEmit",
     "release": "release-it",
-    "test": "jest -u",
-    "test:ci": "jest --runInBand --coverage --verbose",
+    "test": "jest --updateSnapshot",
+    "test:ci": "jest --collectCoverage=true",
     "test:watch": "jest --watch",
     "prepare": "yarn clean && bob build"
   },

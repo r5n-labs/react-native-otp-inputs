@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Unit Tests
-          command: yarn test:ci --collectCoverage=true
+          command: yarn test:ci
 
       - store_artifacts:
           path: coverage

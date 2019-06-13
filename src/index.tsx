@@ -21,17 +21,18 @@ interface Props {
   errorMessage?: string
   errorMessageContainerStyles?: StyleProp<ViewStyle>
   errorMessageTextStyles?: StyleProp<TextStyle>
-  focusStyles?: StyleProp<ViewStyle>
   focusedBorderColor: string
+  focusStyles?: StyleProp<ViewStyle>
   handleChange: (otpCode: string) => void
   inputContainerStyles?: StyleProp<ViewStyle>
+  inputsContainerStyles?: StyleProp<ViewStyle>
   inputStyles?: StyleProp<TextStyle>
   inputTextErrorColor: string
-  inputsContainerStyles?: StyleProp<ViewStyle>
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
   secureTextEntry: boolean
   selectTextOnFocus: boolean
+  testIDPrefix: string
   unfocusedBorderColor: string
 }
 
@@ -63,6 +64,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     secureTextEntry: false,
     selectTextOnFocus: true,
     unfocusedBorderColor: '#a0a0a0',
+    testIDPrefix: 'otpInput',
   }
 
   public inputs: RefObject<OtpInput>[]
@@ -173,6 +175,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
       numberOfInputs,
       secureTextEntry,
       selectTextOnFocus,
+      testIDPrefix,
       unfocusedBorderColor,
     } = this.props
     const { otpCode } = this.state
@@ -199,6 +202,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
         unfocusedBorderColor={unfocusedBorderColor}
         updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
         value={otpCode[index]}
+        testID={`${testIDPrefix}-${index}`}
       />
     ))
   }

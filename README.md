@@ -53,7 +53,7 @@ export default class App extends Component {
 | errorMessageContainerStyles | style (object) | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L28) | Styles applied to error message container                      |
 | errorMessageTextStyles      | style (object) | false       | none                                                                                                       | Styles applied to error message text                           |
 | focusedBorderColor          | string         | false       | #0000ff                                                                                                    | borderColor of input when focused                              |
-| focusStyles        | style (object)         | false       | none                                                                                                | Styles applied to the input when its focused                          |
+| focusStyles                 | style (object) | false       | none                                                                                                       | Styles applied to the input when its focused                   |
 | handleChange                | function       | true        | console.log                                                                                                | Returns otp code which is typed in inputs                      |
 | inputStyles                 | style(object)  | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L15) | Styles applied to single input                                 |
 | inputContainerStyles        | style (object) | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L8)  | Styles applied to each input container                         |
@@ -64,6 +64,7 @@ export default class App extends Component {
 | secureTextEntry             | boolean        | false       | false                                                                                                      | Defines if input will hide text inside                         |
 | selectTextOnFocus           | boolean        | false       | true                                                                                                       | Defines if input text should be selected on focus              |
 | unfocusedBorderColor        | string         | false       | transparent                                                                                                | borderColor of input when not focused                          |
+| testIDPrefix                | string         | false       | otpInput-\${inputIndex}                                                                                    | Prefix that will be applied as a testID for each input         |
 
 ### Contributions
 

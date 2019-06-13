@@ -1,5 +1,23 @@
 # Changelog
 
+<a name="3.2.0"></a>
+## 3.2.0 (2019-06-13)
+
+### Added
+
+- ✨ Set max length to 1 [[44842e0](https://github.com/dsznajder/react-native-otp-inputs/commit/44842e00b182f2264983618c5c29376fb171a507)]
+- ✨ Add testIDPrefix prop [[c2a00f6](https://github.com/dsznajder/react-native-otp-inputs/commit/c2a00f6222b4e0cd79d612a484e08bfb684ddae8)]
+- ✅ Fix tests [[f413a26](https://github.com/dsznajder/react-native-otp-inputs/commit/f413a26f364ca7e67e604d2df17b2815c7448c39)]
+
+### Security
+
+- 🔒 Bump handlebars from 4.1.1 to 4.1.2 [[e6c671c](https://github.com/dsznajder/react-native-otp-inputs/commit/e6c671ceea2544cbb61a5d30c99adfcdd61ab04d)]
+
+### Miscellaneous
+
+- 📝 Update README [[3f0b3da](https://github.com/dsznajder/react-native-otp-inputs/commit/3f0b3dab76bcbb3190b3dc3a7820581fb58cf54b)]
+
+
 <a name="3.1.1"></a>
 ## 3.1.1 (2019-05-28)
 

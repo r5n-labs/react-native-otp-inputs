@@ -19,6 +19,7 @@ exports[`<OtpInput /> render with default props 1`] = `
 >
   <TextInput
     allowFontScaling={true}
+    maxLength={1}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -61,6 +62,7 @@ exports[`<OtpInput /> render with error message 1`] = `
 >
   <TextInput
     allowFontScaling={true}
+    maxLength={1}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -105,6 +107,7 @@ exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
 >
   <TextInput
     allowFontScaling={true}
+    maxLength={1}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}

@@ -44,6 +44,7 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -63,6 +64,7 @@ exports[`<OtpInputs /> render 1`] = `
             false,
           ]
         }
+        testID="otpInput-0"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -87,6 +89,7 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -106,6 +109,7 @@ exports[`<OtpInputs /> render 1`] = `
             false,
           ]
         }
+        testID="otpInput-1"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -130,6 +134,7 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -149,6 +154,7 @@ exports[`<OtpInputs /> render 1`] = `
             false,
           ]
         }
+        testID="otpInput-2"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -173,6 +179,7 @@ exports[`<OtpInputs /> render 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -192,6 +199,7 @@ exports[`<OtpInputs /> render 1`] = `
             false,
           ]
         }
+        testID="otpInput-3"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -260,6 +268,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -281,6 +290,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             },
           ]
         }
+        testID="otpInput-0"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -305,6 +315,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -326,6 +337,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             },
           ]
         }
+        testID="otpInput-1"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -350,6 +362,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -371,6 +384,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             },
           ]
         }
+        testID="otpInput-2"
         textContentType="none"
         underlineColorAndroid="transparent"
       />
@@ -395,6 +409,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
         allowFontScaling={true}
         clearTextOnFocus={false}
         keyboardType="phone-pad"
+        maxLength={1}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -416,6 +431,7 @@ exports[`<OtpInputs /> rendering with error 1`] = `
             },
           ]
         }
+        testID="otpInput-3"
         textContentType="none"
         underlineColorAndroid="transparent"
       />

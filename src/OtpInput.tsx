@@ -17,17 +17,18 @@ interface Props {
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
   clearTextOnFocus?: boolean
   containerStyles?: StyleProp<ViewStyle>
-  focusStyles?: StyleProp<ViewStyle>
   error?: boolean
   focusedBorderColor?: string
+  focusStyles?: StyleProp<ViewStyle>
   handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
   inputStyles?: StyleProp<TextStyle>
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   secureTextEntry?: boolean
   selectTextOnFocus?: boolean
+  testID: string
   textErrorColor?: string
   unfocusedBorderColor?: string
   updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   value?: string
 }
 
@@ -62,6 +63,7 @@ export default class OtpInput extends PureComponent<Props, State> {
       keyboardType,
       secureTextEntry,
       selectTextOnFocus,
+      testID,
       textErrorColor,
       unfocusedBorderColor,
       updateText,
@@ -80,16 +82,17 @@ export default class OtpInput extends PureComponent<Props, State> {
         <TextInput
           clearTextOnFocus={clearTextOnFocus}
           keyboardType={keyboardType}
+          maxLength={1}
           onBlur={this._onBlur}
           onChange={updateText}
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={this.input}
-          maxLength={1}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
-          textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
+          testID={testID}
+          textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"
           value={value}
         />

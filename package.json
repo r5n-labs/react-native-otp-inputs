@@ -59,7 +59,7 @@
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-test-renderer": "16.8.3",
-    "release-it": "12.2.1",
+    "release-it": "12.3.0",
     "rimraf": "2.6.3",
     "tslint": "5.16.0",
     "typescript": "3.4.5"

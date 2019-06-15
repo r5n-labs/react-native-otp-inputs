@@ -2297,10 +2297,10 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
-deprecated-obj@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/deprecated-obj/-/deprecated-obj-1.0.0.tgz#01f60ae7a344a385cb16223eaf3b1a42b04c3a2f"
-  integrity sha512-CkoAaiIjJnT0YmOoFwBo2qKQ5XMXo6+QYcvskzT6v0o5+kAmdQvfKbqxcHxcR2zQpi7dRD4CpOzppp9ivvRbEg==
+deprecated-obj@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deprecated-obj/-/deprecated-obj-1.0.1.tgz#d7051278d2c141dc672ac3410d06642e990003b7"
+  integrity sha512-igs766xNtF7Fv/R//gT644e6dr+bT6kJrg+qyJA9affCyvf70UUNKIUIMUSROBg1sPUrBnENPsDdDHcBLI5wFQ==
   dependencies:
     flat "^4.1.0"
     lodash "^4.17.11"
@@ -5025,11 +5025,6 @@ mime-db@~1.23.0:
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.23.0.tgz#a31b4070adaea27d732ea333740a64d0ec9a6659"
   integrity sha1-oxtAcK2uon1zLqMzdApk0OyaZlk=
 
-mime-db@~1.38.0:
-  version "1.38.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.38.0.tgz#1a2aab16da9eb167b49c6e4df2d9c68d63d8e2ad"
-  integrity sha512-bqVioMFFzc2awcdJZIzR3HjZFX20QhilVS7hytkKrv7xFAn8bM1gzc/FOX2awLISvWe0PV8ptFKcon+wZ5qYkg==
-
 mime-types@2.1.11:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.11.tgz#c259c471bda808a85d6cd193b430a5fae4473b3c"
@@ -5037,19 +5032,12 @@ mime-types@2.1.11:
   dependencies:
     mime-db "~1.23.0"
 
-mime-types@2.1.24:
+mime-types@2.1.24, mime-types@^2.1.12, mime-types@~2.1.18, mime-types@~2.1.19:
   version "2.1.24"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.24.tgz#b6f8d0b3e951efb77dedeca194cff6d16f676f81"
   integrity sha512-WaFHS3MCl5fapm3oLxU4eYDw77IQM2ACcxQ9RIxfaC3ooc6PFuBMGZZsYpvoXS5D5QTWPieo1jjLdAm3TBP3cQ==
   dependencies:
     mime-db "1.40.0"
-
-mime-types@^2.1.12, mime-types@~2.1.18, mime-types@~2.1.19:
-  version "2.1.22"
-  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.22.tgz#fe6b355a190926ab7698c9a0556a11199b2199bd"
-  integrity sha512-aGl6TZGnhm/li6F7yx82bJiBZwgiEa4Hf6CNr8YO+r5UHr53tSTYZb102zyU50DOWWKeOv0uQLRL0/9EiKWCog==
-  dependencies:
-    mime-db "~1.38.0"
 
 mime@1.4.1:
   version "1.4.1"
@@ -6209,10 +6197,10 @@ regjsparser@^0.6.0:
   dependencies:
     jsesc "~0.5.0"
 
-release-it@12.2.1:
-  version "12.2.1"
-  resolved "https://registry.yarnpkg.com/release-it/-/release-it-12.2.1.tgz#13aa5102723716200d37f8686fc272f167633498"
-  integrity sha512-MudVfmqXKPWJKdQdYk/dUzMdiRNPuE6Y/c9tnT8QgZeIFhLCWHnRvkSTiNN/4Gs29zHauEEcHWbzgG1wzy3+sA==
+release-it@12.3.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/release-it/-/release-it-12.3.0.tgz#2ac7c0d37d7773dcaacb4b29cde64c487862a512"
+  integrity sha512-mMEbdhyUDyX05viUl1pKcDLpNOxpgiig6OfvJXleNJqYKjIvNtYVkBxLHXH//kmT2NYnAkx8NvN8IZJQRei8zQ==
   dependencies:
     "@iarna/toml" "2.2.3"
     "@octokit/rest" "16.25.0"
@@ -6220,7 +6208,7 @@ release-it@12.2.1:
     chalk "2.4.2"
     cosmiconfig "5.2.0"
     debug "4.1.1"
-    deprecated-obj "1.0.0"
+    deprecated-obj "1.0.1"
     detect-repo-changelog "1.0.1"
     find-up "3.0.0"
     form-data "2.3.3"

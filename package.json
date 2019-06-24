@@ -58,7 +58,7 @@
     "metro-react-native-babel-preset": "0.54.1",
     "react": "16.8.3",
     "react-native": "0.59.9",
-    "react-test-renderer": "16.8.3",
+    "react-test-renderer": "16.8.6",
     "release-it": "12.3.0",
     "rimraf": "2.6.3",
     "tslint": "5.18.0",

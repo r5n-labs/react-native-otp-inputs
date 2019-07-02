@@ -943,10 +943,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@react-native-community/bob@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/bob/-/bob-0.6.0.tgz#0aaa52559bf9657ebbe4955a72ee3b44e2c12346"
-  integrity sha512-LonmcIUUdpveHryEmS6+jP3lfiMlyl8SCbUJ4iv0pQuUbgtsnlHdWizYAODLJFGldS2DjdUlb8ixM2kiesYxgQ==
+"@react-native-community/bob@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/bob/-/bob-0.6.1.tgz#dddee0f5d622e2479b2e13a3dd15241c8eaee5c9"
+  integrity sha512-DD7zWZVLifUQhbA3H2OAhPqyW3aqZJ15FUqb7ztZfwWyUwbLfz+K4wyUzfLPRG718vyau56lBWa0jsXgpCqF5g==
   dependencies:
     "@babel/core" "^7.4.0"
     chalk "^2.4.2"

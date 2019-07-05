@@ -55,7 +55,7 @@
     "@types/react-test-renderer": "16.8.2",
     "husky": "3.0.0",
     "jest": "24.8.0",
-    "metro-react-native-babel-preset": "0.54.1",
+    "metro-react-native-babel-preset": "0.55.0",
     "react": "16.8.6",
     "react-native": "0.60.0",
     "react-test-renderer": "16.8.6",

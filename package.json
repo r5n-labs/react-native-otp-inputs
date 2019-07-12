@@ -57,7 +57,7 @@
     "jest": "24.8.0",
     "metro-react-native-babel-preset": "0.55.0",
     "react": "16.8.6",
-    "react-native": "0.60.0",
+    "react-native": "0.60.3",
     "react-test-renderer": "16.8.6",
     "release-it": "12.3.2",
     "rimraf": "2.6.3",

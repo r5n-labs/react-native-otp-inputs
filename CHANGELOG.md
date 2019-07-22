@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="3.2.1"></a>
+## 3.2.1 (2019-07-22)
+
+### Added
+
+- ✨ Added RTL Support
+- ✨ Added Placeholder Support
+
 <a name="3.2.0"></a>
 ## 3.2.0 (2019-06-13)
 

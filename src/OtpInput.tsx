@@ -30,6 +30,7 @@ interface Props {
   unfocusedBorderColor?: string
   updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
   value?: string
+  placeholder?: string
 }
 
 interface State {
@@ -68,6 +69,7 @@ export default class OtpInput extends PureComponent<Props, State> {
       unfocusedBorderColor,
       updateText,
       value,
+      placeholder
     } = this.props
 
     return (
@@ -88,6 +90,7 @@ export default class OtpInput extends PureComponent<Props, State> {
           onFocus={this._onFocus}
           onKeyPress={handleBackspace}
           ref={this.input}
+          placeholder={placeholder}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
           style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}

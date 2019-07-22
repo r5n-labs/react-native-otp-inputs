@@ -35,7 +35,7 @@ interface Props {
   testIDPrefix: string
   unfocusedBorderColor: string
   forceLTR: boolean
-  isLTR: boolean
+  isRTL: boolean
   debug: boolean
   placeholder: string
 }
@@ -69,8 +69,8 @@ export default class OtpInputs extends PureComponent<Props, State> {
     selectTextOnFocus: true,
     unfocusedBorderColor: '#a0a0a0',
     testIDPrefix: 'otpInput',
-    forceLTR: true,
-    isLTR: true,
+    forceLTR: false,
+    isRTL: false,
     debug: false,
     placeholder: ""
   }
@@ -186,7 +186,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
       testIDPrefix,
       unfocusedBorderColor,
       forceLTR,
-      isLTR,
+      isRTL,
       debug,
       placeholder,
     } = this.props
@@ -194,7 +194,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     const iterationArray = Array<number>(numberOfInputs).fill(0)
 
     return iterationArray.map((_, index) => {
-      if(forceLTR && !isLTR){
+      if(forceLTR && isRTL){
         index = (numberOfInputs - 1)  - index
       }
       return (

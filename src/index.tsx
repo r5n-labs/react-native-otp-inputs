@@ -34,6 +34,8 @@ interface Props {
   selectTextOnFocus: boolean
   testIDPrefix: string
   unfocusedBorderColor: string
+  isRTL: boolean
+  placeholder: string
 }
 
 interface State {
@@ -65,6 +67,8 @@ export default class OtpInputs extends PureComponent<Props, State> {
     selectTextOnFocus: true,
     unfocusedBorderColor: '#a0a0a0',
     testIDPrefix: 'otpInput',
+    isRTL: false,
+    placeholder: ""
   }
 
   public inputs: RefObject<OtpInput>[]
@@ -177,34 +181,44 @@ export default class OtpInputs extends PureComponent<Props, State> {
       selectTextOnFocus,
       testIDPrefix,
       unfocusedBorderColor,
+      isRTL,
+      placeholder,
     } = this.props
     const { otpCode } = this.state
     const iterationArray = Array<number>(numberOfInputs).fill(0)
 
-    return iterationArray.map((_, index) => (
-      <OtpInput
-        autoCapitalize={autoCapitalize}
-        clearTextOnFocus={clearTextOnFocus}
-        containerStyles={inputContainerStyles}
-        focusStyles={focusStyles}
-        error={!!errorMessage}
-        focusedBorderColor={focusedBorderColor}
-        handleBackspace={(event: TextInputOnKeyPressEventData) =>
-          this._handleBackspace(event, index)
-        }
-        inputStyles={inputStyles}
-        key={index}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        ref={this.inputs[index]}
-        selectTextOnFocus={selectTextOnFocus}
-        textErrorColor={inputTextErrorColor}
-        unfocusedBorderColor={unfocusedBorderColor}
-        updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
-        value={otpCode[index]}
-        testID={`${testIDPrefix}-${index}`}
-      />
-    ))
+    return iterationArray.map((_, index) => {
+      let inputIndex = index;
+      if(isRTL){
+        inputIndex = (numberOfInputs - 1)  - index
+      }
+      
+      return (
+        <OtpInput
+          autoCapitalize={autoCapitalize}
+          clearTextOnFocus={clearTextOnFocus}
+          containerStyles={inputContainerStyles}
+          focusStyles={focusStyles}
+          error={!!errorMessage}
+          focusedBorderColor={focusedBorderColor}
+          handleBackspace={(event: TextInputOnKeyPressEventData) =>
+            this._handleBackspace(event, inputIndex)
+          }
+          placeholder={placeholder.toString()}
+          inputStyles={inputStyles}
+          key={inputIndex}
+          secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
+          ref={this.inputs[inputIndex]}
+          selectTextOnFocus={selectTextOnFocus}
+          textErrorColor={inputTextErrorColor}
+          unfocusedBorderColor={unfocusedBorderColor}
+          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, inputIndex)}
+          value={otpCode[inputIndex]}
+          testID={`${testIDPrefix}-${inputIndex}`}
+        />
+      )
+    })
   }
 
   public render(): ReactNode {

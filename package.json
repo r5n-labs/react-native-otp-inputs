@@ -2,14 +2,15 @@
   "author": "Damian Sznajder <damsznajder@gmail.com>",
   "bugs": "https://github.com/dsznajder/react-native-otp-inputs/issues",
   "contributors": [
-    "Michał Kantor <kantorm96@gmail.com>"
+    "Michał Kantor <kantorm96@gmail.com>",
+    "Vishal Rawat <vishalvr.2595@gmail.com>"
   ],
   "description": "One-time password inputs built in pure JS for React-Native",
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
   "name": "react-native-otp-inputs",
   "repository": "https://github.com/dsznajder/react-native-otp-inputs",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "lib/module/index.js",
   "scripts": {
     "clean": "rimraf lib",

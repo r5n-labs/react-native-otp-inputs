@@ -65,9 +65,8 @@ export default class App extends Component {
 | selectTextOnFocus           | boolean        | false       | true                                                                                                       | Defines if input text should be selected on focus              |
 | unfocusedBorderColor        | string         | false       | transparent                                                                                                | borderColor of input when not focused                          |
 | testIDPrefix                | string         | false       | otpInput-\${inputIndex}                                                                                    | Prefix that will be applied as a testID for each input         |
-| isRTL                | boolean         | false       | false                                                                                    | is the app currently in RTL. (preferable pass {I18nManager.isRTL})         |
+| isRTL                | boolean         | false       | false                                                                                    | Defines if the app is currently in RTL. (preferably pass {I18nManager.isRTL})         |
 | forceLTR                | boolean         | false       | false                                                                                    | force the number input in LTR when isRTL is true.         |
-| debug                | boolean         | false       | false                                                                                    | Print OTP box index in placeholder for debugging         |
 | placeholder                | string         | false       | none                                                                                    | Placeholder for the input boxes. (will not work when debug=true)         |
 
 ### Contributions

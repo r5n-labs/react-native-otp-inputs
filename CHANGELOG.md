@@ -1,13 +1,5 @@
 # Changelog
 
-<a name="3.2.1"></a>
-## 3.2.1 (2019-07-22)
-
-### Added
-
-- ✨ Added RTL Support [[4841f0c](https://github.com/zivost/react-native-otp-inputs/commit/e2a0188e7f70406c960aa889433ec607873bb937)]
-- ✨ Added Placeholder Support [[4841f0c](https://github.com/zivost/react-native-otp-inputs/commit/e2a0188e7f70406c960aa889433ec607873bb937)]
-
 <a name="3.2.0"></a>
 ## 3.2.0 (2019-06-13)
 

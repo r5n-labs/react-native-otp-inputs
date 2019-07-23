@@ -36,7 +36,6 @@ interface Props {
   unfocusedBorderColor: string
   forceLTR: boolean
   isRTL: boolean
-  debug: boolean
   placeholder: string
 }
 
@@ -71,7 +70,6 @@ export default class OtpInputs extends PureComponent<Props, State> {
     testIDPrefix: 'otpInput',
     forceLTR: false,
     isRTL: false,
-    debug: false,
     placeholder: ""
   }
 
@@ -187,16 +185,17 @@ export default class OtpInputs extends PureComponent<Props, State> {
       unfocusedBorderColor,
       forceLTR,
       isRTL,
-      debug,
       placeholder,
     } = this.props
     const { otpCode } = this.state
     const iterationArray = Array<number>(numberOfInputs).fill(0)
 
     return iterationArray.map((_, index) => {
+      let inputIndex = index;
       if(forceLTR && isRTL){
-        index = (numberOfInputs - 1)  - index
+        inputIndex = (numberOfInputs - 1)  - index
       }
+      
       return (
         <OtpInput
           autoCapitalize={autoCapitalize}
@@ -206,20 +205,20 @@ export default class OtpInputs extends PureComponent<Props, State> {
           error={!!errorMessage}
           focusedBorderColor={focusedBorderColor}
           handleBackspace={(event: TextInputOnKeyPressEventData) =>
-            this._handleBackspace(event, index)
+            this._handleBackspace(event, inputIndex)
           }
-          placeholder={((debug) ? index.toString() : (placeholder.toString()))}
+          placeholder={placeholder.toString()}
           inputStyles={inputStyles}
-          key={index}
+          key={inputIndex}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
-          ref={this.inputs[index]}
+          ref={this.inputs[inputIndex]}
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unfocusedBorderColor={unfocusedBorderColor}
-          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, index)}
-          value={otpCode[index]}
-          testID={`${testIDPrefix}-${index}`}
+          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, inputIndex)}
+          value={otpCode[inputIndex]}
+          testID={`${testIDPrefix}-${inputIndex}`}
         />
       )
     })

@@ -67,7 +67,7 @@ export default class App extends Component {
 | testIDPrefix                | string         | false       | otpInput-\${inputIndex}                                                                                    | Prefix that will be applied as a testID for each input         |
 | isRTL                | boolean         | false       | false                                                                                    | Defines if the app is currently in RTL. (preferably pass {I18nManager.isRTL})         |
 | forceLTR                | boolean         | false       | false                                                                                    | force the number input in LTR when isRTL is true.         |
-| placeholder                | string         | false       | none                                                                                    | Placeholder for the input boxes. (will not work when debug=true)         |
+| placeholder                | string         | false       | none                                                                                    | Placeholder for the input boxes.         |
 
 ### Contributions
 

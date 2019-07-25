@@ -73,7 +73,12 @@
       "check-whitespace"
     ],
     "semicolon": [true, "never"],
-    "variable-name": [true, "check-format", "allow-leading-underscore", "ban-keywords"],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore",
+      "ban-keywords"
+    ],
     "whitespace": [
       true,
       "check-branch",

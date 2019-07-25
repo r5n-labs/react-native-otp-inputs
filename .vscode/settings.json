@@ -2,5 +2,10 @@
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": false,
   "eslint.enable": false,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "tslint.packageManager": "yarn",
+  "prettier.tslintIntegration": true,
+  "prettier.trailingComma": "all",
+  "prettier.singleQuote": true,
+  "prettier.semi": false
 }

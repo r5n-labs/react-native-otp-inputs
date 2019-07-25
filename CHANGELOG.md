@@ -1,12 +1,14 @@
 # Changelog
 
-<a name="3.2.0"></a>
-## 3.2.0 (2019-06-13)
+<a name="3.3.0"></a>
+## 3.3.0 (2019-07-25)
 
 ### Added
 
 - ✨ Set max length to 1 [[44842e0](https://github.com/dsznajder/react-native-otp-inputs/commit/44842e00b182f2264983618c5c29376fb171a507)]
 - ✨ Add testIDPrefix prop [[c2a00f6](https://github.com/dsznajder/react-native-otp-inputs/commit/c2a00f6222b4e0cd79d612a484e08bfb684ddae8)]
+- ✨ RTL support and Placeholder support. ([#75](https://github.com/dsznajder/react-native-otp-inputs/issues/75)) [[e417b13](https://github.com/dsznajder/react-native-otp-inputs/commit/e417b1369df9df00099a5b047382eb4da08fd226)]
+- ✨ Add reset method [[69e0146](https://github.com/dsznajder/react-native-otp-inputs/commit/69e0146a7e3353fac49d18b1712e5536d6dd4d8a)]
 - ✅ Fix tests [[f413a26](https://github.com/dsznajder/react-native-otp-inputs/commit/f413a26f364ca7e67e604d2df17b2815c7448c39)]
 
 ### Security
@@ -16,6 +18,45 @@
 ### Miscellaneous
 
 - 📝 Update README [[3f0b3da](https://github.com/dsznajder/react-native-otp-inputs/commit/3f0b3dab76bcbb3190b3dc3a7820581fb58cf54b)]
+-  Bump react-native from 0.59.8 to 0.59.9 [[6b7e823](https://github.com/dsznajder/react-native-otp-inputs/commit/6b7e823c0a241d613fe18c1cee55154f561f869f)]
+-  Bump typescript from 3.4.5 to 3.5.2 [[ee80a2e](https://github.com/dsznajder/react-native-otp-inputs/commit/ee80a2e1c490188d391d999b69cbbc2ed6c64684)]
+-  Bump @types/jest from 24.0.13 to 24.0.14 [[abc0b0f](https://github.com/dsznajder/react-native-otp-inputs/commit/abc0b0f467f07a3e3a77737850e53de7903eae0b)]
+-  Bump release-it from 12.2.1 to 12.3.0 [[3b15819](https://github.com/dsznajder/react-native-otp-inputs/commit/3b15819b712f825ec3ab873b848c974ca690411a)]
+-  Bump tslint from 5.16.0 to 5.17.0 [[1d748b9](https://github.com/dsznajder/react-native-otp-inputs/commit/1d748b9286d8b92408c347d1e891e3bdd78b2cac)]
+-  Bump @types/react-native from 0.57.60 to 0.57.63 [[1ddb6b7](https://github.com/dsznajder/react-native-otp-inputs/commit/1ddb6b7f9fc59c5ff9e55d7009a45921245797bc)]
+-  Bump @types/jest from 24.0.14 to 24.0.15 [[43c200f](https://github.com/dsznajder/react-native-otp-inputs/commit/43c200fdf837ab916bccb78e36766b081c7ebe6f)]
+-  Bump husky from 2.3.0 to 2.4.1 [[2222b93](https://github.com/dsznajder/react-native-otp-inputs/commit/2222b93a04cd150902c8d782197785d1a7f3718a)]
+-  Bump @types/react from 16.8.18 to 16.8.20 [[042f1a0](https://github.com/dsznajder/react-native-otp-inputs/commit/042f1a0e0a113c01ae43fc547f86f2a4dce3ac09)]
+-  Bump @types/react-test-renderer from 16.8.1 to 16.8.2 [[1ba4b0b](https://github.com/dsznajder/react-native-otp-inputs/commit/1ba4b0bc2a22b959ed19834458343ccb1fd1c7f8)]
+-  Bump @react-native-community/bob from 0.4.1 to 0.5.0 [[385c9cb](https://github.com/dsznajder/react-native-otp-inputs/commit/385c9cbce164175dc83d16a44c11e11a871c44b1)]
+-  Bump @types/react from 16.8.20 to 16.8.22 [[1239233](https://github.com/dsznajder/react-native-otp-inputs/commit/1239233184dfc03bcd91b6550f256fe39b60233e)]
+-  Bump tslint from 5.17.0 to 5.18.0 [[e3ed24d](https://github.com/dsznajder/react-native-otp-inputs/commit/e3ed24d27c29152dfa62d91165a3bc2b0c17db12)]
+-  Bump react-test-renderer from 16.8.3 to 16.8.6 [[0974a97](https://github.com/dsznajder/react-native-otp-inputs/commit/0974a97ee022eed45526cd4542f15ef93ed820b0)]
+-  Bump husky from 2.4.1 to 2.5.0 [[e549d9c](https://github.com/dsznajder/react-native-otp-inputs/commit/e549d9ca227b6a2b065e6b811688c42b2e5ce12c)]
+-  Bump @types/react-native from 0.57.63 to 0.57.64 [[d3eb14f](https://github.com/dsznajder/react-native-otp-inputs/commit/d3eb14f2be249a7252e813a7523ff507f1911998)]
+-  Bump husky from 2.5.0 to 2.7.0 [[343577f](https://github.com/dsznajder/react-native-otp-inputs/commit/343577ffbb871af4e9e5ed653c3b6e362ac262c0)]
+-  Bump @react-native-community/bob from 0.5.0 to 0.6.0 [[577da22](https://github.com/dsznajder/react-native-otp-inputs/commit/577da22d2e1de5d1869d27883bb712ca62f6f947)]
+-  Bump husky from 2.7.0 to 3.0.0 [[05b0c0a](https://github.com/dsznajder/react-native-otp-inputs/commit/05b0c0a88193f13ab80da7982db83c0a44be1073)]
+-  Bump @react-native-community/bob from 0.6.0 to 0.6.1 [[bb04102](https://github.com/dsznajder/react-native-otp-inputs/commit/bb041028ae035fc79c92d74ea848529724b1b315)]
+-  Bump @types/react-native from 0.57.64 to 0.57.65 [[a91362b](https://github.com/dsznajder/react-native-otp-inputs/commit/a91362b7d4130102794cdc2dc94b26a0382251a1)]
+-  Bump react-native from 0.59.9 to 0.59.10 [[c2589a6](https://github.com/dsznajder/react-native-otp-inputs/commit/c2589a60ae7c0756a4694785b70751f5b6cb1e4d)]
+-  Bump react and react-native [[7fb809a](https://github.com/dsznajder/react-native-otp-inputs/commit/7fb809a5298aac67ca00f63e9fe94f2057aa5875)]
+-  Bump @types/react from 16.8.22 to 16.8.23 [[1aa86cd](https://github.com/dsznajder/react-native-otp-inputs/commit/1aa86cd509029d04cb9a561184c06c98a00abc23)]
+-  Bump @babel/core from 7.4.5 to 7.5.0 [[4d88545](https://github.com/dsznajder/react-native-otp-inputs/commit/4d8854508e1110a4a0b3e2c7f4668c1dd8adfd12)]
+-  Bump metro-react-native-babel-preset from 0.54.1 to 0.55.0 [[beb4c47](https://github.com/dsznajder/react-native-otp-inputs/commit/beb4c47cecb776d07f640e5958e06e1b3551413b)]
+-  Bump release-it from 12.3.0 to 12.3.2 [[68e1929](https://github.com/dsznajder/react-native-otp-inputs/commit/68e19295fa5be0404d0db7a60b4a1b0e23ef3820)]
+-  Bump @types/react-native from 0.57.65 to 0.60.0 [[1d5ee1e](https://github.com/dsznajder/react-native-otp-inputs/commit/1d5ee1e5b091f8af10a92482c18abec0d05fe9c7)]
+-  Bump typescript from 3.5.2 to 3.5.3 [[123e508](https://github.com/dsznajder/react-native-otp-inputs/commit/123e5080ac661000352cc3b636f0abc64b9bf1e8)]
+-  Bump @babel/core from 7.5.0 to 7.5.4 [[9402649](https://github.com/dsznajder/react-native-otp-inputs/commit/94026492c0b37f95048ca19d4b0196c55bf233df)]
+-  Bump react-native from 0.60.0 to 0.60.3 [[0c61c98](https://github.com/dsznajder/react-native-otp-inputs/commit/0c61c9804d31c43b35aa77953fc3bcbd9ff7dc0a)]
+-  Bump release-it from 12.3.2 to 12.3.3 [[83343ec](https://github.com/dsznajder/react-native-otp-inputs/commit/83343ece20895f846be6900ec918cdf5c053e3c7)]
+-  Bump @types/react-native from 0.60.0 to 0.60.1 [[ab9da88](https://github.com/dsznajder/react-native-otp-inputs/commit/ab9da88597fd51451ad5381ffa0ce98fd0dbf010)]
+-  Bump @types/react-native from 0.60.1 to 0.60.2 [[4f6cf7f](https://github.com/dsznajder/react-native-otp-inputs/commit/4f6cf7ff7659884e9bd71fb717502724ef737195)]
+-  Bump @babel/core from 7.5.4 to 7.5.5 [[e5bce21](https://github.com/dsznajder/react-native-otp-inputs/commit/e5bce216db2aa768d9283e9dc714c13f73bb368f)]
+-  Bump react-native from 0.60.3 to 0.60.4 [[f0a6e1b](https://github.com/dsznajder/react-native-otp-inputs/commit/f0a6e1b3b540762b9a6c22396f80624ccbf1054e)]
+-  Bump husky from 3.0.0 to 3.0.1 [[4841f0c](https://github.com/dsznajder/react-native-otp-inputs/commit/4841f0cbee816c96886e9df6b1d06cc8e5335cf9)]
+-  Bump @types/react-test-renderer from 16.8.2 to 16.8.3 ([#76](https://github.com/dsznajder/react-native-otp-inputs/issues/76)) [[0c52317](https://github.com/dsznajder/react-native-otp-inputs/commit/0c52317524da4df78c88f99ecd7141b805f7c66f)]
+-  Bump release-it from 12.3.3 to 12.3.4 [[d278825](https://github.com/dsznajder/react-native-otp-inputs/commit/d2788250389a0ef699321b62b5fc2f92facdb9ae)]
 
 
 <a name="3.1.1"></a>

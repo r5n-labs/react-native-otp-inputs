@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="3.3.1"></a>
+## 3.3.1 (2019-07-25)
+
+### Added
+
+- ✅ Update Snapshots [[106c842](https://github.com/dsznajder/react-native-otp-inputs/commit/106c842a6650f41c32d123ce235483af6e2cbc75)]
+
+### Fixed
+
+- 🐛 Fix reseting not only value but also inputs [[cb2db53](https://github.com/dsznajder/react-native-otp-inputs/commit/cb2db53ec66993491abe7e463ad281e1eb4a9865)]
+
+### Miscellaneous
+
+-  👷 Add Dependabot config [[653b820](https://github.com/dsznajder/react-native-otp-inputs/commit/653b820665aea6c4dfc2b1c8b540b1b8680a115e)]
+- 📝 Update README with methods section [[e56bce7](https://github.com/dsznajder/react-native-otp-inputs/commit/e56bce7a3a7c153834f0612edeff77dabd8d81dd)]
+
+
 <a name="3.3.0"></a>
 ## 3.3.0 (2019-07-25)
 

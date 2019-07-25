@@ -1,0 +1,10 @@
+version: 1
+
+update_configs:
+  - package_manager: 'javascript'
+    directory: '/npm_and_yarn/helpers'
+    update_schedule: 'live'
+  default_reviewers:
+    - "dsznajder"
+  commit_message:
+    prefix: ":lock:"

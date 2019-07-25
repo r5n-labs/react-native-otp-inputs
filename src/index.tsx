@@ -68,7 +68,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     unfocusedBorderColor: '#a0a0a0',
     testIDPrefix: 'otpInput',
     isRTL: false,
-    placeholder: ""
+    placeholder: '',
   }
 
   public inputs: RefObject<OtpInput>[]
@@ -83,7 +83,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
       inputs[index] = React.createRef()
     }
 
-    this._interval = null
+    this._interval = undefined
     this.inputs = inputs as Array<RefObject<OtpInput>>
     this.state = {
       loading: false,
@@ -104,16 +104,22 @@ export default class OtpInputs extends PureComponent<Props, State> {
     clearInterval(this._interval)
   }
 
+  public reset(): void {
+    this.setState({ otpCode: [] })
+  }
+
   private _listenOnCopiedText = async (): Promise<void> => {
+    const { numberOfInputs } = this.props
+    const { otpCode, previousCopiedText } = this.state
     const copiedText = await Clipboard.getString()
 
     if (
       copiedText &&
-      copiedText.length === this.props.numberOfInputs &&
-      copiedText !== this.state.otpCode.join('') &&
-      copiedText !== this.state.previousCopiedText
+      copiedText.length === numberOfInputs &&
+      copiedText !== otpCode.join('') &&
+      copiedText !== previousCopiedText
     ) {
-      this._handleAfterOtpAction(copiedText.split(''), this.props.numberOfInputs, true)
+      this._handleAfterOtpAction(copiedText.split(''), numberOfInputs, true)
     }
   }
 
@@ -125,7 +131,10 @@ export default class OtpInputs extends PureComponent<Props, State> {
     const { handleChange, numberOfInputs } = this.props
     handleChange(otpCode.join(''))
 
-    this.setState({ otpCode, ...(fromClipboard && { previousCopiedText: otpCode.join('') }) })
+    this.setState({
+      otpCode,
+      ...(fromClipboard && { previousCopiedText: otpCode.join('') }),
+    })
 
     if (indexToFocus === numberOfInputs) {
       return Keyboard.dismiss()
@@ -136,8 +145,11 @@ export default class OtpInputs extends PureComponent<Props, State> {
     }
   }
 
-  private _updateText = (event: TextInputOnChangeEventData, index: number): void => {
-    let { text } = event.nativeEvent
+  private _updateText = (
+    event: TextInputOnChangeEventData,
+    index: number,
+  ): void => {
+    const { text } = event.nativeEvent
 
     if (text) {
       let otpArray = this.state.otpCode
@@ -146,7 +158,10 @@ export default class OtpInputs extends PureComponent<Props, State> {
     }
   }
 
-  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number): void => {
+  private _handleBackspace = (
+    event: TextInputOnKeyPressEventData,
+    index: number,
+  ): void => {
     if (event.nativeEvent.key === 'Backspace') {
       const { handleChange, numberOfInputs } = this.props
       const otpCode = this.state.otpCode
@@ -188,11 +203,11 @@ export default class OtpInputs extends PureComponent<Props, State> {
     const iterationArray = Array<number>(numberOfInputs).fill(0)
 
     return iterationArray.map((_, index) => {
-      let inputIndex = index;
-      if(isRTL){
-        inputIndex = (numberOfInputs - 1)  - index
+      let inputIndex = index
+      if (isRTL) {
+        inputIndex = numberOfInputs - 1 - index
       }
-      
+
       return (
         <OtpInput
           autoCapitalize={autoCapitalize}
@@ -213,7 +228,9 @@ export default class OtpInputs extends PureComponent<Props, State> {
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unfocusedBorderColor={unfocusedBorderColor}
-          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, inputIndex)}
+          updateText={(event: TextInputOnChangeEventData) =>
+            this._updateText(event, inputIndex)
+          }
           value={otpCode[inputIndex]}
           testID={`${testIDPrefix}-${inputIndex}`}
         />
@@ -233,7 +250,12 @@ export default class OtpInputs extends PureComponent<Props, State> {
     return (
       <View style={[defaultStyles.container, containerStyles]}>
         {errorMessage && (
-          <View style={[defaultStyles.errorMessageContainer, errorMessageContainerStyles]}>
+          <View
+            style={[
+              defaultStyles.errorMessageContainer,
+              errorMessageContainerStyles,
+            ]}
+          >
             <Text testID="errorText" style={errorMessageTextStyles}>
               {errorMessage}
             </Text>

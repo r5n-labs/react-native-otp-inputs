@@ -104,8 +104,10 @@ export default class OtpInputs extends PureComponent<Props, State> {
     clearInterval(this._interval)
   }
 
-  public reset(): void {
+  public reset = (): void => {
     this.setState({ otpCode: [] })
+    this.props.handleChange('')
+    this.inputs.forEach(i => i.current.clear())
   }
 
   private _listenOnCopiedText = async (): Promise<void> => {

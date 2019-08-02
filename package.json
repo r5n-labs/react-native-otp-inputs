@@ -60,7 +60,7 @@
     "react": "16.8.6",
     "react-native": "0.60.4",
     "react-test-renderer": "16.8.6",
-    "release-it": "12.3.4",
+    "release-it": "12.3.5",
     "rimraf": "2.6.3",
     "tslint": "5.18.0",
     "typescript": "3.5.3"

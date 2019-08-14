@@ -21,21 +21,21 @@ interface Props {
   errorMessage?: string
   errorMessageContainerStyles?: StyleProp<ViewStyle>
   errorMessageTextStyles?: StyleProp<TextStyle>
-  focusedBorderColor: string
   focusStyles?: StyleProp<ViewStyle>
+  focusedBorderColor: string
   handleChange: (otpCode: string) => void
   inputContainerStyles?: StyleProp<ViewStyle>
-  inputsContainerStyles?: StyleProp<ViewStyle>
   inputStyles?: StyleProp<TextStyle>
   inputTextErrorColor: string
+  inputsContainerStyles?: StyleProp<ViewStyle>
+  isRTL: boolean
   keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
+  placeholder: string
   secureTextEntry: boolean
   selectTextOnFocus: boolean
   testIDPrefix: string
   unfocusedBorderColor: string
-  isRTL: boolean
-  placeholder: string
 }
 
 interface State {
@@ -151,9 +151,12 @@ export default class OtpInputs extends PureComponent<Props, State> {
     event: TextInputOnChangeEventData,
     index: number,
   ): void => {
+    const { numberOfInputs } = this.props
     const { text } = event.nativeEvent
 
-    if (text) {
+    if (text.length === numberOfInputs) {
+      this._handleAfterOtpAction(text.split(''), numberOfInputs, true)
+    } else if (text) {
       let otpArray = this.state.otpCode
       otpArray[index] = text[text.length - 1]
       this._handleAfterOtpAction(otpArray, index + 1)
@@ -168,6 +171,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
       const { handleChange, numberOfInputs } = this.props
       const otpCode = this.state.otpCode
       otpCode[index] = ''
+      this.inputs[index].current.clear()
 
       handleChange(otpCode.join(''))
       this.setState({ otpCode })
@@ -215,18 +219,20 @@ export default class OtpInputs extends PureComponent<Props, State> {
           autoCapitalize={autoCapitalize}
           clearTextOnFocus={clearTextOnFocus}
           containerStyles={inputContainerStyles}
-          focusStyles={focusStyles}
           error={!!errorMessage}
+          firstInput={index === 0}
+          focusStyles={focusStyles}
           focusedBorderColor={focusedBorderColor}
           handleBackspace={(event: TextInputOnKeyPressEventData) =>
             this._handleBackspace(event, inputIndex)
           }
-          placeholder={placeholder.toString()}
           inputStyles={inputStyles}
           key={inputIndex}
-          secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
+          numberOfInputs={numberOfInputs}
+          placeholder={placeholder}
           ref={this.inputs[inputIndex]}
+          secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unfocusedBorderColor={unfocusedBorderColor}

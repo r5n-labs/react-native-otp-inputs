@@ -18,13 +18,16 @@ interface Props {
   clearTextOnFocus?: boolean
   containerStyles?: StyleProp<ViewStyle>
   error?: boolean
-  focusedBorderColor?: string
+  firstInput: boolean
   focusStyles?: StyleProp<ViewStyle>
+  focusedBorderColor?: string
   handleBackspace: (
     event: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => void
   inputStyles?: StyleProp<TextStyle>
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
+  numberOfInputs: number
+  placeholder?: string
   secureTextEntry?: boolean
   selectTextOnFocus?: boolean
   testID: string
@@ -32,7 +35,6 @@ interface Props {
   unfocusedBorderColor?: string
   updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
   value?: string
-  placeholder?: string
 }
 
 interface State {
@@ -62,12 +64,15 @@ export default class OtpInput extends PureComponent<Props, State> {
     const {
       clearTextOnFocus,
       containerStyles,
-      focusStyles,
       error,
+      firstInput,
+      focusStyles,
       focusedBorderColor,
       handleBackspace,
       inputStyles,
       keyboardType,
+      numberOfInputs,
+      placeholder,
       secureTextEntry,
       selectTextOnFocus,
       testID,
@@ -75,7 +80,6 @@ export default class OtpInput extends PureComponent<Props, State> {
       unfocusedBorderColor,
       updateText,
       value,
-      placeholder,
     } = this.props
 
     return (
@@ -94,7 +98,7 @@ export default class OtpInput extends PureComponent<Props, State> {
         <TextInput
           clearTextOnFocus={clearTextOnFocus}
           keyboardType={keyboardType}
-          maxLength={1}
+          maxLength={firstInput ? numberOfInputs : 1}
           onBlur={this._onBlur}
           onChange={updateText}
           onFocus={this._onFocus}

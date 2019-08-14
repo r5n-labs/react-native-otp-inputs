@@ -9,7 +9,7 @@
     "beforeStage": "gitmoji-changelog"
   },
   "npm": {
-    "publish": true
+    "publish": false
   },
   "github": {
     "release": true

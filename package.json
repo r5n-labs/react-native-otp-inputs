@@ -62,7 +62,7 @@
     "react-test-renderer": "16.8.6",
     "release-it": "12.3.5",
     "rimraf": "3.0.0",
-    "tslint": "5.18.0",
+    "tslint": "5.19.0",
     "typescript": "3.5.3"
   },
   "husky": {

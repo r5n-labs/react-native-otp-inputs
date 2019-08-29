@@ -77,20 +77,20 @@ Those can be called on ref:
 
 ```js
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Button, View } from 'react-native'
 import OtpInputs from 'react-native-otp-inputs'
 
 export default class App extends Component {
   otpRef = React.createRef()
 
-  clearOTP = () => {
-    otpRef.current.clear()
+  resetOTP = () => {
+    otpRef.current.reset()
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Clear" onPress={this.clearOTP} />
+        <Button title="Reset" onPress={this.resetOTP} />
         <OtpInputs
           ref={this.otpRef}
           handleChange={code => console.log(code)}
@@ -102,9 +102,9 @@ export default class App extends Component {
 }
 ```
 
-| Method | Description                                                     |
-| ------ | --------------------------------------------------------------- |
-| clear  | Clears inputs and returns to `handleChange` method empty string |
+| Method | Description                                                    |
+| ------ | -------------------------------------------------------------- |
+| reset  | Reset inputs and returns to `handleChange` method empty string |
 
 ### Contributors
 

@@ -63,7 +63,7 @@
     "release-it": "12.3.6",
     "rimraf": "3.0.0",
     "tslint": "5.20.0",
-    "typescript": "3.6.2"
+    "typescript": "3.6.3"
   },
   "husky": {
     "hooks": {

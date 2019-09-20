@@ -21,9 +21,7 @@ interface Props {
   firstInput: boolean
   focusStyles?: StyleProp<ViewStyle>
   focusedBorderColor?: string
-  handleBackspace: (
-    event: NativeSyntheticEvent<TextInputKeyPressEventData>,
-  ) => void
+  handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
   inputStyles?: StyleProp<TextStyle>
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
@@ -53,11 +51,11 @@ export default class OtpInput extends PureComponent<Props, State> {
 
   public input: RefObject<TextInput> = React.createRef()
   public clear = (): void => {
-    this.input.current.clear()
+    this.input.current!.clear()
   }
 
   public focus = (): void => {
-    this.input.current.focus()
+    this.input.current!.focus()
   }
 
   public render() {
@@ -89,9 +87,7 @@ export default class OtpInput extends PureComponent<Props, State> {
           containerStyles,
           this.state.isFocused && focusStyles,
           {
-            borderColor: this.state.isFocused
-              ? focusedBorderColor
-              : unfocusedBorderColor,
+            borderColor: this.state.isFocused ? focusedBorderColor : unfocusedBorderColor,
           },
         ]}
       >
@@ -107,11 +103,7 @@ export default class OtpInput extends PureComponent<Props, State> {
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
-          style={[
-            defaultStyles.otpInput,
-            inputStyles,
-            error && { color: textErrorColor },
-          ]}
+          style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
           testID={testID}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"

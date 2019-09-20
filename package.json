@@ -9,16 +9,20 @@
   "homepage": "https://github.com/dsznajder/react-native-otp-inputs",
   "license": "MIT",
   "name": "react-native-otp-inputs",
-  "repository": "https://github.com/dsznajder/react-native-otp-inputs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsznajder/react-native-otp-inputs"
+  },
   "version": "3.3.2",
   "main": "lib/module/index.js",
   "scripts": {
-    "clean": "rimraf lib",
-    "lint": "tslint --project ./tsconfig.json",
+    "clean": "del lib",
+    "lint": "eslint --ext '.js,.ts,.tsx' .",
+    "example": "yarn --cwd Example",
     "typescript": "tsc --noEmit",
     "release": "release-it",
     "test": "jest --updateSnapshot",
-    "test:ci": "jest --collectCoverage=true",
+    "test:ci": "jest --collectCoverage=true --runInBand --detectOpenHandles",
     "test:watch": "jest --watch",
     "prepare": "yarn clean && bob build"
   },
@@ -29,6 +33,7 @@
     "inputs"
   ],
   "peerDependencies": {
+    "react": "*",
     "react-native": ">= 0.57.0 < 1"
   },
   "jest": {
@@ -54,6 +59,8 @@
     "@types/react": "16.9.2",
     "@types/react-native": "0.60.15",
     "@types/react-test-renderer": "16.9.0",
+    "del-cli": "3.0.0",
+    "eslint-config-satya164": "2.4.1",
     "husky": "3.0.5",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.0",
@@ -61,8 +68,6 @@
     "react-native": "0.60.5",
     "react-test-renderer": "16.8.6",
     "release-it": "12.4.1",
-    "rimraf": "3.0.0",
-    "tslint": "5.20.0",
     "typescript": "3.6.3"
   },
   "husky": {

@@ -41,7 +41,7 @@ interface Props {
 interface State {
   loading: boolean
   otpCode: Array<string>
-  previousCopiedText: string
+  previousCopiedText?: string
 }
 
 type TextInputOnChangeEventData = {
@@ -71,7 +71,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     placeholder: '',
   }
 
-  public inputs: RefObject<OtpInput>[]
+  public inputs: Array<RefObject<OtpInput>>
   private _interval: any
 
   constructor(props: Props) {
@@ -80,7 +80,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     const inputs = []
 
     for (let index = 0; index < this.props.numberOfInputs; index++) {
-      inputs[index] = React.createRef()
+      inputs[index] = React.createRef<OtpInput>()
     }
 
     this._interval = undefined
@@ -107,7 +107,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
   public reset = (): void => {
     this.setState({ otpCode: [] })
     this.props.handleChange('')
-    this.inputs.forEach(i => i.current.clear())
+    this.inputs.forEach(i => i.current!.clear())
   }
 
   private _listenOnCopiedText = async (): Promise<void> => {
@@ -147,10 +147,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     }
   }
 
-  private _updateText = (
-    event: TextInputOnChangeEventData,
-    index: number,
-  ): void => {
+  private _updateText = (event: TextInputOnChangeEventData, index: number): void => {
     const { numberOfInputs } = this.props
     const { text } = event.nativeEvent
 
@@ -163,15 +160,12 @@ export default class OtpInputs extends PureComponent<Props, State> {
     }
   }
 
-  private _handleBackspace = (
-    event: TextInputOnKeyPressEventData,
-    index: number,
-  ): void => {
+  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number): void => {
     if (event.nativeEvent.key === 'Backspace') {
       const { handleChange, numberOfInputs } = this.props
       const otpCode = this.state.otpCode
       otpCode[index] = ''
-      this.inputs[index].current.clear()
+      this.inputs[index].current!.clear()
 
       handleChange(otpCode.join(''))
       this.setState({ otpCode })
@@ -183,7 +177,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
   }
 
   private _focusInput = (index: number): void => {
-    this.inputs[index].current.focus()
+    this.inputs[index].current!.focus()
   }
 
   private _renderInputs = (): Array<JSX.Element> => {
@@ -236,9 +230,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unfocusedBorderColor={unfocusedBorderColor}
-          updateText={(event: TextInputOnChangeEventData) =>
-            this._updateText(event, inputIndex)
-          }
+          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, inputIndex)}
           value={otpCode[inputIndex]}
           testID={`${testIDPrefix}-${inputIndex}`}
         />
@@ -258,12 +250,7 @@ export default class OtpInputs extends PureComponent<Props, State> {
     return (
       <View style={[defaultStyles.container, containerStyles]}>
         {errorMessage && (
-          <View
-            style={[
-              defaultStyles.errorMessageContainer,
-              errorMessageContainerStyles,
-            ]}
-          >
+          <View style={[defaultStyles.errorMessageContainer, errorMessageContainerStyles]}>
             <Text testID="errorText" style={errorMessageTextStyles}>
               {errorMessage}
             </Text>

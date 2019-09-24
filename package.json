@@ -52,7 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.6.0",
+    "@babel/core": "7.6.2",
     "@babel/preset-typescript": "7.6.0",
     "@react-native-community/bob": "0.7.0",
     "@types/jest": "24.0.18",

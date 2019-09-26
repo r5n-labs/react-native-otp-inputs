@@ -57,7 +57,7 @@
     "@react-native-community/bob": "0.7.0",
     "@types/jest": "24.0.18",
     "@types/react": "16.9.3",
-    "@types/react-native": "0.60.15",
+    "@types/react-native": "0.60.16",
     "@types/react-test-renderer": "16.9.0",
     "del-cli": "3.0.0",
     "eslint-config-satya164": "2.4.1",

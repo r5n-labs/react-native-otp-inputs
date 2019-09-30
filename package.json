@@ -66,7 +66,7 @@
     "metro-react-native-babel-preset": "0.56.0",
     "react": "16.8.6",
     "react-native": "0.60.6",
-    "react-test-renderer": "16.10.0",
+    "react-test-renderer": "16.10.1",
     "release-it": "12.4.1",
     "typescript": "3.6.3"
   },

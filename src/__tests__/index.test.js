@@ -2,8 +2,8 @@ import { Keyboard } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import OtpInputs from '../src/'
-import OtpInput from '../src/OtpInput'
+import OtpInputs from '../index'
+import OtpInput from '../OtpInput'
 
 Keyboard.dismiss = jest.fn()
 

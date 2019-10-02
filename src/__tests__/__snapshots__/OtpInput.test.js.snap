@@ -37,7 +37,7 @@ exports[`<OtpInput /> render with default props 1`] = `
         undefined,
       ]
     }
-    textContentType="oneTimeCode"
+    textContentType="none"
     underlineColorAndroid="transparent"
   />
 </View>
@@ -82,7 +82,7 @@ exports[`<OtpInput /> render with error message 1`] = `
         },
       ]
     }
-    textContentType="oneTimeCode"
+    textContentType="none"
     underlineColorAndroid="transparent"
   />
 </View>
@@ -125,7 +125,7 @@ exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
         undefined,
       ]
     }
-    textContentType="oneTimeCode"
+    textContentType="none"
     underlineColorAndroid="transparent"
   />
 </View>

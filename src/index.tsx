@@ -160,19 +160,23 @@ export default class OtpInputs extends Component<Props, State> {
     }
   }
 
-  private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number): void => {
+  private _handleBackspace = (index: number): void => {
+    const { handleChange, numberOfInputs } = this.props
+    const otpCode = this.state.otpCode
+    otpCode[index] = ''
+    this.inputs[index].current!.clear()
+
+    handleChange(otpCode.join(''))
+    this.setState({ otpCode })
+
+    if (index > MINIMAL_INDEX && index < numberOfInputs) {
+      this._focusInput(index - 1)
+    }
+  }
+
+  private _handleKeyPress = (event: TextInputOnKeyPressEventData, index: number): void => {
     if (event.nativeEvent.key === 'Backspace') {
-      const { handleChange, numberOfInputs } = this.props
-      const otpCode = this.state.otpCode
-      otpCode[index] = ''
-      this.inputs[index].current!.clear()
-
-      handleChange(otpCode.join(''))
-      this.setState({ otpCode })
-
-      if (index > MINIMAL_INDEX && index < numberOfInputs) {
-        this._focusInput(index - 1)
-      }
+      this._handleBackspace(index)
     } else if (this.state.otpCode.length === this.props.numberOfInputs) {
       let otpArray = this.state.otpCode
       otpArray[index] = event.nativeEvent.key
@@ -221,8 +225,8 @@ export default class OtpInputs extends Component<Props, State> {
           firstInput={index === 0}
           focusStyles={focusStyles}
           focusedBorderColor={focusedBorderColor}
-          handleBackspace={(event: TextInputOnKeyPressEventData) =>
-            this._handleBackspace(event, inputIndex)
+          handleKeyPress={(event: TextInputOnKeyPressEventData) =>
+            this._handleKeyPress(event, inputIndex)
           }
           inputStyles={inputStyles}
           key={inputIndex}

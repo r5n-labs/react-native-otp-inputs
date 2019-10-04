@@ -21,7 +21,7 @@ interface Props {
   firstInput: boolean
   focusStyles?: StyleProp<ViewStyle>
   focusedBorderColor?: string
-  handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
+  handleKeyPress: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
   inputStyles?: StyleProp<TextStyle>
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
   numberOfInputs: number
@@ -66,7 +66,7 @@ export default class OtpInput extends PureComponent<Props, State> {
       firstInput,
       focusStyles,
       focusedBorderColor,
-      handleBackspace,
+      handleKeyPress,
       inputStyles,
       keyboardType,
       numberOfInputs,
@@ -98,7 +98,7 @@ export default class OtpInput extends PureComponent<Props, State> {
           onBlur={this._onBlur}
           onChange={updateText}
           onFocus={this._onFocus}
-          onKeyPress={handleBackspace}
+          onKeyPress={handleKeyPress}
           ref={this.input}
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}

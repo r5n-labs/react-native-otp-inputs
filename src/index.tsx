@@ -71,9 +71,6 @@ export default class OtpInputs extends PureComponent<Props, State> {
     placeholder: '',
   };
 
-  public inputs: Array<RefObject<OtpInput>>;
-  private _interval: any;
-
   constructor(props: Props) {
     super(props);
 
@@ -103,6 +100,9 @@ export default class OtpInputs extends PureComponent<Props, State> {
   public componentWillUnmount(): void {
     clearInterval(this._interval);
   }
+
+  public inputs: Array<RefObject<OtpInput>>;
+  private _interval: any;
 
   public reset = (): void => {
     this.setState({ otpCode: [] });
@@ -163,12 +163,16 @@ export default class OtpInputs extends PureComponent<Props, State> {
   private _handleBackspace = (event: TextInputOnKeyPressEventData, index: number): void => {
     if (event.nativeEvent.key === 'Backspace') {
       const { handleChange, numberOfInputs } = this.props;
-      const otpCode = this.state.otpCode;
-      otpCode[index] = '';
-      this.inputs[index].current!.clear();
 
-      handleChange(otpCode.join(''));
-      this.setState({ otpCode });
+      this.setState(({ otpCode }) => {
+        otpCode[index] = '';
+        handleChange(otpCode.join(''));
+
+        return {
+          otpCode,
+        };
+      });
+      this.inputs[index].current!.clear();
 
       if (index > MINIMAL_INDEX && index < numberOfInputs) {
         this._focusInput(index - 1);

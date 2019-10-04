@@ -21,5 +21,6 @@ module.exports = {
         trailingComma: 'all',
       },
     ],
+    'jest/consistent-test-it': ['error', { fn: 'test' }],
   },
 }

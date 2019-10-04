@@ -158,14 +158,9 @@ describe('<OtpInputs />', () => {
           expect(wrapperInstance._handleAfterOtpAction).not.toHaveBeenCalled()
           expect(wrapperInstance._handleBackspace).not.toHaveBeenCalled()
         })
-
       })
-
-
     })
-
   })
-
 })
 
 describe('OtpInput events', () => {

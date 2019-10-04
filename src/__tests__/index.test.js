@@ -96,23 +96,10 @@ describe('<OtpInputs />', () => {
   describe('_handleBackspace', () => {
     describe('when first input is cleared', () => {
       test('should not call _focusInput', () => {
-        const fakeNativeEvent = { nativeEvent: { key: 'Backspace' } }
         const inputIndex = 0
         const wrapperInstance = wrapper.getInstance()
         wrapperInstance._focusInput = jest.fn()
-        wrapperInstance._handleBackspace(fakeNativeEvent, inputIndex)
-
-        expect(wrapperInstance._focusInput).not.toBeCalled()
-      })
-    })
-
-    describe('when key is not backspace', () => {
-      test('should not call _focusInput', () => {
-        const fakeNativeEvent = { nativeEvent: { key: 'Enter' } }
-        const inputIndex = 0
-        const wrapperInstance = wrapper.getInstance()
-        wrapperInstance._focusInput = jest.fn()
-        wrapperInstance._handleBackspace(fakeNativeEvent, inputIndex)
+        wrapperInstance._handleBackspace(inputIndex)
 
         expect(wrapperInstance._focusInput).not.toBeCalled()
       })
@@ -120,29 +107,78 @@ describe('<OtpInputs />', () => {
 
     describe('when index is equal last index', () => {
       test('should call _focusInput', () => {
-        const fakeNativeEvent = { nativeEvent: { key: 'Backspace' } }
         const inputIndex = 3
         const wrapperInstance = wrapper.getInstance()
         wrapperInstance._focusInput = jest.fn()
-        wrapperInstance._handleBackspace(fakeNativeEvent, inputIndex)
+        wrapperInstance._handleBackspace(inputIndex)
 
         expect(wrapperInstance._focusInput).toBeCalled()
       })
     })
   })
+
+  describe('_handleKeyPress', () => {
+    describe('when Backspace is pressed', () => {
+      test('should call _handleBackspace', () => {
+        const fakeNativeEvent = { nativeEvent: { key: 'Backspace' } }
+        const inputIndex = 3
+        const wrapperInstance = wrapper.getInstance()
+
+        wrapperInstance._handleBackspace = jest.fn()
+        wrapperInstance._handleKeyPress(fakeNativeEvent, inputIndex)
+
+        expect(wrapperInstance._handleBackspace).toHaveBeenCalled()
+      })
+
+      describe('when every input is fulfiled and user edits one of the inputs', () => {
+        test('should call _handleAfterOtpAction', () => {
+          const fakeNativeEvent = { nativeEvent: { key: '9' } }
+          const inputIndex = 2
+          const wrapperInstance = wrapper.getInstance()
+          wrapperInstance.state.otpCode = ['1', '2', '3', '4']
+
+          wrapperInstance._handleAfterOtpAction = jest.fn()
+          wrapperInstance._handleKeyPress(fakeNativeEvent, inputIndex)
+
+          expect(wrapperInstance._handleAfterOtpAction).toHaveBeenCalled()
+        })
+      })
+
+      describe('when not every input is fulfiled nor Backspace is pressed', () => {
+        test('should not call _handleAfterOtpAction or _handleBackspace', () => {
+          const fakeNativeEvent = { nativeEvent: { key: '9' } }
+          const inputIndex = 2
+          const wrapperInstance = wrapper.getInstance()
+          wrapperInstance.state.otpCode = ['1', '2']
+
+          wrapperInstance._handleAfterOtpAction = jest.fn()
+          wrapperInstance._handleBackspace = jest.fn()
+          wrapperInstance._handleKeyPress(fakeNativeEvent, inputIndex)
+
+          expect(wrapperInstance._handleAfterOtpAction).not.toHaveBeenCalled()
+          expect(wrapperInstance._handleBackspace).not.toHaveBeenCalled()
+        })
+
+      })
+
+
+    })
+
+  })
+
 })
 
 describe('OtpInput events', () => {
   const wrapper = renderer.create(<OtpInputs />)
 
-  describe('_handleBackspace', () => {
-    test('should call handleBaspace function when OtpInput calls it', () => {
+  describe('_handleKeyPress', () => {
+    test('should call handleKeyPress function when OtpInput calls it', () => {
       const wrapperInstance = wrapper.getInstance()
-      wrapperInstance._handleBackspace = jest.fn()
+      wrapperInstance._handleKeyPress = jest.fn()
       const OtpInputComponent = wrapper.root.findAllByType(OtpInput)[0]
 
-      OtpInputComponent.props.handleBackspace()
-      expect(wrapperInstance._handleBackspace).toBeCalled()
+      OtpInputComponent.props.handleKeyPress()
+      expect(wrapperInstance._handleKeyPress).toBeCalled()
     })
   })
 

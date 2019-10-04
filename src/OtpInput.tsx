@@ -1,4 +1,4 @@
-import React, { PureComponent, RefObject } from 'react'
+import React, { PureComponent, RefObject } from 'react';
 import {
   NativeSyntheticEvent,
   Platform,
@@ -9,54 +9,54 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from 'react-native'
+} from 'react-native';
 
-import defaultStyles from './defaultStyles'
+import defaultStyles from './defaultStyles';
 
 interface Props {
-  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
-  clearTextOnFocus?: boolean
-  containerStyles?: StyleProp<ViewStyle>
-  error?: boolean
-  firstInput: boolean
-  focusStyles?: StyleProp<ViewStyle>
-  focusedBorderColor?: string
-  handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void
-  inputStyles?: StyleProp<TextStyle>
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
-  numberOfInputs: number
-  placeholder?: string
-  secureTextEntry?: boolean
-  selectTextOnFocus?: boolean
-  testID: string
-  textErrorColor?: string
-  unfocusedBorderColor?: string
-  updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void
-  value?: string
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  clearTextOnFocus?: boolean;
+  containerStyles?: StyleProp<ViewStyle>;
+  error?: boolean;
+  firstInput: boolean;
+  focusStyles?: StyleProp<ViewStyle>;
+  focusedBorderColor?: string;
+  handleBackspace: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
+  inputStyles?: StyleProp<TextStyle>;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  numberOfInputs: number;
+  placeholder?: string;
+  secureTextEntry?: boolean;
+  selectTextOnFocus?: boolean;
+  testID: string;
+  textErrorColor?: string;
+  unfocusedBorderColor?: string;
+  updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  value?: string;
 }
 
 interface State {
-  isFocused: boolean
+  isFocused: boolean;
 }
 
-const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10)
-const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12
+const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
+const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 
 export default class OtpInput extends PureComponent<Props, State> {
   state = {
     isFocused: false,
-  }
-  private _onFocus = (): void => this.setState({ isFocused: true })
-  private _onBlur = (): void => this.setState({ isFocused: false })
+  };
+  private _onFocus = (): void => this.setState({ isFocused: true });
+  private _onBlur = (): void => this.setState({ isFocused: false });
 
-  public input: RefObject<TextInput> = React.createRef()
+  public input: RefObject<TextInput> = React.createRef();
   public clear = (): void => {
-    this.input.current!.clear()
-  }
+    this.input.current!.clear();
+  };
 
   public focus = (): void => {
-    this.input.current!.focus()
-  }
+    this.input.current!.focus();
+  };
 
   public render() {
     const {
@@ -78,7 +78,7 @@ export default class OtpInput extends PureComponent<Props, State> {
       unfocusedBorderColor,
       updateText,
       value,
-    } = this.props
+    } = this.props;
 
     return (
       <View
@@ -110,6 +110,6 @@ export default class OtpInput extends PureComponent<Props, State> {
           value={value}
         />
       </View>
-    )
+    );
   }
 }

@@ -1,53 +1,53 @@
-import 'react-native'
-import React from 'react'
-import renderer from 'react-test-renderer'
+import 'react-native';
+import React from 'react';
+import renderer from 'react-test-renderer';
 
-import OtpInput from '../OtpInput'
+import OtpInput from '../OtpInput';
 
 describe('<OtpInput />', () => {
   const defaultProps = {
     handleBackspace: ({ nativeEvent: {} }) => {},
     updateText: ({ nativeEvent: {} }) => {},
-  }
+  };
 
   describe('render', () => {
-    test('with default props', () => {
-      const wrapper = renderer.create(<OtpInput {...defaultProps} />)
+    it('with default props', () => {
+      const wrapper = renderer.create(<OtpInput {...defaultProps} />);
 
-      expect(wrapper).toMatchSnapshot()
-    })
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    test('with error message', () => {
+    it('with error message', () => {
       const wrapper = renderer.create(
-        <OtpInput {...defaultProps} error={true} textErrorColor="#00ff00" />,
-      )
+        <OtpInput {...defaultProps} error textErrorColor="#00ff00" />,
+      );
 
-      expect(wrapper).toMatchSnapshot()
-    })
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    test('with iOS version 12 or higher', () => {
-      const wrapper = renderer.create(<OtpInput {...defaultProps} />)
-      expect(wrapper).toMatchSnapshot()
-    })
-  })
+    it('with iOS version 12 or higher', () => {
+      const wrapper = renderer.create(<OtpInput {...defaultProps} />);
+      expect(wrapper).toMatchSnapshot();
+    });
+  });
 
   describe('_onFocus', () => {
-    test('should change state of `isFocused` to true', () => {
-      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance()
-      wrapperInstance.setState({ isFocused: false })
-      wrapperInstance._onFocus()
+    it('should change state of `isFocused` to true', () => {
+      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance();
+      wrapperInstance.setState({ isFocused: false });
+      wrapperInstance._onFocus();
 
-      expect(wrapperInstance.state.isFocused).toEqual(true)
-    })
-  })
+      expect(wrapperInstance.state.isFocused).toEqual(true);
+    });
+  });
 
   describe('_onBlur', () => {
-    test('should change state of `isFocused` to false', () => {
-      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance()
-      wrapperInstance.setState({ isFocused: true })
-      wrapperInstance._onBlur()
+    it('should change state of `isFocused` to false', () => {
+      const wrapperInstance = renderer.create(<OtpInput {...defaultProps} />).getInstance();
+      wrapperInstance.setState({ isFocused: true });
+      wrapperInstance._onBlur();
 
-      expect(wrapperInstance.state.isFocused).toEqual(false)
-    })
-  })
-})
+      expect(wrapperInstance.state.isFocused).toEqual(false);
+    });
+  });
+});

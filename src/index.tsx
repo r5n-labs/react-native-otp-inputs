@@ -24,7 +24,6 @@ type Props = TextInputProps & {
 };
 
 type State = {
-  loading: boolean;
   otpCode: Array<string>;
   previousCopiedText?: string;
 };
@@ -44,7 +43,6 @@ class OtpInputs extends Component<Props, State> {
     this._interval = undefined;
     this.inputs = inputs as Array<RefObject<TextInput>>;
     this.state = {
-      loading: false,
       previousCopiedText: '',
       otpCode: [],
     };
@@ -82,6 +80,7 @@ class OtpInputs extends Component<Props, State> {
       copiedText !== otpCode.join('') &&
       copiedText !== previousCopiedText
     ) {
+      clearInterval(this._interval);
       this._handleAfterOtpAction(copiedText.split(''), numberOfInputs, true);
     }
   };

@@ -3,65 +3,35 @@ import {
   Clipboard,
   Keyboard,
   StyleProp,
-  StyleSheet,
-  Text,
   TextInput,
   TextStyle,
   View,
   ViewStyle,
+  TextInputProps,
 } from 'react-native';
 
 import OtpInput from './OtpInput';
 
-interface Props {
-  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters';
-  clearTextOnFocus: boolean;
-  containerStyles?: StyleProp<ViewStyle>;
-  errorMessage?: string;
-  errorMessageContainerStyles?: StyleProp<ViewStyle>;
-  errorMessageTextStyles?: StyleProp<TextStyle>;
+type Props = TextInputProps & {
+  styles?: StyleProp<ViewStyle>;
   focusStyles?: StyleProp<ViewStyle>;
-  focusedBorderColor: string;
   handleChange: (otpCode: string) => void;
   inputContainerStyles?: StyleProp<ViewStyle>;
   inputStyles?: StyleProp<TextStyle>;
-  inputTextErrorColor: string;
-  inputsContainerStyles?: StyleProp<ViewStyle>;
   isRTL: boolean;
-  keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   numberOfInputs: number;
-  placeholder: string;
-  secureTextEntry: boolean;
-  selectTextOnFocus: boolean;
   testIDPrefix: string;
-  unfocusedBorderColor: string;
-}
+};
 
-interface State {
+type State = {
   loading: boolean;
   otpCode: Array<string>;
   previousCopiedText?: string;
-}
+};
 
 const MINIMAL_INDEX = 0;
 
-export default class OtpInputs extends Component<Props, State> {
-  static defaultProps = {
-    autoCapitalize: 'none',
-    clearTextOnFocus: false,
-    focusedBorderColor: '#0000ff',
-    handleChange: console.log,
-    inputTextErrorColor: '#ff0000',
-    keyboardType: 'phone-pad',
-    numberOfInputs: 4,
-    secureTextEntry: false,
-    selectTextOnFocus: true,
-    unfocusedBorderColor: '#a0a0a0',
-    testIDPrefix: 'otpInput',
-    isRTL: false,
-    placeholder: '',
-  };
-
+class OtpInputs extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -165,18 +135,14 @@ export default class OtpInputs extends Component<Props, State> {
     const {
       autoCapitalize,
       clearTextOnFocus,
-      errorMessage,
-      focusedBorderColor,
       focusStyles,
       inputContainerStyles,
       inputStyles,
-      inputTextErrorColor,
       keyboardType,
       numberOfInputs,
       secureTextEntry,
       selectTextOnFocus,
       testIDPrefix,
-      unfocusedBorderColor,
       isRTL,
       placeholder,
     } = this.props;
@@ -193,11 +159,10 @@ export default class OtpInputs extends Component<Props, State> {
         <OtpInput
           autoCapitalize={autoCapitalize}
           clearTextOnFocus={clearTextOnFocus}
-          containerStyles={inputContainerStyles}
-          error={!!errorMessage}
           firstInput={index === 0}
           focusStyles={focusStyles}
-          focusedBorderColor={focusedBorderColor}
+          handleTextChange={(text: string) => this._handleTextChange(text, inputIndex)}
+          inputContainerStyles={inputContainerStyles}
           inputStyles={inputStyles}
           key={inputIndex}
           keyboardType={keyboardType}
@@ -206,51 +171,50 @@ export default class OtpInputs extends Component<Props, State> {
           ref={this.inputs[inputIndex]}
           secureTextEntry={secureTextEntry}
           selectTextOnFocus={selectTextOnFocus}
-          textErrorColor={inputTextErrorColor}
-          unfocusedBorderColor={unfocusedBorderColor}
-          handleTextChange={(text: string) => this._handleTextChange(text, inputIndex)}
-          value={otpCode[inputIndex]}
           testID={`${testIDPrefix}-${inputIndex}`}
+          value={otpCode[inputIndex]}
         />
       );
     });
   };
 
   render(): ReactNode {
-    const {
-      containerStyles,
-      errorMessage,
-      errorMessageContainerStyles,
-      errorMessageTextStyles,
-      inputsContainerStyles,
-    } = this.props;
-
-    return (
-      <View style={[styles.container, containerStyles]}>
-        {errorMessage && (
-          <View style={[styles.errorMessageContainer, errorMessageContainerStyles]}>
-            <Text testID="errorText" style={errorMessageTextStyles}>
-              {errorMessage}
-            </Text>
-          </View>
-        )}
-        <View style={[styles.inputsContainer, inputsContainerStyles]}>{this._renderInputs()}</View>
-      </View>
-    );
+    return <View style={this.props.styles}>{this._renderInputs()}</View>;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  inputsContainer: {
+export default OtpInputs;
+
+// @ts-ignore
+OtpInputs.defaultProps = {
+  autoCapitalize: 'none',
+  clearTextOnFocus: false,
+  handleChange: console.log,
+  keyboardType: 'phone-pad',
+  numberOfInputs: 4,
+  secureTextEntry: false,
+  selectTextOnFocus: true,
+  testIDPrefix: 'otpInput',
+  isRTL: false,
+  placeholder: '',
+  styles: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  errorMessageContainer: {
-    marginHorizontal: 25,
+  focusStyles: {
+    borderColor: '#00f',
   },
-});
+  inputStyles: {
+    fontSize: 24,
+    paddingTop: 10,
+    textAlign: 'center',
+    width: 40,
+  },
+  inputContainerStyles: {
+    borderBottomWidth: 1,
+    height: 53,
+    margin: 10,
+  },
+};

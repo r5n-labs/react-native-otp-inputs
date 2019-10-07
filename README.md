@@ -81,7 +81,7 @@ export default class App extends Component {
   otpRef = React.createRef();
 
   resetOTP = () => {
-    otpRef.current.reset();
+    this.otpRef.current.reset();
   };
 
   render() {

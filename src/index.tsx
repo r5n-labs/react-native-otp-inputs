@@ -164,7 +164,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     useEffect(() => {
       const interval = setInterval(() => {
         listenOnCopiedText();
-      }, 1000);
+      }, 500);
 
       return () => {
         clearInterval(interval);

@@ -1,19 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<OtpInput /> render with default props 1`] = `
+exports[`<OtpInput /> render 1`] = `
 <View
   style={
     Array [
-      Object {
-        "borderBottomWidth": 1,
-        "height": 53,
-        "margin": 10,
-      },
       undefined,
       false,
-      Object {
-        "borderColor": undefined,
-      },
     ]
   }
 >
@@ -21,107 +13,8 @@ exports[`<OtpInput /> render with default props 1`] = `
     allowFontScaling={true}
     maxLength={1}
     onBlur={[Function]}
-    onChange={[Function]}
     onFocus={[Function]}
     rejectResponderTermination={true}
-    style={
-      Array [
-        Object {
-          "fontSize": 24,
-          "paddingTop": 10,
-          "textAlign": "center",
-          "width": 40,
-        },
-        undefined,
-        undefined,
-      ]
-    }
-    textContentType="none"
-    underlineColorAndroid="transparent"
-  />
-</View>
-`;
-
-exports[`<OtpInput /> render with error message 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "borderBottomWidth": 1,
-        "height": 53,
-        "margin": 10,
-      },
-      undefined,
-      false,
-      Object {
-        "borderColor": undefined,
-      },
-    ]
-  }
->
-  <TextInput
-    allowFontScaling={true}
-    maxLength={1}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    rejectResponderTermination={true}
-    style={
-      Array [
-        Object {
-          "fontSize": 24,
-          "paddingTop": 10,
-          "textAlign": "center",
-          "width": 40,
-        },
-        undefined,
-        Object {
-          "color": "#00ff00",
-        },
-      ]
-    }
-    textContentType="none"
-    underlineColorAndroid="transparent"
-  />
-</View>
-`;
-
-exports[`<OtpInput /> render with iOS version 12 or higher 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "borderBottomWidth": 1,
-        "height": 53,
-        "margin": 10,
-      },
-      undefined,
-      false,
-      Object {
-        "borderColor": undefined,
-      },
-    ]
-  }
->
-  <TextInput
-    allowFontScaling={true}
-    maxLength={1}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    rejectResponderTermination={true}
-    style={
-      Array [
-        Object {
-          "fontSize": 24,
-          "paddingTop": 10,
-          "textAlign": "center",
-          "width": 40,
-        },
-        undefined,
-        undefined,
-      ]
-    }
     textContentType="none"
     underlineColorAndroid="transparent"
   />

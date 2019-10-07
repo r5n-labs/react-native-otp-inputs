@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, Component } from 'react'
+import React, { ReactNode, RefObject, Component } from 'react';
 import {
   Clipboard,
   Keyboard,
@@ -9,50 +9,50 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from 'react-native'
+} from 'react-native';
 
-import OtpInput from './OtpInput'
-import defaultStyles from './defaultStyles'
+import OtpInput from './OtpInput';
+import defaultStyles from './defaultStyles';
 
 interface Props {
-  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters'
-  clearTextOnFocus: boolean
-  containerStyles?: StyleProp<ViewStyle>
-  errorMessage?: string
-  errorMessageContainerStyles?: StyleProp<ViewStyle>
-  errorMessageTextStyles?: StyleProp<TextStyle>
-  focusStyles?: StyleProp<ViewStyle>
-  focusedBorderColor: string
-  handleChange: (otpCode: string) => void
-  inputContainerStyles?: StyleProp<ViewStyle>
-  inputStyles?: StyleProp<TextStyle>
-  inputTextErrorColor: string
-  inputsContainerStyles?: StyleProp<ViewStyle>
-  isRTL: boolean
-  keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad'
-  numberOfInputs: number
-  placeholder: string
-  secureTextEntry: boolean
-  selectTextOnFocus: boolean
-  testIDPrefix: string
-  unfocusedBorderColor: string
+  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters';
+  clearTextOnFocus: boolean;
+  containerStyles?: StyleProp<ViewStyle>;
+  errorMessage?: string;
+  errorMessageContainerStyles?: StyleProp<ViewStyle>;
+  errorMessageTextStyles?: StyleProp<TextStyle>;
+  focusStyles?: StyleProp<ViewStyle>;
+  focusedBorderColor: string;
+  handleChange: (otpCode: string) => void;
+  inputContainerStyles?: StyleProp<ViewStyle>;
+  inputStyles?: StyleProp<TextStyle>;
+  inputTextErrorColor: string;
+  inputsContainerStyles?: StyleProp<ViewStyle>;
+  isRTL: boolean;
+  keyboardType: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  numberOfInputs: number;
+  placeholder: string;
+  secureTextEntry: boolean;
+  selectTextOnFocus: boolean;
+  testIDPrefix: string;
+  unfocusedBorderColor: string;
 }
 
 interface State {
-  loading: boolean
-  otpCode: Array<string>
-  previousCopiedText?: string
+  loading: boolean;
+  otpCode: Array<string>;
+  previousCopiedText?: string;
 }
 
 type TextInputOnChangeEventData = {
-  nativeEvent: TextInputChangeEventData
-}
+  nativeEvent: TextInputChangeEventData;
+};
 
 type TextInputOnKeyPressEventData = {
-  nativeEvent: TextInputKeyPressEventData
-}
+  nativeEvent: TextInputKeyPressEventData;
+};
 
-const MINIMAL_INDEX = 0
+const MINIMAL_INDEX = 0;
 
 export default class OtpInputs extends Component<Props, State> {
   static defaultProps = {
@@ -69,51 +69,51 @@ export default class OtpInputs extends Component<Props, State> {
     testIDPrefix: 'otpInput',
     isRTL: false,
     placeholder: '',
-  }
-
-  public inputs: Array<RefObject<OtpInput>>
-  private _interval: any
+  };
 
   constructor(props: Props) {
-    super(props)
+    super(props);
 
-    const inputs = []
+    const inputs = [];
 
     for (let index = 0; index < this.props.numberOfInputs; index++) {
-      inputs[index] = React.createRef<OtpInput>()
+      inputs[index] = React.createRef<OtpInput>();
     }
 
-    this._interval = undefined
-    this.inputs = inputs as Array<RefObject<OtpInput>>
+    this._interval = undefined;
+    this.inputs = inputs as Array<RefObject<OtpInput>>;
     this.state = {
       loading: false,
       previousCopiedText: '',
       otpCode: [],
-    }
+    };
   }
 
   public componentDidMount(): void {
-    this._listenOnCopiedText()
+    this._listenOnCopiedText();
 
     this._interval = setInterval(() => {
-      this._listenOnCopiedText()
-    }, 1000)
+      this._listenOnCopiedText();
+    }, 1000);
   }
 
   public componentWillUnmount(): void {
-    clearInterval(this._interval)
+    clearInterval(this._interval);
   }
+
+  public inputs: Array<RefObject<OtpInput>>;
+  private _interval: any;
 
   public reset = (): void => {
-    this.setState({ otpCode: [] })
-    this.props.handleChange('')
-    this.inputs.forEach(i => i.current!.clear())
-  }
+    this.setState({ otpCode: [] });
+    this.props.handleChange('');
+    this.inputs.forEach(i => i.current!.clear());
+  };
 
   private _listenOnCopiedText = async (): Promise<void> => {
-    const { numberOfInputs } = this.props
-    const { otpCode, previousCopiedText } = this.state
-    const copiedText = await Clipboard.getString()
+    const { numberOfInputs } = this.props;
+    const { otpCode, previousCopiedText } = this.state;
+    const copiedText = await Clipboard.getString();
 
     if (
       copiedText &&
@@ -121,72 +121,77 @@ export default class OtpInputs extends Component<Props, State> {
       copiedText !== otpCode.join('') &&
       copiedText !== previousCopiedText
     ) {
-      this._handleAfterOtpAction(copiedText.split(''), numberOfInputs, true)
+      this._handleAfterOtpAction(copiedText.split(''), numberOfInputs, true);
     }
-  }
+  };
 
   private _handleAfterOtpAction = (
     otpCode: Array<string>,
     indexToFocus: number,
     fromClipboard?: boolean,
   ): void => {
-    const { handleChange, numberOfInputs } = this.props
-    handleChange(otpCode.join(''))
+    const { handleChange, numberOfInputs } = this.props;
+    handleChange(otpCode.join(''));
 
     this.setState({
       otpCode,
       ...(fromClipboard && { previousCopiedText: otpCode.join('') }),
-    })
+    });
 
     if (indexToFocus === numberOfInputs) {
-      return Keyboard.dismiss()
+      return Keyboard.dismiss();
     }
 
     if (indexToFocus >= MINIMAL_INDEX && indexToFocus < numberOfInputs) {
-      this._focusInput(indexToFocus)
+      this._focusInput(indexToFocus);
     }
-  }
+  };
 
   private _updateText = (event: TextInputOnChangeEventData, index: number): void => {
-    const { numberOfInputs } = this.props
-    const { text } = event.nativeEvent
+    const { numberOfInputs } = this.props;
+    const { text } = event.nativeEvent;
 
     if (text.length === numberOfInputs) {
-      this._handleAfterOtpAction(text.split(''), numberOfInputs, true)
+      this._handleAfterOtpAction(text.split(''), numberOfInputs, true);
     } else if (text) {
-      let otpArray = this.state.otpCode
-      otpArray[index] = text[text.length - 1]
-      this._handleAfterOtpAction(otpArray, index + 1)
+      let otpArray = this.state.otpCode;
+      otpArray[index] = text[text.length - 1];
+      this._handleAfterOtpAction(otpArray, index + 1);
     }
-  }
+  };
 
   private _handleBackspace = (index: number): void => {
-    const { handleChange, numberOfInputs } = this.props
-    const otpCode = this.state.otpCode
-    otpCode[index] = ''
-    this.inputs[index].current!.clear()
+    const { handleChange, numberOfInputs } = this.props;
+    const otpCode = this.state.otpCode;
+    otpCode[index] = '';
+    this.inputs[index].current!.clear();
 
-    handleChange(otpCode.join(''))
-    this.setState({ otpCode })
+    this.setState(({ otpCode }) => {
+      const newOtpCode = otpCode;
+      newOtpCode[index] = '';
+      handleChange(newOtpCode.join(''));
+
+      return { otpCode: newOtpCode };
+    });
 
     if (index > MINIMAL_INDEX && index < numberOfInputs) {
-      this._focusInput(index - 1)
+      this._focusInput(index - 1);
     }
-  }
+  };
 
   private _handleKeyPress = (event: TextInputOnKeyPressEventData, index: number): void => {
     if (event.nativeEvent.key === 'Backspace') {
-      this._handleBackspace(index)
+      this._handleBackspace(index);
     } else if (this.state.otpCode.length === this.props.numberOfInputs) {
-      let otpArray = this.state.otpCode
-      otpArray[index] = event.nativeEvent.key
-      this._handleAfterOtpAction(otpArray, index + 1)
+      let otpArray = this.state.otpCode;
+      otpArray[index] = event.nativeEvent.key;
+      this._handleAfterOtpAction(otpArray, index + 1);
     }
-  }
+  };
 
   private _focusInput = (index: number): void => {
-    this.inputs[index].current!.focus()
-  }
+    this.inputs[index].current!.focus();
+  };
 
   private _renderInputs = (): Array<JSX.Element> => {
     const {
@@ -206,14 +211,14 @@ export default class OtpInputs extends Component<Props, State> {
       unfocusedBorderColor,
       isRTL,
       placeholder,
-    } = this.props
-    const { otpCode } = this.state
-    const iterationArray = Array<number>(numberOfInputs).fill(0)
+    } = this.props;
+    const { otpCode } = this.state;
+    const iterationArray = Array<number>(numberOfInputs).fill(0);
 
     return iterationArray.map((_, index) => {
-      let inputIndex = index
+      let inputIndex = index;
       if (isRTL) {
-        inputIndex = numberOfInputs - 1 - index
+        inputIndex = numberOfInputs - 1 - index;
       }
 
       return (
@@ -242,9 +247,9 @@ export default class OtpInputs extends Component<Props, State> {
           value={otpCode[inputIndex]}
           testID={`${testIDPrefix}-${inputIndex}`}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   public render(): ReactNode {
     const {
@@ -253,7 +258,7 @@ export default class OtpInputs extends Component<Props, State> {
       errorMessageContainerStyles,
       errorMessageTextStyles,
       inputsContainerStyles,
-    } = this.props
+    } = this.props;
 
     return (
       <View style={[defaultStyles.container, containerStyles]}>
@@ -268,6 +273,6 @@ export default class OtpInputs extends Component<Props, State> {
           {this._renderInputs()}
         </View>
       </View>
-    )
+    );
   }
 }

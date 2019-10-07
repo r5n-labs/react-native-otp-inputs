@@ -1,25 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React, { Fragment } from 'react'
+import { SafeAreaView, StyleSheet, ScrollView, StatusBar } from 'react-native'
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import OtpInputs from 'react-native-otp-inputs';
+import { Colors } from 'react-native/Libraries/NewAppScreen'
+import OtpInputs from 'react-native-otp-inputs'
 
 const App = () => {
   return (
@@ -28,13 +11,14 @@ const App = () => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+          style={styles.scrollView}
+        >
           <OtpInputs />
         </ScrollView>
       </SafeAreaView>
     </Fragment>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -73,6 +57,6 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-});
+})
 
-export default App;
+export default App

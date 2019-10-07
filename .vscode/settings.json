@@ -1,11 +1,14 @@
 {
-  "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": false,
-  "eslint.enable": false,
-  "editor.tabSize": 2,
-  "tslint.packageManager": "yarn",
-  "prettier.tslintIntegration": true,
-  "prettier.trailingComma": "all",
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ],
+  "prettier.printWidth": 100,
+  "prettier.semi": true,
   "prettier.singleQuote": true,
-  "prettier.semi": false
+  "prettier.trailingComma": "all",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

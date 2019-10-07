@@ -16,6 +16,7 @@ type Props = TextInputProps & {
   inputStyles?: StyleProp<TextStyle>;
   numberOfInputs: number;
   handleTextChange: (text: string) => void;
+  inputValue: string;
 };
 
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
@@ -24,15 +25,13 @@ const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 const OtpInput = forwardRef<TextInput, Props>(
   (
     {
-      firstInput,
       focusStyles,
       handleTextChange,
       inputContainerStyles,
       inputStyles,
-      numberOfInputs,
       placeholder,
       selectTextOnFocus,
-      value,
+      inputValue,
       ...rest
     },
     ref,
@@ -41,13 +40,13 @@ const OtpInput = forwardRef<TextInput, Props>(
 
     useEffect(() => {
       // @ts-ignore
-      ref.current.setNativeProps({ value, text: value });
-    }, [ref, value]);
+      ref && ref.current && ref.current.setNativeProps({ value: inputValue, text: inputValue });
+    }, [ref, inputValue]);
 
     return (
       <View style={[inputContainerStyles, focused && focusStyles]}>
         <TextInput
-          maxLength={firstInput ? numberOfInputs : 1}
+          maxLength={1}
           onBlur={() => setFocused(false)}
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}

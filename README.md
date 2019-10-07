@@ -27,20 +27,17 @@
 ## Basic usage
 
 ```js
-import React, { Component } from 'react'
-import { View } from 'react-native'
-import OtpInputs from 'react-native-otp-inputs'
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import OtpInputs from 'react-native-otp-inputs';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <OtpInputs
-          handleChange={code => console.log(code)}
-          numberOfInputs={6}
-        />
+        <OtpInputs handleChange={code => console.log(code)} numberOfInputs={6} />
       </View>
-    )
+    );
   }
 }
 ```
@@ -60,12 +57,12 @@ export default class App extends Component {
 | handleChange                | function       | true        | console.log                                                                                                | Returns otp code which is typed in inputs                                                                           |
 | inputStyles                 | style(object)  | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L15) | Styles applied to single input                                                                                      |
 | inputContainerStyles        | style (object) | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L8)  | Styles applied to each input container                                                                              |
-| inputsContainerStyles       | style (object) | false       | [defaultStyles](https://github.com/dsznajder/react-native-otp-inputs/blob/master/lib/defaultStyles.ts#L22) | Styles applied to inputs container                                                                                  |
+| inputsContainerStyles       | style (object) | false       | [default](./src/OtpInput.tsx#L)                                                                            | Styles applied to inputs container                                                                                  |
 | inputTextErrorColor         | string         | false       | #ff0000                                                                                                    | Color of text inside input container when error is passed in                                                        |
 | keyboardType                | string         | true        | 'phone-pad'                                                                                                | Keyboard type for inputs                                                                                            |
 | numberOfInputs              | number         | true (1..6) | 4                                                                                                          | How many inputs should be rendered                                                                                  |
 | secureTextEntry             | boolean        | false       | false                                                                                                      | Defines if input will hide text inside                                                                              |
-| selectTextOnFocus           | boolean        | false       | true                                                                                                       | Defines if input text should be selected on focus                                                                   |
+| selectTextOnFocus           | boolean        | false       | true                                                                                                       | [iOS Only](./src/OtpInput.tsx#L90) Defines if input text should be selected on focus                                |
 | unfocusedBorderColor        | string         | false       | transparent                                                                                                | borderColor of input when not focused                                                                               |
 | testIDPrefix                | string         | false       | otpInput-\${inputIndex}                                                                                    | Prefix that will be applied as a testID for each input                                                              |
 | isRTL                       | boolean        | false       | false                                                                                                      | Defines if the app is currently in RTL (preferably pass {I18nManager.isRTL}). Keeps the OTP boxes in LTR alignment. |
@@ -76,28 +73,24 @@ export default class App extends Component {
 Those can be called on ref:
 
 ```js
-import React, { Component } from 'react'
-import { Button, View } from 'react-native'
-import OtpInputs from 'react-native-otp-inputs'
+import React, { Component } from 'react';
+import { Button, View } from 'react-native';
+import OtpInputs from 'react-native-otp-inputs';
 
 export default class App extends Component {
-  otpRef = React.createRef()
+  otpRef = React.createRef();
 
   resetOTP = () => {
-    otpRef.current.reset()
-  }
+    otpRef.current.reset();
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <Button title="Reset" onPress={this.resetOTP} />
-        <OtpInputs
-          ref={this.otpRef}
-          handleChange={code => console.log(code)}
-          numberOfInputs={6}
-        />
+        <OtpInputs ref={this.otpRef} handleChange={code => console.log(code)} numberOfInputs={6} />
       </View>
-    )
+    );
   }
 }
 ```

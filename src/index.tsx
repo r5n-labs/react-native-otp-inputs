@@ -3,16 +3,15 @@ import {
   Clipboard,
   Keyboard,
   StyleProp,
+  StyleSheet,
   Text,
-  TextInputChangeEventData,
-  TextInputKeyPressEventData,
+  TextInput,
   TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
 
 import OtpInput from './OtpInput';
-import defaultStyles from './defaultStyles';
 
 interface Props {
   autoCapitalize: 'none' | 'sentences' | 'words' | 'characters';
@@ -44,14 +43,6 @@ interface State {
   previousCopiedText?: string;
 }
 
-type TextInputOnChangeEventData = {
-  nativeEvent: TextInputChangeEventData;
-};
-
-type TextInputOnKeyPressEventData = {
-  nativeEvent: TextInputKeyPressEventData;
-};
-
 const MINIMAL_INDEX = 0;
 
 export default class OtpInputs extends Component<Props, State> {
@@ -77,11 +68,11 @@ export default class OtpInputs extends Component<Props, State> {
     const inputs = [];
 
     for (let index = 0; index < this.props.numberOfInputs; index++) {
-      inputs[index] = React.createRef<OtpInput>();
+      inputs[index] = React.createRef<TextInput>();
     }
 
     this._interval = undefined;
-    this.inputs = inputs as Array<RefObject<OtpInput>>;
+    this.inputs = inputs as Array<RefObject<TextInput>>;
     this.state = {
       loading: false,
       previousCopiedText: '',
@@ -89,7 +80,7 @@ export default class OtpInputs extends Component<Props, State> {
     };
   }
 
-  public componentDidMount(): void {
+  componentDidMount(): void {
     this._listenOnCopiedText();
 
     this._interval = setInterval(() => {
@@ -97,20 +88,20 @@ export default class OtpInputs extends Component<Props, State> {
     }, 1000);
   }
 
-  public componentWillUnmount(): void {
+  componentWillUnmount(): void {
     clearInterval(this._interval);
   }
 
-  public inputs: Array<RefObject<OtpInput>>;
-  private _interval: any;
+  inputs: Array<RefObject<TextInput>>;
+  _interval: any;
 
-  public reset = (): void => {
+  reset = (): void => {
     this.setState({ otpCode: [] });
     this.props.handleChange('');
     this.inputs.forEach(i => i.current!.clear());
   };
 
-  private _listenOnCopiedText = async (): Promise<void> => {
+  _listenOnCopiedText = async (): Promise<void> => {
     const { numberOfInputs } = this.props;
     const { otpCode, previousCopiedText } = this.state;
     const copiedText = await Clipboard.getString();
@@ -125,7 +116,7 @@ export default class OtpInputs extends Component<Props, State> {
     }
   };
 
-  private _handleAfterOtpAction = (
+  _handleAfterOtpAction = (
     otpCode: Array<string>,
     indexToFocus: number,
     fromClipboard?: boolean,
@@ -147,9 +138,13 @@ export default class OtpInputs extends Component<Props, State> {
     }
   };
 
-  private _updateText = (event: TextInputOnChangeEventData, index: number): void => {
+  _handleTextChange = (text: string, index: number): void => {
     const { numberOfInputs } = this.props;
-    const { text } = event.nativeEvent;
+
+    if (!text.length) {
+      this.inputs[index].current!.clear();
+      return this._focusInput(index - 1);
+    }
 
     if (text.length === numberOfInputs) {
       this._handleAfterOtpAction(text.split(''), numberOfInputs, true);
@@ -160,40 +155,13 @@ export default class OtpInputs extends Component<Props, State> {
     }
   };
 
-  private _handleBackspace = (index: number): void => {
-    const { handleChange, numberOfInputs } = this.props;
-    const otpCode = this.state.otpCode;
-    otpCode[index] = '';
-    this.inputs[index].current!.clear();
-
-    this.setState(({ otpCode }) => {
-      const newOtpCode = otpCode;
-      newOtpCode[index] = '';
-      handleChange(newOtpCode.join(''));
-
-      return { otpCode: newOtpCode };
-    });
-
-    if (index > MINIMAL_INDEX && index < numberOfInputs) {
-      this._focusInput(index - 1);
+  _focusInput = (index: number): void => {
+    if (index >= 0 && index < this.props.numberOfInputs) {
+      this.inputs[index].current!.focus();
     }
   };
 
-  private _handleKeyPress = (event: TextInputOnKeyPressEventData, index: number): void => {
-    if (event.nativeEvent.key === 'Backspace') {
-      this._handleBackspace(index);
-    } else if (this.state.otpCode.length === this.props.numberOfInputs) {
-      let otpArray = this.state.otpCode;
-      otpArray[index] = event.nativeEvent.key;
-      this._handleAfterOtpAction(otpArray, index + 1);
-    }
-  };
-
-  private _focusInput = (index: number): void => {
-    this.inputs[index].current!.focus();
-  };
-
-  private _renderInputs = (): Array<JSX.Element> => {
+  _renderInputs = (): Array<JSX.Element> => {
     const {
       autoCapitalize,
       clearTextOnFocus,
@@ -230,9 +198,6 @@ export default class OtpInputs extends Component<Props, State> {
           firstInput={index === 0}
           focusStyles={focusStyles}
           focusedBorderColor={focusedBorderColor}
-          handleKeyPress={(event: TextInputOnKeyPressEventData) =>
-            this._handleKeyPress(event, inputIndex)
-          }
           inputStyles={inputStyles}
           key={inputIndex}
           keyboardType={keyboardType}
@@ -243,7 +208,7 @@ export default class OtpInputs extends Component<Props, State> {
           selectTextOnFocus={selectTextOnFocus}
           textErrorColor={inputTextErrorColor}
           unfocusedBorderColor={unfocusedBorderColor}
-          updateText={(event: TextInputOnChangeEventData) => this._updateText(event, inputIndex)}
+          handleTextChange={(text: string) => this._handleTextChange(text, inputIndex)}
           value={otpCode[inputIndex]}
           testID={`${testIDPrefix}-${inputIndex}`}
         />
@@ -251,7 +216,7 @@ export default class OtpInputs extends Component<Props, State> {
     });
   };
 
-  public render(): ReactNode {
+  render(): ReactNode {
     const {
       containerStyles,
       errorMessage,
@@ -261,18 +226,31 @@ export default class OtpInputs extends Component<Props, State> {
     } = this.props;
 
     return (
-      <View style={[defaultStyles.container, containerStyles]}>
+      <View style={[styles.container, containerStyles]}>
         {errorMessage && (
-          <View style={[defaultStyles.errorMessageContainer, errorMessageContainerStyles]}>
+          <View style={[styles.errorMessageContainer, errorMessageContainerStyles]}>
             <Text testID="errorText" style={errorMessageTextStyles}>
               {errorMessage}
             </Text>
           </View>
         )}
-        <View style={[defaultStyles.inputsContainer, inputsContainerStyles]}>
-          {this._renderInputs()}
-        </View>
+        <View style={[styles.inputsContainer, inputsContainerStyles]}>{this._renderInputs()}</View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  inputsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  errorMessageContainer: {
+    marginHorizontal: 25,
+  },
+});

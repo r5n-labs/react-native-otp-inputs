@@ -1,17 +1,13 @@
-import React, { PureComponent, RefObject } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import {
-  NativeSyntheticEvent,
   Platform,
   StyleProp,
   TextInput,
-  TextInputChangeEventData,
-  TextInputKeyPressEventData,
   TextStyle,
+  StyleSheet,
   View,
   ViewStyle,
 } from 'react-native';
-
-import defaultStyles from './defaultStyles';
 
 interface Props {
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
@@ -21,7 +17,6 @@ interface Props {
   firstInput: boolean;
   focusStyles?: StyleProp<ViewStyle>;
   focusedBorderColor?: string;
-  handleKeyPress: (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
   inputStyles?: StyleProp<TextStyle>;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   numberOfInputs: number;
@@ -31,42 +26,22 @@ interface Props {
   testID: string;
   textErrorColor?: string;
   unfocusedBorderColor?: string;
-  updateText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  handleTextChange: (text: string) => void;
   value?: string;
-}
-
-interface State {
-  isFocused: boolean;
 }
 
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
 const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 
-export default class OtpInput extends PureComponent<Props, State> {
-  state = {
-    isFocused: false,
-  };
-  private _onFocus = (): void => this.setState({ isFocused: true });
-  private _onBlur = (): void => this.setState({ isFocused: false });
-
-  public input: RefObject<TextInput> = React.createRef();
-  public clear = (): void => {
-    this.input.current!.clear();
-  };
-
-  public focus = (): void => {
-    this.input.current!.focus();
-  };
-
-  public render() {
-    const {
+const OtpInput = forwardRef<TextInput, Props>(
+  (
+    {
       clearTextOnFocus,
       containerStyles,
       error,
       firstInput,
       focusStyles,
       focusedBorderColor,
-      handleKeyPress,
       inputStyles,
       keyboardType,
       numberOfInputs,
@@ -76,18 +51,25 @@ export default class OtpInput extends PureComponent<Props, State> {
       testID,
       textErrorColor,
       unfocusedBorderColor,
-      updateText,
+      handleTextChange,
       value,
-    } = this.props;
+    },
+    ref,
+  ) => {
+    const [focused, setFocused] = useState(false);
+    useEffect(() => {
+      // @ts-ignore
+      ref.current.setNativeProps({ text: value });
+    }, [ref, value]);
 
     return (
       <View
         style={[
-          defaultStyles.otpContainer,
+          styles.container,
           containerStyles,
-          this.state.isFocused && focusStyles,
+          focused && focusStyles,
           {
-            borderColor: this.state.isFocused ? focusedBorderColor : unfocusedBorderColor,
+            borderColor: focused ? focusedBorderColor : unfocusedBorderColor,
           },
         ]}
       >
@@ -95,22 +77,36 @@ export default class OtpInput extends PureComponent<Props, State> {
           clearTextOnFocus={clearTextOnFocus}
           keyboardType={keyboardType}
           maxLength={firstInput ? numberOfInputs : 1}
-          onBlur={this._onBlur}
-          onChange={updateText}
-          onFocus={this._onFocus}
-          onKeyPress={handleKeyPress}
-          ref={this.input}
+          onBlur={() => setFocused(false)}
+          onChangeText={handleTextChange}
+          onFocus={() => setFocused(true)}
+          ref={ref}
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
           // https://github.com/facebook/react-native/issues/18339
           selectTextOnFocus={Platform.select({ ios: selectTextOnFocus, android: true })}
-          style={[defaultStyles.otpInput, inputStyles, error && { color: textErrorColor }]}
+          style={[styles.input, inputStyles, error && { color: textErrorColor }]}
           testID={testID}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"
-          value={value}
         />
       </View>
     );
-  }
-}
+  },
+);
+
+export default OtpInput;
+
+const styles = StyleSheet.create({
+  container: {
+    borderBottomWidth: 1,
+    height: 53,
+    margin: 10,
+  },
+  input: {
+    fontSize: 24,
+    paddingTop: 10,
+    textAlign: 'center',
+    width: 40,
+  },
+});

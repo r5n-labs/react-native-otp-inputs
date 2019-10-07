@@ -1,16 +1,26 @@
-import React, { ReactNode, RefObject, Component } from 'react';
+import React, {
+  RefObject,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useReducer,
+  useRef,
+} from 'react';
 import {
   Clipboard,
   Keyboard,
   StyleProp,
   TextInput,
+  TextInputProps,
   TextStyle,
   View,
   ViewStyle,
-  TextInputProps,
 } from 'react-native';
 
 import OtpInput from './OtpInput';
+import { ActionTypes, OtpInputsRef, Actions } from './types';
+import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
   styles?: StyleProp<ViewStyle>;
@@ -23,164 +33,184 @@ type Props = TextInputProps & {
   testIDPrefix: string;
 };
 
-type State = {
-  otpCode: Array<string>;
-  previousCopiedText?: string;
+const ACTION_TYPES: ActionTypes = {
+  setOtpTextForIndex: 'setOtpTextForIndex',
+  setOtpCode: 'setOtpCode',
+  clearOtp: 'clearOtp',
 };
 
-const MINIMAL_INDEX = 0;
-
-class OtpInputs extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    const inputs = [];
-
-    for (let index = 0; index < this.props.numberOfInputs; index++) {
-      inputs[index] = React.createRef<TextInput>();
+const reducer = (state: { [key: string]: string }, action: Actions) => {
+  switch (action.type) {
+    case ACTION_TYPES.setOtpTextForIndex: {
+      return {
+        [`${action.payload.index}`]: action.payload.text,
+      };
     }
 
-    this._interval = undefined;
-    this.inputs = inputs as Array<RefObject<TextInput>>;
-    this.state = {
-      previousCopiedText: '',
-      otpCode: [],
-    };
+    case ACTION_TYPES.setOtpCode: {
+      return fillOtpCode(action.payload.numberOfInputs, action.payload.code);
+    }
+
+    case ACTION_TYPES.clearOtp: {
+      return fillOtpCode(action.payload);
+    }
+
+    default:
+      return state;
   }
+};
 
-  componentDidMount(): void {
-    this._listenOnCopiedText();
-
-    this._interval = setInterval(() => {
-      this._listenOnCopiedText();
-    }, 1000);
-  }
-
-  componentWillUnmount(): void {
-    clearInterval(this._interval);
-  }
-
-  inputs: Array<RefObject<TextInput>>;
-  _interval: any;
-
-  reset = (): void => {
-    this.setState({ otpCode: [] });
-    this.props.handleChange('');
-    this.inputs.forEach(i => i.current!.clear());
-  };
-
-  _listenOnCopiedText = async (): Promise<void> => {
-    const { numberOfInputs } = this.props;
-    const { otpCode, previousCopiedText } = this.state;
-    const copiedText = await Clipboard.getString();
-
-    if (
-      copiedText &&
-      copiedText.length === numberOfInputs &&
-      copiedText !== otpCode.join('') &&
-      copiedText !== previousCopiedText
-    ) {
-      clearInterval(this._interval);
-      this._handleAfterOtpAction(copiedText.split(''), numberOfInputs, true);
-    }
-  };
-
-  _handleAfterOtpAction = (
-    otpCode: Array<string>,
-    indexToFocus: number,
-    fromClipboard?: boolean,
-  ): void => {
-    const { handleChange, numberOfInputs } = this.props;
-    handleChange(otpCode.join(''));
-
-    this.setState({
-      otpCode,
-      ...(fromClipboard && { previousCopiedText: otpCode.join('') }),
-    });
-
-    if (indexToFocus === numberOfInputs) {
-      return Keyboard.dismiss();
-    }
-
-    if (indexToFocus >= MINIMAL_INDEX && indexToFocus < numberOfInputs) {
-      this._focusInput(indexToFocus);
-    }
-  };
-
-  _handleTextChange = (text: string, index: number): void => {
-    const { numberOfInputs } = this.props;
-
-    if (!text.length) {
-      this.inputs[index].current!.clear();
-      return this._focusInput(index - 1);
-    }
-
-    if (text.length === numberOfInputs) {
-      this._handleAfterOtpAction(text.split(''), numberOfInputs, true);
-    } else if (text) {
-      let otpArray = this.state.otpCode;
-      otpArray[index] = text[text.length - 1];
-      this._handleAfterOtpAction(otpArray, index + 1);
-    }
-  };
-
-  _focusInput = (index: number): void => {
-    if (index >= 0 && index < this.props.numberOfInputs) {
-      this.inputs[index].current!.focus();
-    }
-  };
-
-  _renderInputs = (): Array<JSX.Element> => {
-    const {
+const OtpInputs = forwardRef<OtpInputsRef, Props>(
+  (
+    {
       autoCapitalize,
       clearTextOnFocus,
       focusStyles,
       inputContainerStyles,
       inputStyles,
+      isRTL,
       keyboardType,
       numberOfInputs,
+      placeholder,
       secureTextEntry,
       selectTextOnFocus,
+      styles,
       testIDPrefix,
-      isRTL,
-      placeholder,
-    } = this.props;
-    const { otpCode } = this.state;
-    const iterationArray = Array<number>(numberOfInputs).fill(0);
+    },
+    ref,
+  ) => {
+    const [otpCode, dispatch] = useReducer(reducer, numberOfInputs, fillOtpCode);
+    const previousCopiedText: { current: string } = useRef('');
+    const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
 
-    return iterationArray.map((_, index) => {
-      let inputIndex = index;
-      if (isRTL) {
-        inputIndex = numberOfInputs - 1 - index;
+    const handleInputTextChange = ({ text, index }: { text: string; index: number }) => {
+      dispatch({
+        type: ACTION_TYPES.setOtpTextForIndex,
+        payload: {
+          text,
+          index,
+        },
+      });
+      focusInput(index + 1);
+    };
+
+    const handleTextChange = (text: string, index: number): void => {
+      if (!text.length) {
+        handleClearInput(index);
       }
 
-      return (
-        <OtpInput
-          autoCapitalize={autoCapitalize}
-          clearTextOnFocus={clearTextOnFocus}
-          firstInput={index === 0}
-          focusStyles={focusStyles}
-          handleTextChange={(text: string) => this._handleTextChange(text, inputIndex)}
-          inputContainerStyles={inputContainerStyles}
-          inputStyles={inputStyles}
-          key={inputIndex}
-          keyboardType={keyboardType}
-          numberOfInputs={numberOfInputs}
-          placeholder={placeholder}
-          ref={this.inputs[inputIndex]}
-          secureTextEntry={secureTextEntry}
-          selectTextOnFocus={selectTextOnFocus}
-          testID={`${testIDPrefix}-${inputIndex}`}
-          value={otpCode[inputIndex]}
-        />
-      );
-    });
-  };
+      if (text) {
+        handleInputTextChange({ text, index });
+      }
 
-  render(): ReactNode {
-    return <View style={this.props.styles}>{this._renderInputs()}</View>;
-  }
-}
+      if (index === numberOfInputs - 1 && text) {
+        Keyboard.dismiss();
+      }
+    };
+
+    const focusInput = useCallback(
+      (index: number): void => {
+        if (index >= 0 && index < numberOfInputs) {
+          const input = inputs.current[index];
+          input && input.current && input.current.focus();
+        }
+      },
+      [numberOfInputs],
+    );
+
+    const handleClearInput = useCallback(
+      (inputIndex: number) => {
+        const input = inputs.current[inputIndex];
+        input && input.current && input.current.clear();
+        focusInput(inputIndex - 1);
+      },
+      [focusInput],
+    );
+
+    const fillInputs = useCallback(
+      (code: string) => {
+        dispatch({ type: ACTION_TYPES.setOtpCode, payload: { numberOfInputs, code } });
+      },
+      [numberOfInputs],
+    );
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        reset: (): void => {
+          dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
+          inputs.current.forEach(input => input && input.current && input.current.clear());
+          previousCopiedText.current = '';
+        },
+      }),
+      [numberOfInputs],
+    );
+
+    const listenOnCopiedText = useCallback(async (): Promise<void> => {
+      const copiedText = await Clipboard.getString();
+      const otpCodeValue = Object.values(otpCode).join('');
+
+      if (
+        copiedText &&
+        copiedText.length === numberOfInputs &&
+        copiedText !== otpCodeValue &&
+        copiedText !== previousCopiedText.current
+      ) {
+        previousCopiedText.current = otpCodeValue;
+        fillInputs(copiedText);
+      }
+    }, [fillInputs, numberOfInputs, otpCode]);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        listenOnCopiedText();
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }, [listenOnCopiedText, numberOfInputs]);
+
+    const renderInputs = (): Array<JSX.Element> => {
+      const iterationArray = Array<number>(numberOfInputs).fill(0);
+
+      return iterationArray.map((_, index) => {
+        let inputIndex = index;
+        if (isRTL) {
+          inputIndex = numberOfInputs - 1 - index;
+        }
+        const inputValue = otpCode[`${inputIndex}`];
+
+        if (!inputs.current[inputIndex]) {
+          inputs.current[inputIndex] = React.createRef<TextInput>();
+        }
+
+        return (
+          <OtpInput
+            autoCapitalize={autoCapitalize}
+            clearTextOnFocus={clearTextOnFocus}
+            firstInput={index === 0}
+            focusStyles={focusStyles}
+            handleTextChange={(text: string) => handleTextChange(text, inputIndex)}
+            inputContainerStyles={inputContainerStyles}
+            inputStyles={inputStyles}
+            key={inputIndex}
+            keyboardType={keyboardType}
+            numberOfInputs={numberOfInputs}
+            placeholder={placeholder}
+            ref={inputs.current[inputIndex]}
+            secureTextEntry={secureTextEntry}
+            selectTextOnFocus={selectTextOnFocus}
+            testID={`${testIDPrefix}-${inputIndex}`}
+            inputValue={inputValue}
+          />
+        );
+      });
+    };
+
+    return <View style={styles}>{renderInputs()}</View>;
+  },
+);
 
 export default OtpInputs;
 

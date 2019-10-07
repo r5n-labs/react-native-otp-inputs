@@ -4,31 +4,19 @@ import {
   StyleProp,
   TextInput,
   TextStyle,
-  StyleSheet,
   View,
   ViewStyle,
+  TextInputProps,
 } from 'react-native';
 
-interface Props {
-  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-  clearTextOnFocus?: boolean;
-  containerStyles?: StyleProp<ViewStyle>;
-  error?: boolean;
+type Props = TextInputProps & {
+  inputContainerStyles?: StyleProp<ViewStyle>;
   firstInput: boolean;
   focusStyles?: StyleProp<ViewStyle>;
-  focusedBorderColor?: string;
   inputStyles?: StyleProp<TextStyle>;
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   numberOfInputs: number;
-  placeholder?: string;
-  secureTextEntry?: boolean;
-  selectTextOnFocus?: boolean;
-  testID: string;
-  textErrorColor?: string;
-  unfocusedBorderColor?: string;
   handleTextChange: (text: string) => void;
-  value?: string;
-}
+};
 
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
 const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;

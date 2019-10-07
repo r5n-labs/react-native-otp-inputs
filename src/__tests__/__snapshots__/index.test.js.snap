@@ -3,447 +3,173 @@
 exports[`<OtpInputs /> render 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "flex": 1,
-      },
-      undefined,
-    ]
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+    }
   }
 >
   <View
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
+          "borderBottomWidth": 1,
+          "height": 53,
+          "margin": 10,
         },
-        undefined,
+        false,
       ]
     }
   >
-    <View
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      clearTextOnFocus={false}
+      firstInput={true}
+      keyboardType="phone-pad"
+      maxLength={1}
+      numberOfInputs={4}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      rejectResponderTermination={true}
+      secureTextEntry={false}
+      selectTextOnFocus={true}
       style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={4}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            false,
-          ]
-        }
-        testID="otpInput-0"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            false,
-          ]
-        }
-        testID="otpInput-1"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            false,
-          ]
-        }
-        testID="otpInput-2"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            false,
-          ]
-        }
-        testID="otpInput-3"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-  </View>
-</View>
-`;
-
-exports[`<OtpInputs /> rendering with error 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "flex": 1,
-      },
-      undefined,
-    ]
-  }
->
-  <View
-    style={
-      Array [
         Object {
-          "marginHorizontal": 25,
-        },
-        undefined,
-      ]
-    }
-  >
-    <Text
-      testID="errorText"
-    >
-      ExampleErrorMessage
-    </Text>
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
+        }
+      }
+      testID="otpInput-0"
+      textContentType="none"
+      underlineColorAndroid="transparent"
+    />
   </View>
   <View
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
+          "borderBottomWidth": 1,
+          "height": 53,
+          "margin": 10,
         },
-        undefined,
+        false,
       ]
     }
   >
-    <View
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      clearTextOnFocus={false}
+      firstInput={false}
+      keyboardType="phone-pad"
+      maxLength={1}
+      numberOfInputs={4}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      rejectResponderTermination={true}
+      secureTextEntry={false}
+      selectTextOnFocus={true}
       style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={4}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            Object {
-              "color": "#ff0000",
-            },
-          ]
+        Object {
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
         }
-        testID="otpInput-0"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
+      }
+      testID="otpInput-1"
+      textContentType="none"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomWidth": 1,
+          "height": 53,
+          "margin": 10,
+        },
+        false,
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      clearTextOnFocus={false}
+      firstInput={false}
+      keyboardType="phone-pad"
+      maxLength={1}
+      numberOfInputs={4}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      rejectResponderTermination={true}
+      secureTextEntry={false}
+      selectTextOnFocus={true}
       style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            Object {
-              "color": "#ff0000",
-            },
-          ]
+        Object {
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
         }
-        testID="otpInput-1"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
+      }
+      testID="otpInput-2"
+      textContentType="none"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomWidth": 1,
+          "height": 53,
+          "margin": 10,
+        },
+        false,
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      clearTextOnFocus={false}
+      firstInput={false}
+      keyboardType="phone-pad"
+      maxLength={1}
+      numberOfInputs={4}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      rejectResponderTermination={true}
+      secureTextEntry={false}
+      selectTextOnFocus={true}
       style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
-      }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            Object {
-              "color": "#ff0000",
-            },
-          ]
+        Object {
+          "fontSize": 24,
+          "paddingTop": 10,
+          "textAlign": "center",
+          "width": 40,
         }
-        testID="otpInput-2"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomWidth": 1,
-            "height": 53,
-            "margin": 10,
-          },
-          undefined,
-          false,
-          Object {
-            "borderColor": "#a0a0a0",
-          },
-        ]
       }
-    >
-      <TextInput
-        allowFontScaling={true}
-        clearTextOnFocus={false}
-        keyboardType="phone-pad"
-        maxLength={1}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyPress={[Function]}
-        placeholder=""
-        rejectResponderTermination={true}
-        secureTextEntry={false}
-        selectTextOnFocus={true}
-        style={
-          Array [
-            Object {
-              "fontSize": 24,
-              "paddingTop": 10,
-              "textAlign": "center",
-              "width": 40,
-            },
-            undefined,
-            Object {
-              "color": "#ff0000",
-            },
-          ]
-        }
-        testID="otpInput-3"
-        textContentType="none"
-        underlineColorAndroid="transparent"
-      />
-    </View>
+      testID="otpInput-3"
+      textContentType="none"
+      underlineColorAndroid="transparent"
+    />
   </View>
 </View>
 `;

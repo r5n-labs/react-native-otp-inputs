@@ -24,59 +24,41 @@ const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 const OtpInput = forwardRef<TextInput, Props>(
   (
     {
-      clearTextOnFocus,
-      containerStyles,
-      error,
       firstInput,
       focusStyles,
-      focusedBorderColor,
+      handleTextChange,
+      inputContainerStyles,
       inputStyles,
-      keyboardType,
       numberOfInputs,
       placeholder,
-      secureTextEntry,
       selectTextOnFocus,
-      testID,
-      textErrorColor,
-      unfocusedBorderColor,
-      handleTextChange,
       value,
+      ...rest
     },
     ref,
   ) => {
     const [focused, setFocused] = useState(false);
+
     useEffect(() => {
       // @ts-ignore
-      ref.current.setNativeProps({ text: value });
+      ref.current.setNativeProps({ value, text: value });
     }, [ref, value]);
 
     return (
-      <View
-        style={[
-          styles.container,
-          containerStyles,
-          focused && focusStyles,
-          {
-            borderColor: focused ? focusedBorderColor : unfocusedBorderColor,
-          },
-        ]}
-      >
+      <View style={[inputContainerStyles, focused && focusStyles]}>
         <TextInput
-          clearTextOnFocus={clearTextOnFocus}
-          keyboardType={keyboardType}
           maxLength={firstInput ? numberOfInputs : 1}
           onBlur={() => setFocused(false)}
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}
           ref={ref}
           placeholder={placeholder}
-          secureTextEntry={secureTextEntry}
           // https://github.com/facebook/react-native/issues/18339
           selectTextOnFocus={Platform.select({ ios: selectTextOnFocus, android: true })}
-          style={[styles.input, inputStyles, error && { color: textErrorColor }]}
-          testID={testID}
+          style={inputStyles}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"
+          {...rest}
         />
       </View>
     );
@@ -84,17 +66,3 @@ const OtpInput = forwardRef<TextInput, Props>(
 );
 
 export default OtpInput;
-
-const styles = StyleSheet.create({
-  container: {
-    borderBottomWidth: 1,
-    height: 53,
-    margin: 10,
-  },
-  input: {
-    fontSize: 24,
-    paddingTop: 10,
-    textAlign: 'center',
-    width: 40,
-  },
-});

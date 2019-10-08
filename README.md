@@ -20,9 +20,10 @@
 | React-Native version | installation                           |
 | -------------------- | -------------------------------------- |
 | >= 0.53.0 < 0.57.0   | yarn add react-native-otp-inputs@1.1.0 |
-| <= 0.57.0            | yarn add react-native-otp-inputs       |
+| <= 0.57.0            | yarn add react-native-otp-inputs@3.2.2 |
+| <= 0.59.0            | yarn add react-native-otp-inputs       |
 
-**_It's because of `onKeyPress` event implementation on android._**
+### [Migration to v4](https://github.com/dsznajder/react-native-otp-inputs/releases/tag/v4.0.0-alpha.0)
 
 ## Basic usage
 

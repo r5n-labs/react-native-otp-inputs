@@ -148,6 +148,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
           dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
           inputs.current.forEach(input => input && input.current && input.current.clear());
           previousCopiedText.current = '';
+          Clipboard.setString('');
         },
       }),
       [numberOfInputs],
@@ -163,7 +164,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
         copiedText !== otpCodeValue &&
         copiedText !== previousCopiedText.current
       ) {
-        previousCopiedText.current = otpCodeValue;
+        previousCopiedText.current = copiedText;
         fillInputs(copiedText);
       }
     }, [fillInputs, numberOfInputs, otpCode]);

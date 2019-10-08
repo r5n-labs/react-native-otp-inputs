@@ -40,6 +40,9 @@
     "testEnvironment": "node",
     "preset": "react-native",
     "testRegex": "/__tests__/.*\\.(test)\\.(js|tsx?)$",
+    "setupFiles": [
+      "./jest/setup"
+    ],
     "modulePathIgnorePatterns": [
       "<rootDir>/Example"
     ]

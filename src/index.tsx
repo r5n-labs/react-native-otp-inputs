@@ -122,6 +122,13 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       (inputIndex: number) => {
         const input = inputs.current[inputIndex];
         input && input.current && input.current.clear();
+        dispatch({
+          type: ACTION_TYPES.setOtpTextForIndex,
+          payload: {
+            index: inputIndex,
+            text: '',
+          },
+        });
         focusInput(inputIndex - 1);
       },
       [focusInput],

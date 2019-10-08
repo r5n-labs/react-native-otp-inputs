@@ -1,15 +1,13 @@
 {
-  "safeBump": false,
   "git": {
     "commitMessage": ":bookmark: release %s",
     "tagName": "v%s"
   },
   "scripts": {
-    "changelog": "gitmoji-changelog",
-    "beforeStage": "gitmoji-changelog"
+    "changelog": "gitmoji-changelog"
   },
   "npm": {
-    "publish": false
+    "publish": true
   },
   "github": {
     "release": true

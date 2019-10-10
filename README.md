@@ -23,6 +23,29 @@
 | <= 0.57.0            | yarn add react-native-otp-inputs@3.2.2 |
 | <= 0.59.0            | yarn add react-native-otp-inputs       |
 
+### Android additional steps
+
+Android setup requires [react-native-keyevent](https://github.com/kevinejohn/react-native-keyevent) package to work properly.
+
+1. Add `react-native-keyevent` to your dependencies with
+
+```bash
+yarn add react-native-keyevent
+```
+
+2. If you are using react-native < 0.60.0 then [follow these steps](https://github.com/kevinejohn/react-native-keyevent#linking-android)
+3. If you are using react-natice >= 0.60.0 then add this to your dependencies in `react-native.config.js`
+
+```javascript
+'react-native-keyevent': {
+      platforms: {
+        ios: null,
+      },
+    },
+```
+
+4. Then follow configuration for Android [here](https://github.com/kevinejohn/react-native-keyevent#configuration)
+
 ### [Migration to v4](https://github.com/dsznajder/react-native-otp-inputs/releases/tag/v4.0.0-alpha.0)
 
 ## Basic usage

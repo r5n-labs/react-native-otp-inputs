@@ -34,7 +34,7 @@ yarn add react-native-keyevent
 ```
 
 2. If you are using react-native < 0.60.0 then [follow these steps](https://github.com/kevinejohn/react-native-keyevent#linking-android)
-3. If you are using react-natice >= 0.60.0 then add this to your dependencies in `react-native.config.js`
+3. If you are using react-native >= 0.60.0 then add this to your dependencies in `react-native.config.js`
 
 ```javascript
 'react-native-keyevent': {

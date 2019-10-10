@@ -16,10 +16,12 @@ import {
   TextStyle,
   View,
   ViewStyle,
+  Platform,
 } from 'react-native';
+import KeyEvent from 'react-native-keyevent';
 
 import OtpInput from './OtpInput';
-import { ActionTypes, OtpInputsRef, Actions } from './types';
+import { ActionTypes, OtpInputsRef, Actions, KeyEventType } from './types';
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
@@ -82,6 +84,25 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     const [otpCode, dispatch] = useReducer(reducer, numberOfInputs, fillOtpCode);
     const previousCopiedText: { current: string } = useRef('');
     const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
+
+    useEffect(() => {
+      if (Platform.OS === 'android') {
+        KeyEvent.onKeyUpListener(handleOnKeyUp);
+      }
+
+      return () => {
+        KeyEvent.removeKeyUpListener();
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleOnKeyUp = (event: KeyEventType): void => {
+      const index = inputs.current.findIndex(input => {
+        return input.current && input.current.isFocused();
+      });
+
+      handleTextChange(event.pressedKey, index);
+    };
 
     const handleInputTextChange = ({ text, index }: { text: string; index: number }) => {
       dispatch({
@@ -199,7 +220,11 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}
             focusStyles={focusStyles}
-            handleTextChange={(text: string) => handleTextChange(text, inputIndex)}
+            handleTextChange={
+              Platform.OS === 'ios'
+                ? (text: string) => handleTextChange(text, inputIndex)
+                : () => {}
+            }
             inputContainerStyles={inputContainerStyles}
             inputStyles={inputStyles}
             key={inputIndex}

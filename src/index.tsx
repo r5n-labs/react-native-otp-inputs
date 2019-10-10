@@ -91,7 +91,9 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       }
 
       return () => {
-        KeyEvent.removeKeyUpListener();
+        if (Platform.OS === 'android') {
+          KeyEvent.removeKeyUpListener();
+        }
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

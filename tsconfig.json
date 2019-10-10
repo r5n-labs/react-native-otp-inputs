@@ -23,6 +23,6 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["src/*"],
+  "include": ["src/*", "index.d.ts"],
   "exclude": ["android", "__tests__", "ios", "build", "node_modules"]
 }

@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "react": "16.8.6",
-    "react-native": "0.60.5"
+    "react-native": "0.60.5",
+    "react-native-keyevent": "0.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",

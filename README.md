@@ -44,7 +44,7 @@ yarn add react-native-keyevent
     },
 ```
 
-4. Then follow configuration for Android [here](https://github.com/kevinejohn/react-native-keyevent#configuration)
+4. Then follow configuration for Android [here](https://github.com/kevinejohn/react-native-keyevent#configuration) (If you have problems, check [Example App](./Example/android/app/src/main/java/com/example/MainActivity.java) configuration)
 
 ### [Migration to v4](https://github.com/dsznajder/react-native-otp-inputs/releases/tag/v4.0.0-alpha.0)
 

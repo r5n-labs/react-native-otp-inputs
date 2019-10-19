@@ -4,8 +4,18 @@ import { SafeAreaView, StyleSheet, Button, View } from 'react-native';
 // @ts-ignore
 import OtpInputs from 'react-native-otp-inputs';
 
-export default class App extends Component {
+export default class App extends Component<{}, { isFourDigit: boolean }> {
   otpRef: RefObject<OtpInputs> = React.createRef();
+
+  state = {
+    isFourDigit: true,
+  };
+
+  toggle = () => {
+    this.setState(({ isFourDigit }) => {
+      return { isFourDigit: !isFourDigit };
+    });
+  };
 
   focusOTP = () => {
     this.otpRef.current.focus();
@@ -20,7 +30,18 @@ export default class App extends Component {
       <SafeAreaView style={styles.container}>
         <Button title="Reset" onPress={this.resetOTP} />
         <Button title="Focus" onPress={this.focusOTP} />
-        <OtpInputs ref={this.otpRef} numberOfInputs={4} />
+        <Button title="Toggle" onPress={this.toggle} />
+
+        {this.state.isFourDigit ? (
+          <OtpInputs
+            ref={this.otpRef}
+            selectTextOnFocus={false}
+            keyboardType="number-pad"
+            numberOfInputs={4}
+          />
+        ) : (
+          <OtpInputs keyboardType="number-pad" ref={this.otpRef} numberOfInputs={6} />
+        )}
       </SafeAreaView>
     );
   }

@@ -2,6 +2,11 @@ type SetOtpTextForIndex = { type: 'setOtpTextForIndex'; payload: { index: number
 type SetOtpCode = { type: 'setOtpCode'; payload: { numberOfInputs: number; code: string } };
 type ClearOtp = { type: 'clearOtp'; payload: number };
 
+export type ReducerState = {
+  otpCode: { [key: string]: string };
+  handleChange: (otpCode: string) => void;
+};
+
 export type ActionTypes = {
   setOtpTextForIndex: 'setOtpTextForIndex';
   setOtpCode: 'setOtpCode';

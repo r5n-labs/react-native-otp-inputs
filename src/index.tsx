@@ -21,7 +21,7 @@ import {
 import KeyEvent from 'react-native-keyevent';
 
 import OtpInput from './OtpInput';
-import { ActionTypes, OtpInputsRef, Actions, KeyEventType } from './types';
+import { ActionTypes, OtpInputsRef, ReducerState, Actions, KeyEventType } from './types';
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
@@ -41,20 +41,33 @@ const ACTION_TYPES: ActionTypes = {
   clearOtp: 'clearOtp',
 };
 
-const reducer = (state: { [key: string]: string }, action: Actions) => {
+const reducer = (state: ReducerState, action: Actions) => {
   switch (action.type) {
     case ACTION_TYPES.setOtpTextForIndex: {
+      const otpCode = { ...state.otpCode, [`${action.payload.index}`]: action.payload.text };
+      state.handleChange(Object.values(otpCode).join(''));
+
       return {
-        [`${action.payload.index}`]: action.payload.text,
+        ...state,
+        otpCode,
       };
     }
 
     case ACTION_TYPES.setOtpCode: {
-      return fillOtpCode(action.payload.numberOfInputs, action.payload.code);
+      const otpCode = fillOtpCode(action.payload.numberOfInputs, action.payload.code);
+      state.handleChange(Object.values(otpCode).join(''));
+
+      return {
+        ...state,
+        otpCode,
+      };
     }
 
     case ACTION_TYPES.clearOtp: {
-      return fillOtpCode(action.payload);
+      const otpCode = fillOtpCode(action.payload);
+      state.handleChange(Object.values(otpCode).join(''));
+
+      return { ...state, otpCode };
     }
 
     default:
@@ -68,6 +81,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       autoCapitalize,
       clearTextOnFocus,
       focusStyles,
+      handleChange,
       inputContainerStyles,
       inputStyles,
       isRTL,
@@ -81,7 +95,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     },
     ref,
   ) => {
-    const [otpCode, dispatch] = useReducer(reducer, numberOfInputs, fillOtpCode);
+    const [{ otpCode }, dispatch] = useReducer(reducer, {}, () => ({
+      otpCode: fillOtpCode(numberOfInputs),
+      handleChange,
+    }));
     const previousCopiedText: { current: string } = useRef('');
     const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
 
@@ -97,6 +114,23 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        reset: (): void => {
+          dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
+          inputs.current.forEach(input => input && input.current && input.current.clear());
+          previousCopiedText.current = '';
+          Clipboard.setString('');
+        },
+        focus: (): void => {
+          const firstInput = inputs.current[0];
+          firstInput && firstInput.current && firstInput.current.focus();
+        },
+      }),
+      [numberOfInputs],
+    );
 
     const handleOnKeyUp = (event: KeyEventType): void => {
       const index = inputs.current.findIndex(input => {
@@ -161,19 +195,6 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       (code: string) => {
         dispatch({ type: ACTION_TYPES.setOtpCode, payload: { numberOfInputs, code } });
       },
-      [numberOfInputs],
-    );
-
-    useImperativeHandle(
-      ref,
-      () => ({
-        reset: (): void => {
-          dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
-          inputs.current.forEach(input => input && input.current && input.current.clear());
-          previousCopiedText.current = '';
-          Clipboard.setString('');
-        },
-      }),
       [numberOfInputs],
     );
 

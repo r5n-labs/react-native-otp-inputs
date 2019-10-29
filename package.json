@@ -66,7 +66,7 @@
     "metro-react-native-babel-preset": "0.56.3",
     "prettier": "1.18.2",
     "react": "16.9.0",
-    "react-native": "0.61.2",
+    "react-native": "0.61.3",
     "react-native-keyevent": "0.2.4",
     "react-test-renderer": "16.11.0",
     "release-it": "12.4.3",

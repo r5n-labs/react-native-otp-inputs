@@ -27,21 +27,26 @@
 
 Android setup requires [react-native-keyevent](https://github.com/kevinejohn/react-native-keyevent) package to work properly.
 
-1. Add `react-native-keyevent` to your dependencies with
+1. If you are using react-native < 0.60.0 then [follow these steps](https://github.com/kevinejohn/react-native-keyevent#linking-android)
+1. If you are using react-native >= 0.60.0 then add this to your dependencies in `react-native.config.js`
+
+```javascript
+// react-native.config.js
+module.exports = {
+    dependencies: {
+        "react-native-keyevent": {
+            platforms: {
+                ios: null,
+            },
+        },
+    },
+};
+```
+
+3. Add `react-native-keyevent` to your dependencies with
 
 ```bash
 yarn add react-native-keyevent
-```
-
-2. If you are using react-native < 0.60.0 then [follow these steps](https://github.com/kevinejohn/react-native-keyevent#linking-android)
-3. If you are using react-native >= 0.60.0 then add this to your dependencies in `react-native.config.js`
-
-```javascript
-'react-native-keyevent': {
-  platforms: {
-    ios: null,
-  },
-},
 ```
 
 4. Then follow configuration for Android [here](https://github.com/kevinejohn/react-native-keyevent#configuration) (If you have problems, check [Example App](./Example/android/app/src/main/java/com/example/MainActivity.java) configuration)

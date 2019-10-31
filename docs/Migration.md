@@ -9,7 +9,7 @@
 
 ### Renamed Props:
 
-- `containerStyles` -> `styles`
+- `containerStyles` -> `style`
 - `focusedBorderColor` -> `focusedStyles.borderColor`
 - `unfocusedBorderColor` -> `focusedStyles.borderColor`
 

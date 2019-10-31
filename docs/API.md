@@ -13,7 +13,7 @@
 | testIDPrefix          | string         | false       | otpInput-\${inputIndex}                 | Prefix for testID.                                                  |
 | isRTL                 | boolean        | false       | false                                   | Preferably I18nManager.isRTL.                                       |
 | placeholder           | string         | false       |                                         | Placeholder for the input boxes.                                    |
-| styles                | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to whole container.                                         |
+| style                 | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to whole container.                                         |
 | focusStyles           | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to the input on focus.                                      |
 | inputStyles           | style(object)  | false       | [default](./src/index.tsx#L275)         | Applied to single input.                                            |
 | inputContainerStyles  | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to each input container.                                    |

@@ -25,7 +25,7 @@ import { ActionTypes, OtpInputsRef, ReducerState, Actions, KeyEventType } from '
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
-  styles?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
   focusStyles?: StyleProp<ViewStyle>;
   defaultValue?: string;
   handleChange: (otpCode: string) => void;
@@ -92,8 +92,9 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       placeholder,
       secureTextEntry,
       selectTextOnFocus,
-      styles,
+      style,
       testIDPrefix,
+      ...restProps
     },
     ref,
   ) => {
@@ -260,12 +261,13 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             selectTextOnFocus={selectTextOnFocus}
             testID={`${testIDPrefix}-${inputIndex}`}
             inputValue={inputValue}
+            {...restProps}
           />
         );
       });
     };
 
-    return <View style={styles}>{renderInputs()}</View>;
+    return <View style={style}>{renderInputs()}</View>;
   },
 );
 
@@ -283,7 +285,7 @@ OtpInputs.defaultProps = {
   testIDPrefix: 'otpInput',
   isRTL: false,
   placeholder: '',
-  styles: {
+  style: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',

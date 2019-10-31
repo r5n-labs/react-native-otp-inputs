@@ -5,7 +5,7 @@
 ### Breaking:
 
 - Minimal React-Native version is now 0.59.0
-- Package now use [react-native-keyevent](https://github.com/kevinejohn/react-native-keyevent) for android. Check additional steps [here](https://github.com/kevinejohn/react-native-keyevent#android)
+- Package now use [react-native-keyevent](https://github.com/kevinejohn/react-native-keyevent) for android. Check additional steps [here](https://github.com/dsznajder/react-native-otp-inputs#android-additional-steps).
 
 ### Renamed Props:
 

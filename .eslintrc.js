@@ -12,6 +12,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'react-hooks/exhaustive-deps': 'off',
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'prettier/prettier': [
       'error',

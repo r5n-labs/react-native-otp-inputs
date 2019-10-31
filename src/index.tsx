@@ -27,6 +27,7 @@ import { fillOtpCode } from './helpers';
 type Props = TextInputProps & {
   styles?: StyleProp<ViewStyle>;
   focusStyles?: StyleProp<ViewStyle>;
+  defaultValue?: string;
   handleChange: (otpCode: string) => void;
   inputContainerStyles?: StyleProp<ViewStyle>;
   inputStyles?: StyleProp<TextStyle>;
@@ -80,6 +81,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     {
       autoCapitalize,
       clearTextOnFocus,
+      defaultValue,
       focusStyles,
       handleChange,
       inputContainerStyles,
@@ -96,7 +98,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     ref,
   ) => {
     const [{ otpCode }, dispatch] = useReducer(reducer, {}, () => ({
-      otpCode: fillOtpCode(numberOfInputs),
+      otpCode: fillOtpCode(numberOfInputs, defaultValue),
       handleChange,
     }));
     const previousCopiedText: { current: string } = useRef('');
@@ -112,7 +114,6 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
           KeyEvent.removeKeyUpListener();
         }
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useImperativeHandle(

@@ -35,13 +35,15 @@ export default class App extends Component<{}, { isFourDigit: boolean }> {
         {this.state.isFourDigit ? (
           <OtpInputs
             ref={this.otpRef}
-            selectTextOnFocus={false}
             keyboardType="number-pad"
             numberOfInputs={4}
+            selectTextOnFocus={false}
+            clearTextOnFocus
+            defaultValue="1234"
           />
         ) : (
-          <OtpInputs keyboardType="number-pad" ref={this.otpRef} numberOfInputs={6} />
-        )}
+            <OtpInputs keyboardType="number-pad" ref={this.otpRef} numberOfInputs={6} />
+          )}
       </SafeAreaView>
     );
   }

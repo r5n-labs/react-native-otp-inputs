@@ -1,7 +1,5 @@
 # react-native-otp-inputs
 
-[![CircleCI](https://circleci.com/gh/dsznajder/react-native-otp-inputs/tree/master.svg?style=svg)](https://circleci.com/gh/dsznajder/react-native-otp-inputs/tree/master)
-
 [![codecov](https://codecov.io/gh/dsznajder/react-native-otp-inputs/branch/master/graph/badge.svg)](https://codecov.io/gh/dsznajder/react-native-otp-inputs)
 
 ![npm](https://img.shields.io/npm/dw/react-native-otp-inputs.svg)
@@ -33,13 +31,13 @@ Android setup requires [react-native-keyevent](https://github.com/kevinejohn/rea
 ```javascript
 // react-native.config.js
 module.exports = {
-    dependencies: {
-        "react-native-keyevent": {
-            platforms: {
-                ios: null,
-            },
-        },
+  dependencies: {
+    'react-native-keyevent': {
+      platforms: {
+        ios: null,
+      },
     },
+  },
 };
 ```
 

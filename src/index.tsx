@@ -31,9 +31,9 @@ type Props = TextInputProps & {
   handleChange: (otpCode: string) => void;
   inputContainerStyles?: StyleProp<ViewStyle>;
   inputStyles?: StyleProp<TextStyle>;
-  isRTL: boolean;
+  isRTL?: boolean;
   numberOfInputs: number;
-  testIDPrefix: string;
+  testIDPrefix?: string;
 };
 
 const ACTION_TYPES: ActionTypes = {
@@ -93,7 +93,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       secureTextEntry,
       selectTextOnFocus,
       style,
-      testIDPrefix,
+      testIDPrefix = 'otpInput',
       ...restProps
     },
     ref,

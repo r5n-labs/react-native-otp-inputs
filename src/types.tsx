@@ -17,6 +17,7 @@ export type Actions = SetOtpTextForIndex | SetOtpCode | ClearOtp;
 
 export type OtpInputsRef = {
   reset: () => void;
+  focus: () => void;
 };
 
 export type KeyEventType = {

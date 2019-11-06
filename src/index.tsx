@@ -271,6 +271,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
   },
 );
 
+export { OtpInputsRef };
 export default OtpInputs;
 
 // @ts-ignore

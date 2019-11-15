@@ -42,6 +42,8 @@ const ACTION_TYPES: ActionTypes = {
   clearOtp: 'clearOtp',
 };
 
+const BACKSPACE_KEY_CODE = 67;
+
 const reducer = (state: ReducerState, action: Actions) => {
   switch (action.type) {
     case ACTION_TYPES.setOtpTextForIndex: {
@@ -138,8 +140,9 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       const index = inputs.current.findIndex(input => {
         return input.current && input.current.isFocused();
       });
+      const text = event.keyCode === BACKSPACE_KEY_CODE ? '' : event.pressedKey;
 
-      handleTextChange(event.pressedKey, index);
+      handleTextChange(text, index);
     };
 
     const handleInputTextChange = ({ text, index }: { text: string; index: number }) => {

@@ -7,6 +7,8 @@ import {
   View,
   ViewStyle,
   TextInputProps,
+  TextInputKeyPressEventData,
+  NativeSyntheticEvent,
 } from 'react-native';
 
 type Props = TextInputProps & {
@@ -43,6 +45,14 @@ const OtpInput = forwardRef<TextInput, Props>(
       ref && ref.current && ref.current.setNativeProps({ value: inputValue, text: inputValue });
     }, [ref, inputValue]);
 
+    const handleKeyPress = ({
+      nativeEvent: { key },
+    }: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+      if (Platform.OS === 'ios' && key === 'Backspace') {
+        handleTextChange('');
+      }
+    };
+
     return (
       <View style={[inputContainerStyles, focused && focusStyles]}>
         <TextInput
@@ -50,6 +60,7 @@ const OtpInput = forwardRef<TextInput, Props>(
           onBlur={() => setFocused(false)}
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}
+          onKeyPress={handleKeyPress}
           ref={ref}
           placeholder={placeholder}
           // https://github.com/facebook/react-native/issues/18339

@@ -17,6 +17,8 @@ import {
   View,
   ViewStyle,
   Platform,
+  TextInputKeyPressEventData,
+  NativeSyntheticEvent,
 } from 'react-native';
 import KeyEvent from 'react-native-keyevent';
 
@@ -170,6 +172,15 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       }
     };
 
+    const handleKeyPress = (
+      { nativeEvent: { key } }: NativeSyntheticEvent<TextInputKeyPressEventData>,
+      index: number,
+    ) => {
+      if (Platform.OS === 'ios' && key === 'Backspace') {
+        handleTextChange('', index);
+      }
+    };
+
     const focusInput = useCallback(
       (index: number): void => {
         if (index >= 0 && index < numberOfInputs) {
@@ -244,6 +255,9 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
         return (
           <OtpInput
+            handleKeyPress={(keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) =>
+              handleKeyPress(keyPressEvent, inputIndex)
+            }
             autoCapitalize={autoCapitalize}
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}

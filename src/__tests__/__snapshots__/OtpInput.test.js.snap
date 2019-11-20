@@ -14,7 +14,6 @@ exports[`<OtpInput /> render 1`] = `
     maxLength={1}
     onBlur={[Function]}
     onFocus={[Function]}
-    onKeyPress={[Function]}
     rejectResponderTermination={true}
     textContentType="none"
     underlineColorAndroid="transparent"

@@ -7816,10 +7816,10 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
-react-native-keyevent@0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/react-native-keyevent/-/react-native-keyevent-0.2.4.tgz#b00628bb26f6d6a799eb852aea09976d4f5d9ee7"
-  integrity sha512-8O94nR22EhjqQAkX5VEcC+G+8W2WkSwPSElM4r/mUYdSO4Nkewf82pJeI9NqaXjj9FG/pWh8vPam465vEYtSvw==
+react-native-keyevent@0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-keyevent/-/react-native-keyevent-0.2.6.tgz#8e88c98e16bd1dde5db3954e6c104cf3c9a98e35"
+  integrity sha512-kW3BMgFGPX1HHVYSebw2bTNb11Z+yclLKN84CO5pzFG99Qx9Do+28LXVQ3uJKK7J5amoNo/pKiySROXA3q9O3A==
 
 react-native@0.61.5:
   version "0.61.5"

@@ -35,7 +35,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": ">= 0.57.0 < 1",
-    "react-native-keyevent": "0.2.4"
+    "react-native-keyevent": "0.2.6"
   },
   "jest": {
     "testEnvironment": "node",
@@ -68,7 +68,7 @@
     "prettier": "1.19.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-native-keyevent": "0.2.4",
+    "react-native-keyevent": "0.2.6",
     "react-test-renderer": "16.11.0",
     "release-it": "12.4.3",
     "typescript": "3.7.3"

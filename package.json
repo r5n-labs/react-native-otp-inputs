@@ -71,7 +71,7 @@
     "react-native-keyevent": "0.2.4",
     "react-test-renderer": "16.11.0",
     "release-it": "12.4.3",
-    "typescript": "3.7.2"
+    "typescript": "3.7.3"
   },
   "husky": {
     "hooks": {

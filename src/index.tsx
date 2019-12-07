@@ -27,6 +27,18 @@ import { ActionTypes, OtpInputsRef, ReducerState, Actions, KeyEventType } from '
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
+  keyboardType:
+    | 'default'
+    | 'email-address'
+    | 'phone-pad'
+    | 'visible-password'
+    | 'ascii-capable'
+    | 'numbers-and-punctuation'
+    | 'url'
+    | 'name-phone-pad'
+    | 'twitter'
+    | 'web-search'
+    | undefined;
   style?: StyleProp<ViewStyle>;
   focusStyles?: StyleProp<ViewStyle>;
   defaultValue?: string;
@@ -83,20 +95,36 @@ const reducer = (state: ReducerState, action: Actions) => {
 const OtpInputs = forwardRef<OtpInputsRef, Props>(
   (
     {
-      autoCapitalize,
-      clearTextOnFocus,
+      autoCapitalize = 'none',
+      clearTextOnFocus = false,
       defaultValue,
-      focusStyles,
-      handleChange,
-      inputContainerStyles,
-      inputStyles,
-      isRTL,
-      keyboardType,
-      numberOfInputs,
-      placeholder,
-      secureTextEntry,
-      selectTextOnFocus,
-      style,
+      focusStyles = {
+        borderColor: '#00f',
+      },
+      handleChange = console.log,
+      inputContainerStyles = {
+        borderBottomWidth: 1,
+        height: 53,
+        margin: 10,
+      },
+      inputStyles = {
+        fontSize: 24,
+        paddingTop: 10,
+        textAlign: 'center',
+        width: 40,
+      },
+      isRTL = false,
+      keyboardType = 'phone-pad',
+      numberOfInputs = 4,
+      placeholder = '',
+      secureTextEntry = false,
+      selectTextOnFocus = true,
+      style = {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
       testIDPrefix = 'otpInput',
       ...restProps
     },
@@ -290,37 +318,3 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
 export { OtpInputsRef };
 export default OtpInputs;
-
-// @ts-ignore
-OtpInputs.defaultProps = {
-  autoCapitalize: 'none',
-  clearTextOnFocus: false,
-  handleChange: console.log,
-  keyboardType: 'phone-pad',
-  numberOfInputs: 4,
-  secureTextEntry: false,
-  selectTextOnFocus: true,
-  testIDPrefix: 'otpInput',
-  isRTL: false,
-  placeholder: '',
-  style: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  focusStyles: {
-    borderColor: '#00f',
-  },
-  inputStyles: {
-    fontSize: 24,
-    paddingTop: 10,
-    textAlign: 'center',
-    width: 40,
-  },
-  inputContainerStyles: {
-    borderBottomWidth: 1,
-    height: 53,
-    margin: 10,
-  },
-};

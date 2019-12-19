@@ -11,7 +11,6 @@ exports[`<OtpInput /> render 1`] = `
 >
   <TextInput
     allowFontScaling={true}
-    maxLength={1}
     onBlur={[Function]}
     onFocus={[Function]}
     rejectResponderTermination={true}

@@ -29,13 +29,13 @@ const OtpInput = forwardRef<TextInput, Props>(
   (
     {
       focusStyles,
+      handleKeyPress,
       handleTextChange,
       inputContainerStyles,
       inputStyles,
+      inputValue,
       placeholder,
       selectTextOnFocus,
-      inputValue,
-      handleKeyPress,
       ...rest
     },
     ref,
@@ -50,7 +50,6 @@ const OtpInput = forwardRef<TextInput, Props>(
     return (
       <View style={[inputContainerStyles, focused && focusStyles]}>
         <TextInput
-          maxLength={1}
           onBlur={() => setFocused(false)}
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}

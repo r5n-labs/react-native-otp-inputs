@@ -191,6 +191,12 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
         handleClearInput(index);
       }
 
+      if (text.length > 1) {
+        handleClearInput(index);
+        Keyboard.dismiss();
+        return fillInputs(text);
+      }
+
       if (text) {
         handleInputTextChange({ text, index });
       }
@@ -286,6 +292,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             handleKeyPress={(keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) =>
               handleKeyPress(keyPressEvent, inputIndex)
             }
+            maxLength={Platform.select({
+              android: 1,
+              ios: index === 0 ? numberOfInputs : 1,
+            })}
             autoCapitalize={autoCapitalize}
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}

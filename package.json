@@ -60,7 +60,7 @@
     "babel-jest": "24.9.0",
     "codecov": "3.6.1",
     "del-cli": "3.0.0",
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "eslint-config-satya164": "3.1.5",
     "github-release-notes": "0.17.1",
     "husky": "3.1.0",

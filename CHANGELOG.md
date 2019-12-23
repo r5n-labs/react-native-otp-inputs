@@ -1,4 +1,4 @@
 # Changelog
 
-## v4.0.4 (20/11/2019)
+## v4.1.1 (23/12/2019)
 *No changelog for this release.*

@@ -16,15 +16,16 @@
   "version": "4.1.0",
   "main": "lib/module/index.js",
   "scripts": {
+    "bootstrap": "yarn install && yarn example install",
     "clean": "del lib",
-    "lint": "eslint --ext '.js,.ts,.tsx' .",
     "example": "yarn --cwd Example",
-    "typescript": "tsc --noEmit",
+    "lint": "eslint --ext '.js,.ts,.tsx' .",
+    "prepare": "yarn clean && bob build",
     "release": "release-it",
     "test": "jest --updateSnapshot",
     "test:ci": "jest --collectCoverage=true --runInBand --detectOpenHandles",
     "test:watch": "jest --watch",
-    "prepare": "yarn clean && bob build"
+    "typescript": "tsc --noEmit"
   },
   "keywords": [
     "otp",

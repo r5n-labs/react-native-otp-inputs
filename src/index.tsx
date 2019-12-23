@@ -51,6 +51,7 @@ type Props = TextInputProps & {
 };
 
 const ACTION_TYPES: ActionTypes = {
+  setHandleChange: 'setHandleChange',
   setOtpTextForIndex: 'setOtpTextForIndex',
   setOtpCode: 'setOtpCode',
   clearOtp: 'clearOtp',
@@ -85,6 +86,10 @@ const reducer = (state: ReducerState, action: Actions) => {
       state.handleChange(Object.values(otpCode).join(''));
 
       return { ...state, otpCode };
+    }
+
+    case ACTION_TYPES.setHandleChange: {
+      return { ...state, handleChange: action.payload };
     }
 
     default:
@@ -136,6 +141,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     }));
     const previousCopiedText: { current: string } = useRef('');
     const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
+
+    useEffect(() => {
+      dispatch({ type: ACTION_TYPES.setHandleChange, payload: handleChange });
+    }, [handleChange]);
 
     useEffect(() => {
       if (Platform.OS === 'android') {

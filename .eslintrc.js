@@ -12,6 +12,13 @@ module.exports = {
     jest: true,
   },
   rules: {
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'generic',
+        readonly: 'generic',
+      },
+    ],
     'react-hooks/exhaustive-deps': 'off',
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'prettier/prettier': [

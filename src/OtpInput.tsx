@@ -44,7 +44,7 @@ const OtpInput = forwardRef<TextInput, Props>(
 
     useEffect(() => {
       // @ts-ignore
-      ref && ref.current && ref.current.setNativeProps({ value: inputValue, text: inputValue });
+      ref?.current && ref.current.setNativeProps({ value: inputValue, text: inputValue });
     }, [ref, inputValue]);
 
     return (

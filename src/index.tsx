@@ -154,13 +154,13 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       () => ({
         reset: (): void => {
           dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
-          inputs.current.forEach(input => input && input.current && input.current.clear());
+          inputs.current.forEach(input => input?.current?.clear());
           previousCopiedText.current = '';
           Clipboard.setString('');
         },
         focus: (): void => {
           const firstInput = inputs.current[0];
-          firstInput && firstInput.current && firstInput.current.focus();
+          firstInput?.current?.focus();
         },
       }),
       [numberOfInputs],
@@ -219,7 +219,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       (index: number): void => {
         if (index >= 0 && index < numberOfInputs) {
           const input = inputs.current[index];
-          input && input.current && input.current.focus();
+          input?.current?.focus();
         }
       },
       [numberOfInputs],
@@ -228,7 +228,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     const handleClearInput = useCallback(
       (inputIndex: number) => {
         const input = inputs.current[inputIndex];
-        input && input.current && input.current.clear();
+        input?.current?.clear();
         dispatch({
           type: ACTION_TYPES.setOtpTextForIndex,
           payload: {

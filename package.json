@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/dsznajder/react-native-otp-inputs"
   },
-  "version": "4.1.1",
+  "version": "5.0.0-alpha.0",
   "main": "lib/module/index.js",
   "scripts": {
     "bootstrap": "yarn install && yarn example install",

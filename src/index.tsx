@@ -20,10 +20,9 @@ import {
   TextInputKeyPressEventData,
   NativeSyntheticEvent,
 } from 'react-native';
-import KeyEvent from 'react-native-keyevent';
 
 import OtpInput from './OtpInput';
-import { ActionTypes, OtpInputsRef, ReducerState, Actions, KeyEventType } from './types';
+import { ActionTypes, OtpInputsRef, ReducerState, Actions } from './types';
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
@@ -55,9 +54,8 @@ const ACTION_TYPES: ActionTypes = {
   setOtpTextForIndex: 'setOtpTextForIndex',
   setOtpCode: 'setOtpCode',
   clearOtp: 'clearOtp',
+  setHasKeySupport: 'setHasKeySupport',
 };
-
-const BACKSPACE_KEY_CODE = 67;
 
 const reducer = (state: ReducerState, action: Actions) => {
   switch (action.type) {
@@ -90,6 +88,10 @@ const reducer = (state: ReducerState, action: Actions) => {
 
     case ACTION_TYPES.setHandleChange: {
       return { ...state, handleChange: action.payload };
+    }
+
+    case ACTION_TYPES.setHasKeySupport: {
+      return { ...state, hasKeySupport: action.payload };
     }
 
     default:
@@ -135,9 +137,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     },
     ref,
   ) => {
-    const [{ otpCode }, dispatch] = useReducer(reducer, {}, () => ({
+    const [{ otpCode, hasKeySupport }, dispatch] = useReducer(reducer, {}, () => ({
       otpCode: fillOtpCode(numberOfInputs, defaultValue),
       handleChange,
+      hasKeySupport: Platform.OS === 'ios',
     }));
     const previousCopiedText: { current: string } = useRef('');
     const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
@@ -145,18 +148,6 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     useEffect(() => {
       dispatch({ type: ACTION_TYPES.setHandleChange, payload: handleChange });
     }, [handleChange]);
-
-    useEffect(() => {
-      if (Platform.OS === 'android') {
-        KeyEvent.onKeyUpListener(handleOnKeyUp);
-      }
-
-      return () => {
-        if (Platform.OS === 'android') {
-          KeyEvent.removeKeyUpListener();
-        }
-      };
-    }, []);
 
     useImperativeHandle(
       ref,
@@ -175,27 +166,11 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       [numberOfInputs],
     );
 
-    const handleOnKeyUp = (event: KeyEventType): void => {
-      const index = inputs.current.findIndex(input => {
-        return input.current && input.current.isFocused();
-      });
-      const text = event.keyCode === BACKSPACE_KEY_CODE ? '' : event.pressedKey;
-
-      handleTextChange(text, index);
+    const handleTextChange = (text: string, index: number) => {
+      if (Platform.OS === 'android' && !hasKeySupport) handleInputTextChange(text, index);
     };
 
-    const handleInputTextChange = ({ text, index }: { text: string; index: number }) => {
-      dispatch({
-        type: ACTION_TYPES.setOtpTextForIndex,
-        payload: {
-          text,
-          index,
-        },
-      });
-      focusInput(index + 1);
-    };
-
-    const handleTextChange = (text: string, index: number): void => {
+    const handleInputTextChange = (text: string, index: number): void => {
       if (!text.length) {
         handleClearInput(index);
       }
@@ -207,7 +182,14 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       }
 
       if (text) {
-        handleInputTextChange({ text, index });
+        dispatch({
+          type: ACTION_TYPES.setOtpTextForIndex,
+          payload: {
+            text,
+            index,
+          },
+        });
+        focusInput(index + 1);
       }
 
       if (index === numberOfInputs - 1 && text) {
@@ -219,9 +201,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       { nativeEvent: { key } }: NativeSyntheticEvent<TextInputKeyPressEventData>,
       index: number,
     ) => {
-      if (Platform.OS === 'ios' && key === 'Backspace') {
-        handleTextChange('', index);
-      }
+      handleInputTextChange(key === 'Backspace' ? '' : key, index);
+
+      if (Platform.OS === 'android' && !hasKeySupport && !isNaN(parseInt(key)))
+        dispatch({ type: ACTION_TYPES.setHasKeySupport, payload: true });
     };
 
     const focusInput = useCallback(
@@ -309,11 +292,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}
             focusStyles={focusStyles}
-            handleTextChange={
-              Platform.OS === 'ios'
-                ? (text: string) => handleTextChange(text, inputIndex)
-                : () => {}
-            }
+            handleTextChange={(text: string) => handleTextChange(text, inputIndex)}
             inputContainerStyles={inputContainerStyles}
             inputStyles={inputStyles}
             key={inputIndex}

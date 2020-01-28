@@ -2,10 +2,12 @@ type SetOtpTextForIndex = { type: 'setOtpTextForIndex'; payload: { index: number
 type SetOtpCode = { type: 'setOtpCode'; payload: { numberOfInputs: number; code: string } };
 type ClearOtp = { type: 'clearOtp'; payload: number };
 type SetHandleChange = { type: 'setHandleChange'; payload: any };
+type SetHasKeySupport = { type: 'setHasKeySupport'; payload: boolean };
 
 export type ReducerState = {
   otpCode: { [key: string]: string };
   handleChange: (otpCode: string) => void;
+  hasKeySupport: boolean;
 };
 
 export type ActionTypes = {
@@ -13,9 +15,15 @@ export type ActionTypes = {
   setOtpTextForIndex: 'setOtpTextForIndex';
   setOtpCode: 'setOtpCode';
   clearOtp: 'clearOtp';
+  setHasKeySupport: 'setHasKeySupport';
 };
 
-export type Actions = SetOtpTextForIndex | SetOtpCode | ClearOtp | SetHandleChange;
+export type Actions =
+  | SetOtpTextForIndex
+  | SetOtpCode
+  | ClearOtp
+  | SetHandleChange
+  | SetHasKeySupport;
 
 export type OtpInputsRef = {
   reset: () => void;

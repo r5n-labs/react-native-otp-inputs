@@ -57,7 +57,7 @@
     "@types/react-native": "0.60.25",
     "@types/react-test-renderer": "16.9.1",
     "babel-jest": "24.9.0",
-    "codecov": "3.6.1",
+    "codecov": "3.6.5",
     "del-cli": "3.0.0",
     "eslint": "6.7.2",
     "eslint-config-satya164": "3.1.5",

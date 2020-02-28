@@ -26,7 +26,7 @@ import { ActionTypes, OtpInputsRef, ReducerState, Actions } from './types';
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
-  keyboardType:
+  keyboardType?:
     | 'default'
     | 'email-address'
     | 'phone-pad'

@@ -1,13 +1,13 @@
-import React, { RefObject, useRef, useState } from 'react';
-import { SafeAreaView, StyleSheet, Button, View } from 'react-native';
+import React, { RefObject, useRef, useState } from "react";
+import { SafeAreaView, StyleSheet, Button, View } from "react-native";
 
 // @ts-ignore
-import OtpInputs from 'react-native-otp-inputs';
+import OtpInputs from "react-native-otp-inputs";
 
 const App = () => {
-  const otpRef: RefObject<OtpInputs> = useRef()
-  const [s, setS] = useState(true)
-  const [fourDigit, setFourDigit] = useState(true)
+  const otpRef: RefObject<OtpInputs> = useRef();
+  const [s, setS] = useState(true);
+  const [fourDigit, setFourDigit] = useState(true);
 
   const focusOTP = () => {
     otpRef.current.focus();
@@ -18,13 +18,13 @@ const App = () => {
   };
 
   const toggle = () => {
-    setFourDigit(fourDigit => !fourDigit)
-  }
+    setFourDigit(fourDigit => !fourDigit);
+  };
 
   const handleChange = (code: string) => {
-    console.log('currentCodeReturned', code, s)
-    setS(s => !s)
-  }
+    console.log("currentCodeReturned", code, s);
+    setS(s => !s);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,16 +43,16 @@ const App = () => {
           defaultValue="1234"
         />
       ) : (
-          <OtpInputs keyboardType="phone-pad" ref={otpRef} numberOfInputs={6} />
-        )}
+        <OtpInputs keyboardType="phone-pad" ref={otpRef} numberOfInputs={6} />
+      )}
     </SafeAreaView>
   );
-}
+};
 
-export default App
+export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

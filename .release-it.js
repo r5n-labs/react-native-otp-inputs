@@ -1,18 +1,22 @@
 module.exports = {
-  safeBump: false,
   git: {
-    commitMessage: ':bookmark: Release ${version}',
-    requireUpstream: false,
-    tagName: 'v${version}',
+    requireUpstream: true,
+    tag: true,
+    tagName: "react-native-otp-inputs@${version}",
+    commit: true,
+    commitMessage: "chore(:bookmark:): react-native-otp-inputs ${version}"
   },
   github: {
     release: true,
-    draft: true,
-  },
-  hooks: {
-    'after:release': 'yarn gren changelog --generate --override',
+    releaseName: "react-native-otp-inputs@${version}",
+    draft: false
   },
   npm: {
-    publish: false,
+    publish: false
   },
+  plugins: {
+    "@release-it/conventional-changelog": {
+      preset: "angular"
+    }
+  }
 };

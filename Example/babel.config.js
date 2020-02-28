@@ -1,13 +1,16 @@
-module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
-  plugins: [
-    [
-      'module-resolver',
-      {
-        alias: {
-          'react-native-otp-inputs': '../src/index.tsx',
-        },
-      },
-    ],
-  ],
-}
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ["expo"],
+    plugins: [
+      [
+        "module-resolver",
+        {
+          alias: {
+            "react-native-otp-inputs": "../src/index"
+          }
+        }
+      ]
+    ]
+  };
+};

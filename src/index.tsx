@@ -175,8 +175,13 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     );
 
     const handleTextChange = (text: string, index: number) => {
-      if (Platform.OS === 'android' && !hasKeySupport)
+      if (
+        (Platform.OS === 'android' && !hasKeySupport) ||
+        // Pasted from input accessory
+        (Platform.OS === 'ios' && text.length > 1)
+      ) {
         handleInputTextChange(text, index);
+      }
     };
 
     const handleInputTextChange = (text: string, index: number): void => {

@@ -1,8 +1,8 @@
-import React, { RefObject, useRef, useState } from "react";
-import { SafeAreaView, StyleSheet, Button, View } from "react-native";
+import React, { RefObject, useRef, useState } from 'react';
+import { SafeAreaView, StyleSheet, Button } from 'react-native';
 
 // @ts-ignore
-import OtpInputs from "react-native-otp-inputs";
+import OtpInputs from 'react-native-otp-inputs';
 
 const App = () => {
   const otpRef: RefObject<OtpInputs> = useRef();
@@ -22,28 +22,28 @@ const App = () => {
   };
 
   const handleChange = (code: string) => {
-    console.log("currentCodeReturned", code, s);
+    console.log('currentCodeReturned', code, s);
     setS(s => !s);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="Reset" onPress={resetOTP} />
-      <Button title="Focus" onPress={focusOTP} />
-      <Button title="Toggle" onPress={toggle} />
+      <Button onPress={resetOTP} title="Reset" />
+      <Button onPress={focusOTP} title="Focus" />
+      <Button onPress={toggle} title="Toggle" />
 
       {fourDigit ? (
         <OtpInputs
-          ref={otpRef}
-          keyboardType="phone-pad"
-          handleChange={handleChange}
-          numberOfInputs={4}
-          selectTextOnFocus={false}
           clearTextOnFocus
           defaultValue="1234"
+          handleChange={handleChange}
+          keyboardType="phone-pad"
+          numberOfInputs={4}
+          ref={otpRef}
+          selectTextOnFocus={false}
         />
       ) : (
-        <OtpInputs keyboardType="phone-pad" ref={otpRef} numberOfInputs={6} />
+        <OtpInputs keyboardType="phone-pad" numberOfInputs={6} ref={otpRef} />
       )}
     </SafeAreaView>
   );
@@ -53,6 +53,6 @@ export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

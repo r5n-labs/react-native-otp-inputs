@@ -11,7 +11,7 @@
     "lib"
   ],
   "scripts": {
-    "bootstrap": "yarn Example && yarn",
+    "bootstrap": "yarn example && yarn",
     "example": "yarn --cwd Example",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "prepare": "bob build",
@@ -31,6 +31,8 @@
     "inputs"
   ],
   "devDependencies": {
+    "@babel/core": "7.8.6",
+    "@babel/preset-typescript": "7.8.3",
     "@commitlint/config-conventional": "8.3.4",
     "@react-native-community/bob": "0.9.7",
     "@release-it/conventional-changelog": "1.1.0",
@@ -42,6 +44,7 @@
     "eslint-config-satya164": "3.1.5",
     "husky": "4.2.3",
     "jest": "25.1.0",
+    "metro-react-native-babel-preset": "0.58.0",
     "prettier": "1.19.1",
     "react": "16.9.0",
     "react-native": "0.61.5",

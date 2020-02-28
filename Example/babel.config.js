@@ -1,16 +1,16 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: ["expo"],
+    presets: ['expo'],
     plugins: [
       [
-        "module-resolver",
+        'module-resolver',
         {
           alias: {
-            "react-native-otp-inputs": "../src/index"
-          }
-        }
-      ]
-    ]
+            'react-native-otp-inputs': '../src/index',
+          },
+        },
+      ],
+    ],
   };
 };

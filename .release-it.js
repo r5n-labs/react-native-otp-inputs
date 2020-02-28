@@ -2,21 +2,21 @@ module.exports = {
   git: {
     requireUpstream: true,
     tag: true,
-    tagName: "react-native-otp-inputs@${version}",
+    tagName: 'react-native-otp-inputs@${version}',
     commit: true,
-    commitMessage: "chore(:bookmark:): react-native-otp-inputs ${version}"
+    commitMessage: 'chore(:bookmark:): react-native-otp-inputs ${version}',
   },
   github: {
     release: true,
-    releaseName: "react-native-otp-inputs@${version}",
-    draft: false
+    releaseName: 'react-native-otp-inputs@${version}',
+    draft: false,
   },
   npm: {
-    publish: false
+    publish: false,
   },
   plugins: {
-    "@release-it/conventional-changelog": {
-      preset: "angular"
-    }
-  }
+    '@release-it/conventional-changelog': {
+      preset: 'angular',
+    },
+  },
 };

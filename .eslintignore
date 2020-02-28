@@ -2,5 +2,3 @@ node_modules/
 coverage/
 dist/
 lib/
-Example/
-__tests__

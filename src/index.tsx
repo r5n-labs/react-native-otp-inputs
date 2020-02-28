@@ -10,15 +10,15 @@ import React, {
 import {
   Clipboard,
   Keyboard,
-  StyleProp,
+  NativeSyntheticEvent,
+  Platform,
+  StyleSheet,
   TextInput,
+  TextInputKeyPressEventData,
   TextInputProps,
   TextStyle,
   View,
   ViewStyle,
-  Platform,
-  TextInputKeyPressEventData,
-  NativeSyntheticEvent,
 } from 'react-native';
 
 import OtpInput from './OtpInput';
@@ -38,12 +38,12 @@ type Props = TextInputProps & {
     | 'twitter'
     | 'web-search'
     | undefined;
-  style?: StyleProp<ViewStyle>;
-  focusStyles?: StyleProp<ViewStyle>;
+  style?: ViewStyle;
+  focusStyles?: ViewStyle;
   defaultValue?: string;
   handleChange: (otpCode: string) => void;
-  inputContainerStyles?: StyleProp<ViewStyle>;
-  inputStyles?: StyleProp<TextStyle>;
+  inputContainerStyles?: ViewStyle;
+  inputStyles?: TextStyle;
   isRTL?: boolean;
   numberOfInputs: number;
   testIDPrefix?: string;
@@ -103,39 +103,32 @@ const reducer = (state: ReducerState, { type, payload }: Actions) => {
   }
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+});
+
 const OtpInputs = forwardRef<OtpInputsRef, Props>(
   (
     {
       autoCapitalize = 'none',
       clearTextOnFocus = false,
       defaultValue,
-      focusStyles = {
-        borderColor: '#00f',
-      },
+      focusStyles,
       handleChange = console.log,
-      inputContainerStyles = {
-        borderBottomWidth: 1,
-        height: 53,
-        margin: 10,
-      },
-      inputStyles = {
-        fontSize: 24,
-        paddingTop: 10,
-        textAlign: 'center',
-        width: 40,
-      },
+      inputContainerStyles,
+      inputStyles,
       isRTL = false,
       keyboardType = 'phone-pad',
       numberOfInputs = 4,
       placeholder = '',
       secureTextEntry = false,
       selectTextOnFocus = true,
-      style = {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
+      style,
       testIDPrefix = 'otpInput',
       ...restProps
     },
@@ -321,6 +314,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             })}
             numberOfInputs={numberOfInputs}
             placeholder={placeholder}
+            // @ts-ignore
             ref={inputs.current[inputIndex]}
             secureTextEntry={secureTextEntry}
             selectTextOnFocus={selectTextOnFocus}
@@ -331,7 +325,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       });
     };
 
-    return <View style={style}>{renderInputs()}</View>;
+    return <View style={style || styles.container}>{renderInputs()}</View>;
   },
 );
 

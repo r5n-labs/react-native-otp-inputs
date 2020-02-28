@@ -60,7 +60,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFiles": ["<rootDir>/jest/setup.ts"],
+    "setupFiles": [
+      "<rootDir>/jest/setup.ts"
+    ],
     "modulePathIgnorePatterns": [
       "<rootDir>/Example/node_modules",
       "<rootDir>/lib/"
@@ -80,7 +82,6 @@
   "prettier": {
     "bracketSpacing": true,
     "jsxBracketSameLine": false,
-    "parser": "typescript",
     "printWidth": 80,
     "semi": true,
     "singleQuote": true,

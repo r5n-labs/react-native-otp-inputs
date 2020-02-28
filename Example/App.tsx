@@ -1,5 +1,5 @@
 import React, { RefObject, useRef, useState } from 'react';
-import { SafeAreaView, StyleSheet, Button } from 'react-native';
+import { ScrollView, StyleSheet, Button } from 'react-native';
 
 // @ts-ignore
 import OtpInputs from 'react-native-otp-inputs';
@@ -7,7 +7,7 @@ import OtpInputs from 'react-native-otp-inputs';
 const App = () => {
   const otpRef: RefObject<OtpInputs> = useRef();
   const [s, setS] = useState(true);
-  const [fourDigit, setFourDigit] = useState(true);
+  const [fourDigit, setFourDigit] = useState(false);
 
   const focusOTP = () => {
     otpRef.current.focus();
@@ -27,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Button onPress={resetOTP} title="Reset" />
       <Button onPress={focusOTP} title="Focus" />
       <Button onPress={toggle} title="Toggle" />
@@ -35,7 +35,6 @@ const App = () => {
       {fourDigit ? (
         <OtpInputs
           clearTextOnFocus
-          defaultValue="1234"
           handleChange={handleChange}
           keyboardType="phone-pad"
           numberOfInputs={4}
@@ -45,7 +44,7 @@ const App = () => {
       ) : (
         <OtpInputs keyboardType="phone-pad" numberOfInputs={6} ref={otpRef} />
       )}
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -53,6 +52,6 @@ export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 50,
   },
 });

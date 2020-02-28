@@ -14,10 +14,10 @@
 | testIDPrefix          | string         | false       | otpInput-\${inputIndex}                 | Prefix for testID.                                                       |
 | isRTL                 | boolean        | false       | false                                   | Preferably I18nManager.isRTL.                                            |
 | placeholder           | string         | false       |                                         | Placeholder for the input boxes.                                         |
-| style                 | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to whole container.                                              |
-| focusStyles           | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to the input on focus.                                           |
-| inputStyles           | style(object)  | false       | [default](./src/index.tsx#L275)         | Applied to single input.                                                 |
-| inputContainerStyles  | style (object) | false       | [default](./src/index.tsx#L275)         | Applied to each input container.                                         |
+| style                 | style (object) | false       | [default](./src/index.tsx)         | Applied to whole container.                                              |
+| focusStyles           | style (object) | false       | [default](./src/index.tsx)         | Applied to the input on focus.                                           |
+| inputStyles           | style(object)  | false       | [default](./src/index.tsx)         | Applied to single input.                                                 |
+| inputContainerStyles  | style (object) | false       | [default](./src/index.tsx)         | Applied to each input container.                                         |
 | ...restTextInputProps |                |             |                                         | [TextInput](https://facebook.github.io/react-native/docs/textinput)      |
 
 # Methods
@@ -31,7 +31,7 @@ Those can be called on ref:
 
 ## Example
 
-```js
+```tsx
 import React, { Component } from "react";
 import { Button, View } from "react-native";
 import OtpInputs from "react-native-otp-inputs";

@@ -1,5 +1,11 @@
-type SetOtpTextForIndex = { type: 'setOtpTextForIndex'; payload: { index: number; text: string } };
-type SetOtpCode = { type: 'setOtpCode'; payload: { numberOfInputs: number; code: string } };
+type SetOtpTextForIndex = {
+  type: 'setOtpTextForIndex';
+  payload: { index: number; text: string };
+};
+type SetOtpCode = {
+  type: 'setOtpCode';
+  payload: { numberOfInputs: number; code: string };
+};
 type ClearOtp = { type: 'clearOtp'; payload: number };
 type SetHandleChange = { type: 'setHandleChange'; payload: any };
 type SetHasKeySupport = { type: 'setHasKeySupport'; payload: boolean };

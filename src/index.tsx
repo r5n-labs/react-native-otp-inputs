@@ -57,10 +57,13 @@ const ACTION_TYPES: ActionTypes = {
   setHasKeySupport: 'setHasKeySupport',
 };
 
-const reducer = (state: ReducerState, action: Actions) => {
-  switch (action.type) {
+const reducer = (state: ReducerState, { type, payload }: Actions) => {
+  switch (type) {
     case ACTION_TYPES.setOtpTextForIndex: {
-      const otpCode = { ...state.otpCode, [`${action.payload.index}`]: action.payload.text };
+      const otpCode = {
+        ...state.otpCode,
+        [`${payload.index}`]: payload.text,
+      };
       state.handleChange(Object.values(otpCode).join(''));
 
       return {
@@ -70,7 +73,8 @@ const reducer = (state: ReducerState, action: Actions) => {
     }
 
     case ACTION_TYPES.setOtpCode: {
-      const otpCode = fillOtpCode(action.payload.numberOfInputs, action.payload.code);
+      const otpCode = fillOtpCode(payload.numberOfInputs, payload.code);
+
       state.handleChange(Object.values(otpCode).join(''));
 
       return {
@@ -80,18 +84,18 @@ const reducer = (state: ReducerState, action: Actions) => {
     }
 
     case ACTION_TYPES.clearOtp: {
-      const otpCode = fillOtpCode(action.payload);
+      const otpCode = fillOtpCode(payload);
       state.handleChange(Object.values(otpCode).join(''));
 
       return { ...state, otpCode };
     }
 
     case ACTION_TYPES.setHandleChange: {
-      return { ...state, handleChange: action.payload };
+      return { ...state, handleChange: payload };
     }
 
     case ACTION_TYPES.setHasKeySupport: {
-      return { ...state, hasKeySupport: action.payload };
+      return { ...state, hasKeySupport: payload };
     }
 
     default:
@@ -137,11 +141,15 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     },
     ref,
   ) => {
-    const [{ otpCode, hasKeySupport }, dispatch] = useReducer(reducer, {}, () => ({
-      otpCode: fillOtpCode(numberOfInputs, defaultValue),
-      handleChange,
-      hasKeySupport: Platform.OS === 'ios',
-    }));
+    const [{ otpCode, hasKeySupport }, dispatch] = useReducer(
+      reducer,
+      {},
+      () => ({
+        otpCode: fillOtpCode(numberOfInputs, defaultValue),
+        handleChange,
+        hasKeySupport: Platform.OS === 'ios',
+      }),
+    );
     const previousCopiedText: { current: string } = useRef('');
     const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
 
@@ -167,7 +175,8 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     );
 
     const handleTextChange = (text: string, index: number) => {
-      if (Platform.OS === 'android' && !hasKeySupport) handleInputTextChange(text, index);
+      if (Platform.OS === 'android' && !hasKeySupport)
+        handleInputTextChange(text, index);
     };
 
     const handleInputTextChange = (text: string, index: number): void => {
@@ -198,7 +207,9 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     };
 
     const handleKeyPress = (
-      { nativeEvent: { key } }: NativeSyntheticEvent<TextInputKeyPressEventData>,
+      {
+        nativeEvent: { key },
+      }: NativeSyntheticEvent<TextInputKeyPressEventData>,
       index: number,
     ) => {
       handleInputTextChange(key === 'Backspace' ? '' : key, index);
@@ -235,7 +246,10 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
     const fillInputs = useCallback(
       (code: string) => {
-        dispatch({ type: ACTION_TYPES.setOtpCode, payload: { numberOfInputs, code } });
+        dispatch({
+          type: ACTION_TYPES.setOtpCode,
+          payload: { numberOfInputs, code },
+        });
       },
       [numberOfInputs],
     );
@@ -281,29 +295,31 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
         return (
           <OtpInput
-            handleKeyPress={(keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) =>
-              handleKeyPress(keyPressEvent, inputIndex)
-            }
-            maxLength={Platform.select({
-              android: 1,
-              ios: index === 0 ? numberOfInputs : 1,
-            })}
             autoCapitalize={autoCapitalize}
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}
             focusStyles={focusStyles}
-            handleTextChange={(text: string) => handleTextChange(text, inputIndex)}
+            handleKeyPress={(
+              keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>,
+            ) => handleKeyPress(keyPressEvent, inputIndex)}
+            handleTextChange={(text: string) =>
+              handleTextChange(text, inputIndex)
+            }
             inputContainerStyles={inputContainerStyles}
             inputStyles={inputStyles}
+            inputValue={inputValue}
             key={inputIndex}
             keyboardType={keyboardType}
+            maxLength={Platform.select({
+              android: 1,
+              ios: index === 0 ? numberOfInputs : 1,
+            })}
             numberOfInputs={numberOfInputs}
             placeholder={placeholder}
             ref={inputs.current[inputIndex]}
             secureTextEntry={secureTextEntry}
             selectTextOnFocus={selectTextOnFocus}
             testID={`${testIDPrefix}-${inputIndex}`}
-            inputValue={inputValue}
             {...restProps}
           />
         );

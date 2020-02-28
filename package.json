@@ -11,7 +11,7 @@
     "lib"
   ],
   "scripts": {
-    "bootstrap": "yarn example && yarn",
+    "bootstrap": "yarn Example && yarn",
     "example": "yarn --cwd Example",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "prepare": "bob build",
@@ -27,29 +27,25 @@
     "otp",
     "react-native",
     "one-time-password",
+    "one-time-code",
     "inputs"
   ],
   "devDependencies": {
-    "@babel/core": "7.8.6",
-    "@babel/preset-typescript": "7.8.3",
+    "@commitlint/config-conventional": "8.3.4",
     "@react-native-community/bob": "0.9.7",
+    "@release-it/conventional-changelog": "1.1.0",
     "@types/jest": "25.1.3",
     "@types/react": "16.9.23",
     "@types/react-native": "0.61.17",
-    "@types/react-test-renderer": "16.9.2",
-    "babel-jest": "25.1.0",
-    "codecov": "3.6.5",
-    "del-cli": "3.0.0",
+    "commitlint": "8.3.5",
     "eslint": "6.8.0",
     "eslint-config-satya164": "3.1.5",
-    "github-release-notes": "0.17.1",
     "husky": "4.2.3",
     "jest": "25.1.0",
-    "metro-react-native-babel-preset": "0.58.0",
     "prettier": "1.19.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-native-keyevent": "0.2.7",
+    "react-native-testing-library": "1.12.0",
     "react-test-renderer": "16.12.0",
     "release-it": "12.6.2",
     "typescript": "3.8.2"
@@ -70,6 +66,22 @@
     "testPathIgnorePatterns": [
       "node_modules"
     ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "parser": "typescript",
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false
   },
   "husky": {
     "hooks": {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, RefObject } from 'react';
 import {
   Platform,
   StyleProp,
@@ -19,7 +19,9 @@ type Props = TextInputProps & {
   numberOfInputs: number;
   handleTextChange: (text: string) => void;
   inputValue: string;
-  handleKeyPress: (keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
+  handleKeyPress: (
+    keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>,
+  ) => void;
 };
 
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
@@ -43,8 +45,10 @@ const OtpInput = forwardRef<TextInput, Props>(
     const [focused, setFocused] = useState(false);
 
     useEffect(() => {
-      // @ts-ignore
-      ref?.current && ref.current.setNativeProps({ value: inputValue, text: inputValue });
+      (ref as RefObject<TextInput>)?.current?.setNativeProps({
+        value: inputValue,
+        text: inputValue,
+      });
     }, [ref, inputValue]);
 
     return (
@@ -54,10 +58,13 @@ const OtpInput = forwardRef<TextInput, Props>(
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}
           onKeyPress={handleKeyPress}
-          ref={ref}
           placeholder={placeholder}
+          ref={ref}
           // https://github.com/facebook/react-native/issues/18339
-          selectTextOnFocus={Platform.select({ ios: selectTextOnFocus, android: true })}
+          selectTextOnFocus={Platform.select({
+            ios: selectTextOnFocus,
+            android: true,
+          })}
           style={inputStyles}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"

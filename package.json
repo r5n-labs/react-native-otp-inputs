@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-inputs",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "One-time password inputs built in pure JS for React-Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

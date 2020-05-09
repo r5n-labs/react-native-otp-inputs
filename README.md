@@ -15,6 +15,20 @@
 
 ## Installation
 
+Supported version: `react-native >= 0.59.0`
+
+```bash
+yarn add react-native-otp-inputs @react-native-community/clipboard
+```
+
+Clipboard module has been extracted from react-native core, so it needs to be installed separately.
+Package uses it for autofill feature
+After installation run:
+
+```bash
+cd ios && pod install
+```
+
 | React-Native version | version                                |
 | -------------------- | -------------------------------------- |
 | 0.53.0 - 0.56.1      | yarn add react-native-otp-inputs@1.1.0 |
@@ -24,16 +38,16 @@
 ## Basic usage
 
 ```js
-import React, { Component } from "react";
-import { View } from "react-native";
-import OtpInputs from "react-native-otp-inputs";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import OtpInputs from 'react-native-otp-inputs';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <OtpInputs
-          handleChange={code => console.log(code)}
+          handleChange={(code) => console.log(code)}
           numberOfInputs={6}
         />
       </View>

@@ -26,6 +26,7 @@ import { ActionTypes, OtpInputsRef, ReducerState, Actions } from './types';
 import { fillOtpCode } from './helpers';
 
 type Props = TextInputProps & {
+  autofillFromClipboard: boolean;
   keyboardType?:
     | 'default'
     | 'email-address'
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
 const OtpInputs = forwardRef<OtpInputsRef, Props>(
   (
     {
+      autofillFromClipboard = true,
       autoCapitalize = 'none',
       clearTextOnFocus = false,
       defaultValue,
@@ -134,6 +136,8 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     },
     ref,
   ) => {
+    const previousCopiedText = useRef<string>('');
+    const inputs = useRef<Array<RefObject<TextInput>>>([]);
     const [{ otpCode, hasKeySupport }, dispatch] = useReducer(
       reducer,
       {},
@@ -143,8 +147,6 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
         hasKeySupport: Platform.OS === 'ios',
       }),
     );
-    const previousCopiedText: { current: string } = useRef('');
-    const inputs: { current: Array<RefObject<TextInput>> } = useRef([]);
 
     useEffect(() => {
       dispatch({ type: ACTION_TYPES.setHandleChange, payload: handleChange });
@@ -166,16 +168,6 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       }),
       [numberOfInputs],
     );
-
-    const handleTextChange = (text: string, index: number) => {
-      if (
-        (Platform.OS === 'android' && !hasKeySupport) ||
-        // Pasted from input accessory
-        (Platform.OS === 'ios' && text.length > 1)
-      ) {
-        handleInputTextChange(text, index);
-      }
-    };
 
     const handleInputTextChange = (text: string, index: number): void => {
       if (!text.length) {
@@ -201,6 +193,16 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
       if (index === numberOfInputs - 1 && text) {
         Keyboard.dismiss();
+      }
+    };
+
+    const handleTextChange = (text: string, index: number) => {
+      if (
+        (Platform.OS === 'android' && !hasKeySupport) ||
+        // Pasted from input accessory
+        (Platform.OS === 'ios' && text.length > 1)
+      ) {
+        handleInputTextChange(text, index);
       }
     };
 
@@ -268,14 +270,18 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     }, [fillInputs, numberOfInputs, otpCode]);
 
     useEffect(() => {
-      const interval = setInterval(() => {
-        listenOnCopiedText();
-      }, 500);
+      let interval: NodeJS.Timeout;
+
+      if (autofillFromClipboard) {
+        interval = setInterval(() => {
+          listenOnCopiedText();
+        }, 500);
+      }
 
       return () => {
         clearInterval(interval);
       };
-    }, [listenOnCopiedText, numberOfInputs]);
+    }, [autofillFromClipboard, listenOnCopiedText, numberOfInputs]);
 
     const renderInputs = (): Array<JSX.Element> => {
       const iterationArray = Array<number>(numberOfInputs).fill(0);

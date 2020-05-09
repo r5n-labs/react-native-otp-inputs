@@ -1,4 +1,4 @@
-jest.mock('react-native/Libraries/Components/Clipboard/Clipboard', () => ({
+jest.mock('@react-native-community/clipboard', () => ({
   getString: jest.fn(
     () =>
       new Promise((resolve) => {

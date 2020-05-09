@@ -1,24 +1,24 @@
 # API
 
-| Method                | Type           | Required    | Default                                 | Description                                                              |
-| --------------------- | -------------- | ----------- | --------------------------------------- | ------------------------------------------------------------------------ |
-| autoCapitalize        | string         | false       | 'none'                                  |                                                                          |
-| autofillFromClipboard | boolean        | false       | true                                    | You can set it to `false` if want to switch off autofill from clipboard. |
-| clearTextOnFocus      | boolean        | false       | false                                   |                                                                          |
-| defaultValue          | string         | false       |                                         | Sets default value for otp inputs                                        |
-| handleChange          | function       | true        | console.log                             | Returns otp code.                                                        |
-| keyboardType          | string         | true        | 'phone-pad'                             |                                                                          |
-| numberOfInputs        | number         | true (1..6) | 4                                       | Inputs count to render.                                                  |
-| secureTextEntry       | boolean        | false       | false                                   |                                                                          |
-| selectTextOnFocus     | boolean        | false       | true [iOS Only](./src/OtpInput.tsx#L56) |                                                                          |
-| testIDPrefix          | string         | false       | otpInput-\${inputIndex}                 | Prefix for testID.                                                       |
-| isRTL                 | boolean        | false       | false                                   | Preferably I18nManager.isRTL.                                            |
-| placeholder           | string         | false       |                                         | Placeholder for the input boxes.                                         |
-| style                 | style (object) | false       |                                         | Applied to whole container.                                              |
-| focusStyles           | style (object) | false       |                                         | Applied to the input on focus.                                           |
-| inputStyles           | style(object)  | false       |                                         | Applied to single input.                                                 |
-| inputContainerStyles  | style (object) | false       |                                         | Applied to each input container.                                         |
-| ...restTextInputProps |                |             |                                         | [TextInput](https://facebook.github.io/react-native/docs/textinput)      |
+| Method                | Type           | Required    | Default                                 | Description                                                           |
+| --------------------- | -------------- | ----------- | --------------------------------------- | --------------------------------------------------------------------- |
+| autoCapitalize        | string         | false       | 'none'                                  |                                                                       |
+| autofillFromClipboard | boolean        | false       | true                                    | You can set it to `false` if want to disable autofill from clipboard. |
+| clearTextOnFocus      | boolean        | false       | false                                   |                                                                       |
+| defaultValue          | string         | false       |                                         | Sets default value for otp inputs                                     |
+| handleChange          | function       | true        | console.log                             | Returns otp code.                                                     |
+| keyboardType          | string         | true        | 'phone-pad'                             |                                                                       |
+| numberOfInputs        | number         | true (1..6) | 4                                       | Inputs count to render.                                               |
+| secureTextEntry       | boolean        | false       | false                                   |                                                                       |
+| selectTextOnFocus     | boolean        | false       | true [iOS Only](./src/OtpInput.tsx#L56) |                                                                       |
+| testIDPrefix          | string         | false       | otpInput-\${inputIndex}                 | Prefix for testID.                                                    |
+| isRTL                 | boolean        | false       | false                                   | Preferably I18nManager.isRTL.                                         |
+| placeholder           | string         | false       |                                         | Placeholder for the input boxes.                                      |
+| style                 | style (object) | false       |                                         | Applied to whole container.                                           |
+| focusStyles           | style (object) | false       |                                         | Applied to the input on focus.                                        |
+| inputStyles           | style(object)  | false       |                                         | Applied to single input.                                              |
+| inputContainerStyles  | style (object) | false       |                                         | Applied to each input container.                                      |
+| ...restTextInputProps |                |             |                                         | [TextInput](https://facebook.github.io/react-native/docs/textinput)   |
 
 # Methods
 
@@ -54,7 +54,7 @@ export default class App extends Component {
         <Button title="Focus" onPress={this.focusOTP} />
         <OtpInputs
           ref={this.otpRef}
-          handleChange={code => console.log(code)}
+          handleChange={(code) => console.log(code)}
           numberOfInputs={6}
         />
       </View>

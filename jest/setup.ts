@@ -1,7 +1,7 @@
 jest.mock('react-native/Libraries/Components/Clipboard/Clipboard', () => ({
   getString: jest.fn(
     () =>
-      new Promise(resolve => {
+      new Promise((resolve) => {
         resolve();
       }),
   ),

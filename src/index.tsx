@@ -155,7 +155,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       () => ({
         reset: (): void => {
           dispatch({ type: ACTION_TYPES.clearOtp, payload: numberOfInputs });
-          inputs.current.forEach(input => input?.current?.clear());
+          inputs.current.forEach((input) => input?.current?.clear());
           previousCopiedText.current = '';
           Clipboard.setString('');
         },

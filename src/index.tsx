@@ -1,3 +1,4 @@
+import Clipboard from '@react-native-community/clipboard';
 import React, {
   RefObject,
   forwardRef,
@@ -8,7 +9,6 @@ import React, {
   useRef,
 } from 'react';
 import {
-  Clipboard,
   Keyboard,
   NativeSyntheticEvent,
   Platform,

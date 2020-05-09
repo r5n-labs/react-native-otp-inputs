@@ -18,12 +18,12 @@ const App = () => {
   };
 
   const toggle = () => {
-    setFourDigit(fourDigit => !fourDigit);
+    setFourDigit((fourDigit) => !fourDigit);
   };
 
   const handleChange = (code: string) => {
     console.log('currentCodeReturned', code, s);
-    setS(s => !s);
+    setS((s) => !s);
   };
 
   return (

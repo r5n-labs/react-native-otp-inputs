@@ -1,7 +1,5 @@
 # react-native-otp-inputs
 
-[![codecov](https://codecov.io/gh/dsznajder/react-native-otp-inputs/branch/master/graph/badge.svg)](https://codecov.io/gh/dsznajder/react-native-otp-inputs)
-
 ![npm](https://img.shields.io/npm/dw/react-native-otp-inputs.svg)
 ![npm](https://img.shields.io/npm/v/react-native-otp-inputs.svg)
 
@@ -20,16 +18,38 @@ Supported version: `react-native >= 0.59.0`
 ### Expo is currently not supported as `Clipboard` is not included in Expo SDK
 
 ```bash
-yarn add react-native-otp-inputs @react-native-community/clipboard
+$ yarn add react-native-otp-inputs @react-native-community/clipboard
+```
+
+### After installation run:
+
+```bash
+$ npx pod-install
 ```
 
 Clipboard module has been extracted from react-native core, so it needs to be installed separately.
 Package uses it for autofill feature
-After installation run:
 
-```bash
-cd ios && pod install
+<details>
+  <summary>For React Native version 0.59</summary>
+
+### React Native <= 0.59
+
+run the following command to link the package:
+
 ```
+$ react-native link @react-native-community/clipboard
+```
+
+For iOS, make sure you install the pod file.
+
+```
+cd ios && pod install && cd ..
+```
+
+or you could follow the instructions to [manually link the project](https://reactnative.dev/docs/linking-libraries-ios#manual-linking)
+
+</details>
 
 | React-Native version | version                                |
 | -------------------- | -------------------------------------- |

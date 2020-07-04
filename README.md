@@ -17,6 +17,8 @@
 
 Supported version: `react-native >= 0.59.0`
 
+### Expo is currently not supported as `Clipboard` is not included in Expo SDK
+
 ```bash
 yarn add react-native-otp-inputs @react-native-community/clipboard
 ```

@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const path = require('path');
-const fs = require('fs');
 const blacklist = require('metro-config/src/defaults/blacklist');
 const escape = require('escape-string-regexp');
+
+const path = require('path');
+const fs = require('fs');
 
 const root = path.resolve(__dirname, '..');
 const pak = JSON.parse(

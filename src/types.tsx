@@ -41,3 +41,16 @@ export type KeyEventType = {
   pressedKey: string;
   keyCode: number;
 };
+
+export type SupportedKeyboardType =
+  | 'default'
+  | 'email-address'
+  | 'phone-pad'
+  | 'visible-password'
+  | 'ascii-capable'
+  | 'numbers-and-punctuation'
+  | 'url'
+  | 'name-phone-pad'
+  | 'twitter'
+  | 'web-search'
+  | undefined;

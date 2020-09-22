@@ -75,4 +75,4 @@ const OtpInput = forwardRef<TextInput, Props>(
   },
 );
 
-export default React.memo<Props>(OtpInput);
+export default React.memo(OtpInput);

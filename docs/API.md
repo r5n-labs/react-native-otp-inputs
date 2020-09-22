@@ -3,7 +3,8 @@
 | Method                | Type           | Required    | Default                                 | Description                                                           |
 | --------------------- | -------------- | ----------- | --------------------------------------- | --------------------------------------------------------------------- |
 | autoCapitalize        | string         | false       | 'none'                                  |                                                                       |
-| autofillFromClipboard | boolean        | false       | true                                    | You can set it to `false` if want to disable autofill from clipboard. |
+| autofillFromClipboard | boolean        | false       | true for android & iOS < 14             | You can set it to `false` if want to disable autofill from clipboard. |
+| autofillListenerIntervalMS | number        | false       | number of milliseconds for `setInterval` listener on Clipboard |
 | clearTextOnFocus      | boolean        | false       | false                                   |                                                                       |
 | defaultValue          | string         | false       |                                         | Sets default value for otp inputs                                     |
 | handleChange          | function       | true        | console.log                             | Returns otp code.                                                     |
@@ -32,33 +33,31 @@ Those can be called on ref:
 ## Example
 
 ```tsx
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 import { Button, View } from 'react-native';
-import OtpInputs from 'react-native-otp-inputs';
+import OtpInputs, { OtpInputsRef } from 'react-native-otp-inputs';
 
-export default class App extends Component {
-  otpRef = React.createRef();
+const App = () => {
+  const otpRef = useRef<OtpInputsRef>()
 
-  focusOTP = () => {
-    this.otpRef.current.focus();
-  };
+  const focusOTP = useCallback(() => {
+    otpRef.current.focus();
+  }, [])
 
-  resetOTP = () => {
-    this.otpRef.current.reset();
-  };
+  const resetOTP = useCallback(() => {
+    otpRef.current.reset();
+  }, [])
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="Reset" onPress={this.resetOTP} />
-        <Button title="Focus" onPress={this.focusOTP} />
-        <OtpInputs
-          ref={this.otpRef}
-          handleChange={(code) => console.log(code)}
-          numberOfInputs={6}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Button title="Reset" onPress={resetOTP} />
+      <Button title="Focus" onPress={focusOTP} />
+      <OtpInputs
+        ref={otpRef}
+        handleChange={(code) => console.log(code)}
+        numberOfInputs={6}
+      />
+    </View>
+  );
 }
 ```

@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    es6: true,
     browser: true,
     node: true,
     jest: true,
@@ -17,25 +18,31 @@ module.exports = {
     },
   },
 
-  extends: ['satya164'],
+  extends: ['satya164', 'plugin:react-native/all'],
 
   rules: {
     'babel/no-unused-expressions': 'off',
-    'flowtype/no-types-missing-file-annotation': 'off',
+    'import/extensions': 'off',
+    'import/named': 'off',
     'jest/consistent-test-it': ['error', { fn: 'test' }],
-    'no-undef': 'off',
-    'react-hooks/exhaustive-deps': 'off',
+    'jest/no-truthy-falsy': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
-    'react-native/no-color-literals': 'off',
-    'react/jsx-sort-props': ['error'],
+    'react/no-unused-prop-types': 'off',
 
-    '@typescript-eslint/array-type': [
+    'import/no-unresolved': [
       'error',
       {
-        default: 'generic',
-        readonly: 'generic',
+        caseSensitive: false,
+        ignore: ['^(~|jest)/'],
       },
     ],
+
+    'jest/expect-expect': [
+      'error',
+      { assertFunctionNames: ['expect', 'element'] },
+    ],
+
     'prettier/prettier': [
       'error',
       {
@@ -50,5 +57,31 @@ module.exports = {
         useTabs: false,
       },
     ],
+
+    '@typescript-eslint/array-type': [
+      'error',
+      { default: 'generic', readonly: 'generic' },
+    ],
+
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always-and-inside-groups',
+        groups: [
+          'internal',
+          'external',
+          'unknown',
+          'index',
+          'sibling',
+          'parent',
+          'builtin',
+        ],
+        alphabetize: { order: 'ignore' },
+      },
+    ],
+  },
+  globals: {
+    __DEV__: true,
+    jasmine: true,
   },
 };

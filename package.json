@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-inputs",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "One-time password inputs built in pure JS for React-Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -14,6 +14,7 @@
     "bootstrap": "yarn example && yarn",
     "example": "yarn --cwd Example",
     "lint": "eslint --ext .js,.ts,.tsx .",
+    "postinstall": "husky install",
     "prepare": "bob build",
     "release": "release-it",
     "test": "jest --coverage --runInBand --detectOpenHandles",
@@ -32,28 +33,29 @@
     "inputs"
   ],
   "devDependencies": {
-    "@babel/core": "7.11.6",
-    "@babel/preset-typescript": "7.10.4",
-    "@commitlint/config-conventional": "11.0.0",
-    "@react-native-community/bob": "0.16.2",
+    "@babel/core": "7.13.14",
+    "@babel/preset-typescript": "7.13.0",
+    "@commitlint/config-conventional": "12.0.1",
+    "@react-native-community/bob": "0.17.1",
     "@react-native-clipboard/clipboard": "1.7.0",
-    "@release-it/conventional-changelog": "2.0.0",
-    "@types/jest": "26.0.14",
-    "@types/react": "16.9.49",
-    "@types/react-native": "0.63.20",
-    "commitlint": "11.0.0",
-    "eslint": "7.9.0",
-    "eslint-config-satya164": "3.1.7",
-    "husky": "4.3.0",
-    "jest": "26.4.2",
-    "metro-react-native-babel-preset": "0.63.0",
-    "prettier": "2.1.2",
-    "react": "16.13.1",
-    "react-native": "0.63.2",
+    "@release-it/conventional-changelog": "2.0.1",
+    "@types/jest": "26.0.22",
+    "@types/react": "17.0.3",
+    "@types/react-native": "0.64.2",
+    "commitlint": "12.0.1",
+    "eslint": "7.23.0",
+    "eslint-config-satya164": "3.1.10",
+    "husky": "6.0.0",
+    "jest": "26.6.3",
+    "metro-react-native-babel-preset": "0.65.2",
+    "prettier": "2.2.1",
+    "react": "17.0.2",
+    "react-native": "0.64.0",
+    "react-native-builder-bob": "0.18.1",
     "react-native-testing-library": "6.0.0",
-    "react-test-renderer": "16.13.1",
-    "release-it": "14.0.3",
-    "typescript": "4.0.3"
+    "react-test-renderer": "17.0.2",
+    "release-it": "14.5.0",
+    "typescript": "4.2.3"
   },
   "peerDependencies": {
     "@react-native-clipboard/clipboard": "*",
@@ -98,13 +100,40 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "@react-native-community/bob": {
+  "release-it": {
+    "git": {
+      "requireUpstream": true,
+      "tag": true,
+      "tagName": "react-native-otp-inputs@${version}",
+      "commit": true,
+      "commitMessage": "chore(:bookmark:): react-native-otp-inputs ${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "react-native-otp-inputs@${version}",
+      "draft": false
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }

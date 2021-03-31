@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "react-native-otp-inputs": ["./src/index"]
     },
@@ -24,5 +24,4 @@
     "target": "esnext"
   },
   "include": ["src/*", "index.d.ts"],
-  "exclude": ["android", "__tests__", "ios", "build", "node_modules"]
 }

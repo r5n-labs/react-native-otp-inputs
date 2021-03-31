@@ -1,10 +1,22 @@
 # Changelog
 
+## v7.0.0 (31/03/2021)
+
+`@react-native-community/clipboard` has been changed to `@react-native-clipboard/clipboard`.
+
+Now installation process should be:
+
+```bash
+$ yarn add react-native-otp-inputs @react-native-clipboard/clipboard
+```
+
+### BREAKING CHANGE
+
 ## v6.0.0 (04/07/2020)
 
 ### BREAKING CHANGE
 
-- `Clipboard` has been extracted from `react-native` core as part of [Lean Core](https://github.com/facebook/react-native/issues/23313). Now this module uses [Community Clipboard](https://github.com/react-native-community/clipboard). Additional steps needed are:
+- `Clipboard` has been extracted from `react-native` core as part of [Lean Core](https://github.com/facebook/react-native/issues/23313). Now this module uses [Clipboard](https://github.com/react-native-clipboard/clipboard). Additional steps needed are:
 
 ```bash
 $ yarn add @react-native-community/clipboard

@@ -1588,6 +1588,11 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@react-native-clipboard/clipboard@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@react-native-clipboard/clipboard/-/clipboard-1.7.0.tgz#43320841870b82b2f311f375dd5f178da46e244e"
+  integrity sha512-i5dJgR+wM8Om+hFEB/PqNb65/x5WxpaZG+UjEBX2/gmmIrmAWI72tI9rVL1gjPA9RWNpdpzvp+ioGjpdl7MyWQ==
+
 "@react-native-community/bob@0.16.2":
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/bob/-/bob-0.16.2.tgz#9102b0160e70084fa1b75403a80dec332647c950"
@@ -1736,11 +1741,6 @@
     strip-ansi "^5.2.0"
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
-
-"@react-native-community/clipboard@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@react-native-community/clipboard/-/clipboard-1.2.3.tgz#1590f6849d9c8a3bc14bbd1aa0f1f3945e4e60ca"
-  integrity sha512-X9dfG/JiLI5pNyAwg3VMd7O3l/PVbYoAy8m12fetLWkBFzgTVEUIwsP0vysZ/29lnlLVM+qJUywcJmat046fvw==
 
 "@release-it/conventional-changelog@2.0.0":
   version "2.0.0"

@@ -38,6 +38,7 @@ const OtpInput = forwardRef<TextInput, Props>(
       inputValue,
       placeholder,
       selectTextOnFocus,
+      secureTextEntry,
       ...rest
     },
     ref,
@@ -68,6 +69,7 @@ const OtpInput = forwardRef<TextInput, Props>(
           style={inputStyles}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"
+          secureTextEntry={secureTextEntry}
           {...rest}
         />
       </View>

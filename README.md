@@ -18,7 +18,7 @@ Supported version: `react-native >= 0.59.0`
 ### Expo is currently not supported as `Clipboard` is not included in Expo SDK
 
 ```bash
-$ yarn add react-native-otp-inputs @react-native-community/clipboard
+$ yarn add react-native-otp-inputs @react-native-clipboard/clipboard
 ```
 
 ### After installation run:
@@ -38,7 +38,7 @@ Package uses it for autofill feature
 run the following command to link the package:
 
 ```
-$ react-native link @react-native-community/clipboard
+$ react-native link @react-native-clipboard/clipboard
 ```
 
 For iOS, make sure you install the pod file.

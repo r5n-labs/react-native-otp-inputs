@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-inputs",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "One-time password inputs built in pure JS for React-Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -11,10 +11,9 @@
     "lib"
   ],
   "scripts": {
-    "bootstrap": "yarn example && yarn",
+    "bootstrap": "yarn example && yarn && husky install",
     "example": "yarn --cwd Example",
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "postinstall": "husky install",
     "prepare": "bob build",
     "release": "release-it",
     "test": "jest --coverage --runInBand --detectOpenHandles",

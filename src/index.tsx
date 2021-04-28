@@ -270,7 +270,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             ref={inputs.current[inputIndex]}
             secureTextEntry={secureTextEntry}
             selectTextOnFocus={selectTextOnFocus}
-            accessible={true}
+            accessible
             testID={`${testIDPrefix}-${inputIndex}`}
             accessibilityLabel={`${testIDPrefix}-${inputIndex}`}
             {...restProps}

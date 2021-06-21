@@ -90,6 +90,13 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       }),
     );
 
+    useEffect(() => { 
+      dispatch({
+        type: 'setOtpCode',
+        payload:  { numberOfInputs, code:defaultValue}
+      });
+   },[defaultValue, numberOfInputs]);
+
     useEffect(() => {
       dispatch({ type: 'setHandleChange', payload: handleChange });
     }, [handleChange]);

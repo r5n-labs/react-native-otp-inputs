@@ -1,14 +1,14 @@
-import React, { useState, useEffect, forwardRef, RefObject } from 'react';
+import React, { forwardRef, RefObject, useEffect, useMemo, useState } from 'react';
 import {
+  NativeSyntheticEvent,
   Platform,
   StyleProp,
   TextInput,
+  TextInputKeyPressEventData,
+  TextInputProps,
   TextStyle,
   View,
   ViewStyle,
-  TextInputProps,
-  NativeSyntheticEvent,
-  TextInputKeyPressEventData,
 } from 'react-native';
 
 type Props = TextInputProps & {
@@ -19,9 +19,7 @@ type Props = TextInputProps & {
   numberOfInputs: number;
   handleTextChange: (text: string) => void;
   inputValue: string;
-  handleKeyPress: (
-    keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>,
-  ) => void;
+  handleKeyPress: (keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
 };
 
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
@@ -30,6 +28,7 @@ const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 const OtpInput = forwardRef<TextInput, Props>(
   (
     {
+      autoFocus,
       focusStyles,
       handleKeyPress,
       handleTextChange,
@@ -52,15 +51,26 @@ const OtpInput = forwardRef<TextInput, Props>(
       });
     }, [ref, inputValue]);
 
+    const restProps = useMemo(
+      () =>
+        Platform.select({
+          default: rest,
+          web: { value: inputValue, ...rest },
+        }),
+      [inputValue, rest],
+    );
+
     return (
       <View style={[inputContainerStyles, focused && focusStyles]}>
         <TextInput
+          autoFocus={autoFocus}
           onBlur={() => setFocused(false)}
           onChangeText={handleTextChange}
           onFocus={() => setFocused(true)}
           onKeyPress={handleKeyPress}
           placeholder={placeholder}
           ref={ref}
+          secureTextEntry={secureTextEntry}
           // https://github.com/facebook/react-native/issues/18339
           selectTextOnFocus={Platform.select({
             ios: selectTextOnFocus,
@@ -69,8 +79,7 @@ const OtpInput = forwardRef<TextInput, Props>(
           style={inputStyles}
           textContentType={isOTPSupported ? 'oneTimeCode' : 'none'}
           underlineColorAndroid="transparent"
-          secureTextEntry={secureTextEntry}
-          {...rest}
+          {...restProps}
         />
       </View>
     );

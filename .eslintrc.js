@@ -11,45 +11,41 @@ module.exports = {
       version: 'detect',
     },
     'import/core-modules': ['react-native-otp-inputs'],
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-    },
   },
 
+  plugins: ['simple-import-sort'],
   extends: ['satya164', 'plugin:react-native/all'],
 
   rules: {
     'babel/no-unused-expressions': 'off',
+
     'import/extensions': 'off',
     'import/named': 'off',
+    'import/no-unresolved': 'error',
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'jest/no-truthy-falsy': 'off',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react-hooks/rules-of-hooks': 'error',
-    'react/no-unused-prop-types': 'off',
+    'jest/expect-expect': ['error', { assertFunctionNames: ['expect', 'element'] }],
 
-    'import/no-unresolved': [
+    'simple-import-sort/exports': 'error',
+    'simple-import-sort/imports': [
       'error',
       {
-        caseSensitive: false,
-        ignore: ['^(~|jest)/'],
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+          // Packages.
+          ['^@?\\w'],
+          ['^../'],
+          ['^./'],
+        ],
       },
     ],
-
-    'jest/expect-expect': [
-      'error',
-      { assertFunctionNames: ['expect', 'element'] },
-    ],
-
     'prettier/prettier': [
       'error',
       {
         bracketSpacing: true,
-        jsxBracketSameLine: false,
-        parser: 'typescript',
-        printWidth: 80,
+        bracketSameLine: false,
+        printWidth: 100,
         semi: true,
         singleQuote: true,
         tabWidth: 2,
@@ -58,27 +54,14 @@ module.exports = {
       },
     ],
 
-    '@typescript-eslint/array-type': [
-      'error',
-      { default: 'generic', readonly: 'generic' },
-    ],
+    'react/jsx-sort-props': ['error', { shorthandFirst: true }],
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-native/no-raw-text': 'off',
+    'react-native/no-color-literals': 'off',
+    'react/no-unused-prop-types': 'off',
 
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'always-and-inside-groups',
-        groups: [
-          'internal',
-          'external',
-          'unknown',
-          'index',
-          'sibling',
-          'parent',
-          'builtin',
-        ],
-        alphabetize: { order: 'ignore' },
-      },
-    ],
+    '@typescript-eslint/array-type': ['error', { default: 'generic', readonly: 'generic' }],
   },
   globals: {
     __DEV__: true,

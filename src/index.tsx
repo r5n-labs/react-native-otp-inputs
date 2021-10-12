@@ -1,7 +1,7 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, {
-  RefObject,
   forwardRef,
+  RefObject,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -22,10 +22,10 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import OtpInput from './OtpInput';
-import { OtpInputsRef, SupportedKeyboardType } from './types';
 import { fillOtpCode } from './helpers';
+import OtpInput from './OtpInput';
 import reducer from './reducer';
+import { OtpInputsRef, SupportedKeyboardType } from './types';
 
 const supportAutofillFromClipboard =
   Platform.OS === 'android' || parseInt(Platform.Version as string, 10) < 14;
@@ -47,9 +47,9 @@ type Props = TextInputProps & {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
 });
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 const OtpInputs = forwardRef<OtpInputsRef, Props>(
   (
     {
+      autoFocus,
       autofillFromClipboard = supportAutofillFromClipboard,
       autofillListenerIntervalMS = 1000,
       autoCapitalize = 'none',
@@ -80,15 +81,11 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
   ) => {
     const previousCopiedText = useRef<string>('');
     const inputs = useRef<Array<RefObject<TextInput>>>([]);
-    const [{ otpCode, hasKeySupport }, dispatch] = useReducer(
-      reducer,
-      {},
-      () => ({
-        otpCode: fillOtpCode(numberOfInputs, defaultValue),
-        handleChange,
-        hasKeySupport: Platform.OS === 'ios',
-      }),
-    );
+    const [{ otpCode, hasKeySupport }, dispatch] = useReducer(reducer, {}, () => ({
+      otpCode: fillOtpCode(numberOfInputs, defaultValue),
+      handleChange,
+      hasKeySupport: Platform.OS === 'ios',
+    }));
 
     useEffect(() => {
       dispatch({ type: 'setHandleChange', payload: handleChange });
@@ -149,12 +146,11 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     };
 
     const handleKeyPress = (
-      {
-        nativeEvent: { key },
-      }: NativeSyntheticEvent<TextInputKeyPressEventData>,
+      { nativeEvent: { key } }: NativeSyntheticEvent<TextInputKeyPressEventData>,
       index: number,
     ) => {
-      handleInputTextChange(key === 'Backspace' ? '' : key, index);
+      const text = key === 'Backspace' || key.length > 1 ? '' : key;
+      handleInputTextChange(text, index);
 
       if (Platform.OS === 'android' && !hasKeySupport && !isNaN(parseInt(key)))
         dispatch({ type: 'setHasKeySupport', payload: true });
@@ -223,12 +219,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       return () => {
         clearInterval(interval);
       };
-    }, [
-      autofillFromClipboard,
-      autofillListenerIntervalMS,
-      listenOnCopiedText,
-      numberOfInputs,
-    ]);
+    }, [autofillFromClipboard, autofillListenerIntervalMS, listenOnCopiedText, numberOfInputs]);
 
     const renderInputs = (): Array<JSX.Element> => {
       const iterationArray = Array<number>(numberOfInputs).fill(0);
@@ -246,16 +237,17 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
 
         return (
           <OtpInput
+            accessible
+            accessibilityLabel={`${testIDPrefix}-${inputIndex}`}
             autoCapitalize={autoCapitalize}
+            autoFocus={index === 0 && autoFocus}
             clearTextOnFocus={clearTextOnFocus}
             firstInput={index === 0}
             focusStyles={focusStyles}
-            handleKeyPress={(
-              keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>,
-            ) => handleKeyPress(keyPressEvent, inputIndex)}
-            handleTextChange={(text: string) =>
-              handleTextChange(text, inputIndex)
+            handleKeyPress={(keyPressEvent: NativeSyntheticEvent<TextInputKeyPressEventData>) =>
+              handleKeyPress(keyPressEvent, inputIndex)
             }
+            handleTextChange={(text: string) => handleTextChange(text, inputIndex)}
             inputContainerStyles={inputContainerStyles}
             inputStyles={inputStyles}
             inputValue={inputValue}
@@ -270,9 +262,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
             ref={inputs.current[inputIndex]}
             secureTextEntry={secureTextEntry}
             selectTextOnFocus={selectTextOnFocus}
-            accessible
             testID={`${testIDPrefix}-${inputIndex}`}
-            accessibilityLabel={`${testIDPrefix}-${inputIndex}`}
             {...restProps}
           />
         );

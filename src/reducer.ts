@@ -1,5 +1,5 @@
 import { fillOtpCode } from './helpers';
-import { ActionTypes, ReducerState, Actions } from './types';
+import { Actions, ActionTypes, ReducerState } from './types';
 
 const ACTION_TYPES: ActionTypes = {
   setHandleChange: 'setHandleChange',

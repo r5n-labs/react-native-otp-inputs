@@ -197,8 +197,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       const otpCodeValue = Object.values(otpCode).join('');
 
       if (
-        copiedText &&
-        copiedText.length === numberOfInputs &&
+        copiedText?.length === numberOfInputs &&
         copiedText !== otpCodeValue &&
         copiedText !== previousCopiedText.current
       ) {

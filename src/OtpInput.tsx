@@ -48,6 +48,7 @@ const OtpInput = forwardRef<TextInput, Props>(
       (ref as RefObject<TextInput>)?.current?.setNativeProps({
         value: inputValue,
         text: inputValue,
+        secureTextEntry,
       });
     }, [ref, inputValue]);
 

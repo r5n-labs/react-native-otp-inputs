@@ -277,6 +277,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       });
     };
 
+    // @ts-expect-error
     return <View style={style || styles.container}>{renderInputs()}</View>;
   },
 );

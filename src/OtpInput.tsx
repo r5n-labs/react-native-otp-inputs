@@ -48,8 +48,9 @@ const OtpInput = forwardRef<TextInput, Props>(
       (ref as RefObject<TextInput>)?.current?.setNativeProps({
         value: inputValue,
         text: inputValue,
+        secureTextEntry,
       });
-    }, [ref, inputValue]);
+    }, [ref, inputValue, secureTextEntry]);
 
     const restProps = useMemo(
       () =>
@@ -61,7 +62,9 @@ const OtpInput = forwardRef<TextInput, Props>(
     );
 
     return (
+      // @ts-expect-error
       <View style={[inputContainerStyles, focused && focusStyles]}>
+        {/* @ts-expect-error */}
         <TextInput
           autoFocus={autoFocus}
           onBlur={() => setFocused(false)}

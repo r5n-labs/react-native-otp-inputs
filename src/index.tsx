@@ -30,7 +30,7 @@ import { OtpInputsRef, SupportedKeyboardType } from './types';
 const supportAutofillFromClipboard =
   Platform.OS === 'android' || parseInt(Platform.Version as string, 10) < 14;
 
-type Props = TextInputProps & {
+export type OtpInputsProps = TextInputProps & {
   autofillFromClipboard: boolean;
   autofillListenerIntervalMS?: number;
   keyboardType?: SupportedKeyboardType;
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const OtpInputs = forwardRef<OtpInputsRef, Props>(
+const OtpInputs = forwardRef<OtpInputsRef, OtpInputsProps>(
   (
     {
       autoFocus,

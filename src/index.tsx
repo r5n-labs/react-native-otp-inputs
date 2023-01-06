@@ -1,4 +1,3 @@
-import Clipboard from '@react-native-clipboard/clipboard';
 import React, {
   forwardRef,
   RefObject,
@@ -30,6 +29,11 @@ import { OtpInputsRef, SupportedKeyboardType } from './types';
 const supportAutofillFromClipboard =
   Platform.OS === 'android' || parseInt(Platform.Version as string, 10) < 14;
 
+type ClipboardType = {
+  setString(string: string): Promise<void>;
+  getString(): Promise<string>;
+}
+
 type Props = TextInputProps & {
   autofillFromClipboard: boolean;
   autofillListenerIntervalMS?: number;
@@ -43,6 +47,7 @@ type Props = TextInputProps & {
   isRTL?: boolean;
   numberOfInputs: number;
   testIDPrefix?: string;
+  Clipboard: ClipboardType;
 };
 
 const styles = StyleSheet.create({
@@ -75,6 +80,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
       selectTextOnFocus = true,
       style,
       testIDPrefix = 'otpInput',
+      Clipboard,
       ...restProps
     },
     ref,

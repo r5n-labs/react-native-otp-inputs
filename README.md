@@ -15,10 +15,15 @@
 
 Supported version: `react-native >= 0.59.0`
 
-### Expo is currently not supported as `Clipboard` is not included in Expo SDK
-
+~~### Expo is currently not supported as `Clipboard` is not included in Expo SDK~~
+bare react native:
 ```bash
 $ yarn add react-native-otp-inputs @react-native-clipboard/clipboard
+```
+
+expo:
+```bash
+$ yarn add react-native-otp-inputs expo-clipboard
 ```
 
 ### After installation run:
@@ -64,11 +69,23 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import OtpInputs from 'react-native-otp-inputs';
 
+// expo
+import * as ExpoClipboard from 'expo-clipboard';
+const Clipboard = {
+  setString: ExpoClipboard.setStringAsync,
+  getString: ExpoClipboard.getStringAsync
+}
+
+// react-native
+import Clipboard from '@react-native-clipboard/clipboard'
+
+
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <OtpInputs
+          Clipboard={Clipboard}
           handleChange={(code) => console.log(code)}
           numberOfInputs={6}
         />

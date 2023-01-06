@@ -30,7 +30,7 @@ const supportAutofillFromClipboard =
   Platform.OS === 'android' || parseInt(Platform.Version as string, 10) < 14;
 
 type ClipboardType = {
-  setString(string: string): Promise<void>;
+  setString(string: string): void;
   getString(): Promise<string>;
 }
 
